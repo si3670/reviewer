@@ -1,5 +1,7 @@
 package com.sbs.untact2.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,4 +22,8 @@ public interface ArticleDao {
 	void deleteArticleById(@Param("id") int id);
 
 	Board getBoardById(@Param("id")int id);
+
+	int getArticlesTotalCount(@Param("boardId")int boardId);
+
+	List<Article> getForPrintArticles(@Param("boardId")int boardId, @Param("limitStart")int limitStart, @Param("limitTake")int limitTake,@Param("searchKeyword") String searchKeyword, @Param("searchKeywordType") String searchKeywordType);
 }

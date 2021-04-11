@@ -1,10 +1,13 @@
 package com.sbs.untact2.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.untact2.dto.Article;
@@ -97,14 +100,51 @@ public class MpaUsrArticleController {
 	
 	
 	@RequestMapping("/mpaUsr/article/list")
-	public String showList(HttpServletRequest req, int boardId) {
+	public String showList(HttpServletRequest req, int boardId, @RequestParam(defaultValue = "1")int page,
+			String searchKeyword,@RequestParam(defaultValue = "titleAndBody") String searchKeywordType) {
 		Board board = articleService.getBoardById(boardId);
 		
 		if(board == null) {
 			return msgAndBack(req, "존재하지않는 게시판 입니다.");
 		}
 		
+
+		if (searchKeywordType != null) {
+			searchKeywordType = searchKeywordType.trim();
+		}
+
+		if (searchKeywordType == null || searchKeywordType.length() == 0) {
+			searchKeywordType = "titleAndBody";
+		}
+
+		if (searchKeyword != null && searchKeyword.length() == 0) {
+			searchKeyword = null;
+		}
+
+		if (searchKeyword != null) {
+			searchKeyword = searchKeyword.trim();
+		}
+
+		if (searchKeyword == null) {
+			searchKeywordType = null;
+		}
+		
 		req.setAttribute("board", board);
+		
+		int totalCount = articleService.getArticlesTotalCount(boardId);
+		
+		req.setAttribute("totalCount", totalCount);
+		
+		int itemsInAPage = 20;
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+
+		req.setAttribute("page", page);
+		req.setAttribute("totalPage", totalPage);
+
+		
+		List<Article> articles = articleService.getForPrintArticles(boardId, page, itemsInAPage, searchKeyword, searchKeywordType);
+
+		req.setAttribute("articles", articles);
 		
 		return "mpaUsr/article/list";
 	}

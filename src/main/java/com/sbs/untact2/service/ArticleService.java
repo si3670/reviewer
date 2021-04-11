@@ -1,6 +1,5 @@
 package com.sbs.untact2.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import com.sbs.untact2.dao.ArticleDao;
 import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Board;
 import com.sbs.untact2.dto.ResultData;
-import com.sbs.untact2.util.Util;
 
 @Service
 public class ArticleService {
@@ -66,5 +64,16 @@ public class ArticleService {
 
 	public Board getBoardById(int id) {
 		return articleDao.getBoardById(id);
+	}
+
+	public int getArticlesTotalCount(int boardId) {
+		return articleDao.getArticlesTotalCount(boardId);
+	}
+
+	public List<Article> getForPrintArticles(int boardId, int page, int itemsInAPage, String searchKeyword, String searchKeywordType) {
+		int limitStart = (page - 1) * itemsInAPage;
+		int limitTake = itemsInAPage;
+		
+		return articleDao.getForPrintArticles(boardId, limitStart, limitTake, searchKeyword, searchKeywordType);
 	}
 }

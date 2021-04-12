@@ -29,6 +29,10 @@
       format("woff");
 }
 
+min-h-screen {
+	height: 100%;
+}
+
 html > body {
   font-family: "LotteMartDream", sans-serif;
 }

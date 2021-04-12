@@ -66,8 +66,8 @@ public class ArticleService {
 		return articleDao.getBoardById(id);
 	}
 
-	public int getArticlesTotalCount(int boardId) {
-		return articleDao.getArticlesTotalCount(boardId);
+	public int getArticlesTotalCount(int boardId, String searchKeyword, String searchKeywordType) {
+		return articleDao.getArticlesTotalCount(boardId, searchKeyword, searchKeywordType);
 	}
 
 	public List<Article> getForPrintArticles(int boardId, int page, int itemsInAPage, String searchKeyword, String searchKeywordType) {
@@ -76,4 +76,10 @@ public class ArticleService {
 		
 		return articleDao.getForPrintArticles(boardId, limitStart, limitTake, searchKeyword, searchKeywordType);
 	}
+
+	public void increaseArticleHit(Integer id) {
+		articleDao.increaseArticleHit(id);
+		
+	}
+
 }

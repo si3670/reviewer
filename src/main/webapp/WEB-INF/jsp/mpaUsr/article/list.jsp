@@ -41,6 +41,8 @@
 				class="ml-3 btn-primary bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
 				type="submit" value="검색" />
 		</form>
+		<a href="write?boardId=${board.id}"
+			class="btn-primary bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded">글쓰기</a>
 
 		<div class="articles mt-2">
 			<c:if test="${articles == null || articles.size() == 0 }">
@@ -75,6 +77,41 @@
 				</div>
 			</c:forEach>
 		</div>
+
+		<div class="pages mt-4 mb-4 text-center">
+			<c:set var="pageMenuArmSize" value="4" />
+			<c:set var="StartPage"
+				value="${page -  pageMenuArmSize >= 1 ? page -  pageMenuArmSize : 1}" />
+			<c:set var="EndPage"
+				value="${page +  pageMenuArmSize <= totalPage ? page +  pageMenuArmSize : totalPage}" />
+
+			<c:set var="urlBase" value="?boardId=${board.id}" />
+			<c:set var="urlBase"
+				value="${urlBase}&searchKeywordType=${param.searchKeywordType}" />
+			<c:set var="urlBase"
+				value="${urlBase}&searchKeyword=${param.searchKeyword}" />
+
+			<c:set var="aClassStr"
+				value="px-1 inline-block border border-gray-200 text-lg hover:bg-gray-200" />
+
+			<c:if test="${StartPage > 1}">
+				<a class="${aClassStr}" href="${urlBase}&page=1">◀</a>
+				<a class="${aClassStr}" href="${urlBase}&page=${StartPage - 1}">◁</a>
+			</c:if>
+
+
+			<c:forEach var="i" begin="${StartPage}" end="${EndPage}">
+				<a class="${aClassStr} ${page == i ? 'text-red-500' : ''}"
+					href="${urlBase}&page=${i}">${i}</a>
+			</c:forEach>
+
+			<c:if test="${EndPage < totalPage}">
+				<a class="${aClassStr}" href="${urlBase}&page=${EndPage + 1}">▷</a>
+				<a class="${aClassStr}" href="${urlBase}&page=${totalPage}">▶</a>
+			</c:if>
+
+		</div>
+
 	</div>
 </div>
 

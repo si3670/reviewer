@@ -15,9 +15,7 @@ public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 
-	public ResultData writeArticle(String title, String body) {
-		int boardId = 3; //임시
-		int memberId = 3; //임시
+	public ResultData writeArticle(int boardId, int memberId, String title, String body) {
 		
 		articleDao.writeArticle(boardId, memberId, title, body);
 		

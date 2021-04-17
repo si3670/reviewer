@@ -8,7 +8,7 @@
 			<span>
 				<i class="fas fa-video"></i>
 			</span>
-			<span class="hidden sm:block">&nbsp;Reviewer</span>
+			<span class="hidden sm:block">&nbsp;Cellar</span>
 		</a>
 
 		<div class="flex-grow"></div>
@@ -33,37 +33,15 @@
 						<span class="hidden md:block">&nbsp;CATEGORY</span>
 					</a>
 					<div>
-						<h1>
-							<a href="#">
-								<span>
-									<i class="far fa-heart"></i>
-								</span>
-								<span>&nbsp;로맨스</span>
-							</a>
-						</h1>
 						<ul>
 							<li>
 								<a href="#">
-									<span>
-										<i class="far fa-heart"></i>
-									</span>
-									<span>&nbsp;코미디</span>
+									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<span>
-										<i class="far fa-heart"></i>
-									</span>
-									<span>&nbsp;액션</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span>
-										<i class="far fa-heart"></i>
-									</span>
-									<span>&nbsp;판타지</span>
+									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
 						</ul>
@@ -79,14 +57,6 @@
 						<span class="hidden md:block">&nbsp;BOARD</span>
 					</a>
 					<div>
-						<h1>
-							<a href="/mpaUsr/article/list">
-								<span>
-									<i class="far fa-newspaper"></i>
-								</span>
-								<span>&nbsp;BOARD</span>
-							</a>
-						</h1>
 						<ul>
 							<li>
 								<a href="../article/list?boardId=1">

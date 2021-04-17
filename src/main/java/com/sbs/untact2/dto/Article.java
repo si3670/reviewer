@@ -23,5 +23,13 @@ public class Article {
 	private int repliesCount;
 	private int likeCount;
 	private int dislikeCount;
+	
+	private String extra__writer;
+	private String extra__boardName;
+	private String extra__thumbImg;
+	
+	public String getWriterThumbImgUrl() {
+		return "/common/genFile/file/member/" + memberId + "/common/attachment/1";
+	}
 
 }

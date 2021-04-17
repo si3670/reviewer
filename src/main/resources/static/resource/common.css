@@ -121,14 +121,19 @@ html > body {
   background-color: rgb(87, 13, 248);
   color: white;
   text-align: center;
-  height: var(--card-title_height);
-  position: absolute;
-  width: 100%;
   display: grid;
-  align-items: center;
-  grid-template-columns: var(--card-title_left-btn-cell-width) auto var(
-      --card-title_left-btn-cell-width
-    );
+}
+
+.card-title-2 {
+  background-color:rgb(87, 13, 248);
+  color:white;
+  text-align:center;
+  height:var(--card-title_height);
+  position:absolute;
+  width:100%;
+  display:grid;
+  align-items:center;
+  grid-template-columns: var(--card-title_left-btn-cell-width) auto var(--card-title_left-btn-cell-width);
 }
 
 .card-title + * {

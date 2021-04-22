@@ -5,9 +5,6 @@
 <header class="top-bar top-bar--fly">
 	<div class="container mx-auto flex h-full">
 		<a href="/" class="px-3 flex items-center">
-			<span>
-				<i class="fas fa-video"></i>
-			</span>
 			<span class="hidden sm:block">&nbsp;Cellar</span>
 		</a>
 
@@ -35,12 +32,12 @@
 					<div>
 						<ul>
 							<li>
-								<a href="#">
+								<a href="../article/list?boardId=3">
 									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="../article/list?boardId=4">
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
@@ -52,7 +49,7 @@
 				<li>
 					<a href="#" class="h-full flex items-center px-5">
 						<span>
-							<i class="far fa-newspaper"></i>
+							<i class="far fa-clipboard"></i>
 						</span>
 						<span class="hidden md:block">&nbsp;BOARD</span>
 					</a>
@@ -60,32 +57,55 @@
 						<ul>
 							<li>
 								<a href="../article/list?boardId=1">
-									<span>
-										<i class="far fa-clipboard"></i>
-									</span>
 									<span>&nbsp;NOTICE</span>
 								</a>
 							</li>
 							<li>
 								<a href="../article/list?boardId=2">
-									<span>
-										<i class="far fa-clipboard"></i>
-									</span>
 									<span>&nbsp;FREE</span>
 								</a>
 							</li>
 						</ul>
 					</div>
 				</li>
-				<li>
-					<a href="#" class="h-full flex items-center px-5">
-						<span>
-							<i class="fas fa-sign-out-alt"></i>
-						</span>
-						<span class="hidden md:block">&nbsp;SIGN OUT</span>
-					</a>
-					<div></div>
-				</li>
+				<c:if test="${rq.isLogined()}">
+					<li>
+						<a href="../member/doLogout"
+							class="h-full flex items-center px-5">
+							<span>
+								<i class="fas fa-user"></i>
+							</span>
+							<span class="hidden md:block">&nbsp;${rq.getLoginedMemberNickname()}＇s
+							</span>
+						</a>
+						<div>
+							<ul>
+								<li>
+									<a href="../member/myPage">
+										<span>&nbsp;MY PAGE</span>
+									</a>
+								</li>
+								<li>
+									<a href="/mpaUsr/member/doLogout">
+										<span>&nbsp;LOGOUT</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</c:if>
+				<c:if test="${rq.isNotLogined()}">
+					<li>
+						<a href="/mpaUsr/member/login"
+							class="h-full flex items-center px-5">
+							<span>
+								<i class="fas fa-sign-in-alt"></i>
+							</span>
+							<span class="hidden md:block">&nbsp;LOGIN</span>
+						</a>
+						<div></div>
+					</li>
+				</c:if>
 			</ul>
 		</nav>
 

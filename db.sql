@@ -56,6 +56,23 @@ memberId = 2,
 title = "제목4",
 `body` = "내용4";
 
+#############
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "dry",
+`body` = "dry";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 4,
+memberId = 1,
+title = "sweet",
+`body` = "sweet";
+
 SELECT  LAST_INSERT_ID();
 
 CREATE TABLE board(
@@ -87,5 +104,70 @@ updateDate = NOW(),
 `name` = "자유게시판",
 `code` = "free";
 
-SELECT * FROM board;
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = "DryWine",
+`code` = "dryWine";
 
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = "SweetWine",
+`code` = "sweetWine";
+
+SELECT * FROM article;
+
+# 회원 테이블 생성
+CREATE TABLE `member` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
+    regDate DATETIME NOT NULL COMMENT '작성날짜',
+    updateDate DATETIME NOT NULL COMMENT '수정날짜',
+    loginId CHAR(20) NOT NULL UNIQUE COMMENT '로그인아이디',
+    loginPw VARCHAR(50) NOT NULL COMMENT '로그인비번',
+    `name` CHAR(50) NOT NULL COMMENT '이름',
+    nickname CHAR(50) NOT NULL COMMENT '별명',
+    email CHAR(50) NOT NULL COMMENT '이메일',
+    cellphoneNo CHAR(15) NOT NULL COMMENT '휴대전화번호',
+    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴여부',
+    delDate DATETIME COMMENT '탈퇴날짜'
+);
+
+# 회원 테스트 데이터 생성
+## 1번 회원 생성
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user1',
+loginPw = 'user1',
+`name` = '유저1이름',
+nickname = '유저1별명',
+email = 'jangka512@gmail.com',
+cellphoneNo = '01012341234';
+
+# 회원 테스트 데이터 생성
+## 2번 회원 생성
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user2',
+loginPw = 'user2',
+`name` = '유저2이름',
+nickname = '유저2별명',
+email = 'jangka512@gmail.com',
+cellphoneNo = '01012341234';
+
+# 회원 테스트 데이터 생성
+## 3번 회원 생성
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user3',
+loginPw = 'user3',
+`name` = '유저3이름',
+nickname = '유저3별명',
+email = 'jangka512@gmail.com',
+cellphoneNo = '01012341234'; 
+
+
+SELECT * FROM `member`;

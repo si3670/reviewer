@@ -36,6 +36,11 @@ min-h-screen {
 html > body {
   font-family: "LotteMartDream", sans-serif;
 }
+.img-box>img {
+	display: block;
+	width: 100%;
+}
+
 /* 폰트적용 - 끝 */
 
 /* 유틸 - 시작 */
@@ -293,26 +298,25 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 /* 탑바 끝 */ 
 
 /* 비주얼 시작 */
-.img-box>img {
-	display: block;
-	width: 100%;
+.con-1{
+	width: 450px;
+	height: 450px;
+	background:url(imgs/wine2.jpg) no-repeat center;
+	background-size: cover;
+	border-radius: 50%;
+	
 }
-
 
 .visual>.text {
 	top: 50%;
 	left: 100px;
 	transform: translatey(-50%);
-	color: white;
 }
 
 .visual>.text>h1 {
-	font-size: 45px;
+	font-size: 26px;
 }
 
-.visual>.text>p {
-	font-size: 14px;
-}
 
 /* 비주얼 끝 */
 

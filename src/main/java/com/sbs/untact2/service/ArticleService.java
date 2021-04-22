@@ -80,4 +80,8 @@ public class ArticleService {
 		
 	}
 
+	public Article getArticleForPrintById(int id) {
+		return articleDao.getArticleForPrintById(id);
+	}
+
 }

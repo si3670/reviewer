@@ -77,25 +77,7 @@ public class Util {
 		return defaultValue;
 	}
 
-	public static String msgAndBack(String msg) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<script>");
-		sb.append("alert('" + msg + "');");
-		sb.append("history.back();");
-		sb.append("</script>");
 
-		return sb.toString();
-	}
-
-	public static String msgAndReplace(String msg, String url) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<script>");
-		sb.append("alert('" + msg + "');");
-		sb.append("location.replace('" + url + "');");
-		sb.append("</script>");
-
-		return sb.toString();
-	}
 
 	public static String toJsonStr(Map<String, Object> param) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -344,5 +326,40 @@ public class Util {
 	public static String getNewUriAndEncoded(String uri, String paramName, String pramValue) {
 		return getUrlEncoded(getNewUrl(uri, paramName, pramValue));
 	}
+	
+	
+	public static String msgAndBack(HttpServletRequest req, String msg) {
+		req.setAttribute("msg", msg);
+		req.setAttribute("historyBack", true);
+		return "common/redirect";
+	}
+
+	public static String msgAndReplace(HttpServletRequest req, String msg, String replaceUrl) {
+		req.setAttribute("msg", msg);
+		req.setAttribute("replaceUrl", replaceUrl);
+		return "common/redirect";
+	}
+	
+	public static String msgAndBack(String msg) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<script>");
+		sb.append("alert('" + msg + "');");
+		sb.append("history.back();");
+		sb.append("</script>");
+
+		return sb.toString();
+	}
+
+	public static String msgAndReplace(String msg, String url) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<script>");
+		sb.append("alert('" + msg + "');");
+		sb.append("location.replace('" + url + "');");
+		sb.append("</script>");
+
+		return sb.toString();
+	}
+
+	
 
 }

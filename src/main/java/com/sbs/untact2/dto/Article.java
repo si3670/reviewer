@@ -31,5 +31,13 @@ public class Article {
 	public String getWriterThumbImgUrl() {
 		return "/common/genFile/file/member/" + memberId + "/common/attachment/1";
 	}
+	
+	public String getBodyForPrint() {
+        String bodyForPrint = body.replaceAll("\r\n", "<br>");
+        bodyForPrint = bodyForPrint.replaceAll("\r", "<br>");
+        bodyForPrint = bodyForPrint.replaceAll("\n", "<br>");
+
+        return bodyForPrint;
+    }
 
 }

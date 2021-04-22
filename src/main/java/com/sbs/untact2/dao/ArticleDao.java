@@ -29,4 +29,6 @@ public interface ArticleDao {
 
 	void increaseArticleHit(@Param("id")int id);
 
+	Article getArticleForPrintById(@Param("id")int id);
+
 }

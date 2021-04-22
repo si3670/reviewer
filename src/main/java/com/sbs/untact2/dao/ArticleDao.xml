@@ -12,6 +12,17 @@
 		AND A.delStatus = 0
 	</select>
 
+	<select id="getArticleForPrintById" resultType="Article">
+		SELECT A.*,
+		IFNULL(M.name, "삭제된_회원") AS extra__writer
+		FROM article AS A
+		LEFT JOIN
+		member AS M
+		ON A.memberId = M.id
+		WHERE A.id = #{id}
+		AND A.delStatus = 0
+	</select>
+
 	<select id="getArticlesTotalCount" resultType="int">
 		SELECT COUNT(*) AS cnt
 		FROM article AS A
@@ -32,8 +43,16 @@
 
 
 	<select id="getForPrintArticles" resultType="Article">
-		SELECT *
+		SELECT A.*,
+		IFNULL(M.nickname, "탈퇴회원") AS extra__writer,
+		B.name AS
+		extra__boardName
 		FROM article AS A
+		LEFT JOIN `member` AS M
+		ON A.memberId
+		= M.id
+		LEFT JOIN `board` AS B
+		ON A.boardId = B.id
 		WHERE 1
 		<if test="boardId != null">
 			AND A.boardId = #{boardId}
@@ -88,7 +107,8 @@
 	<update id="increaseArticleHit">
 		UPDATE article
 		SET hitCount = hitCount + 1
-		WHERE id = #{id}
+		WHERE id =
+		#{id}
 	</update>
 
 

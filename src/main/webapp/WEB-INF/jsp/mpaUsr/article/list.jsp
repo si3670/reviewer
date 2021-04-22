@@ -4,6 +4,8 @@
 <c:set var="pageTitle"
 	value="<span><i class='far fa-clipboard'></i></span> <span>${board.name} ARTICLE LIST</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
+
+
 <div class="section section-article-list">
 	<div class="container mx-auto">
 		<div class="mt-12">
@@ -57,9 +59,9 @@
 				</div>
 
 				<div class="mt-2">
-					<a href="${detailUrl}"
+					<a href="detail?id=${article.id}"
 						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
-					<a href="${detailUrl}" class="mt-2 text-gray-600 block">${article.body}</a>
+					<a href="detail?id=${article.id}" class="mt-2 text-gray-600 block">${article.body}</a>
 				</div>
 
 				<div class="flex items-center mt-4">
@@ -71,7 +73,7 @@
 							<img
 								src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
 								alt="avatar" class="mx-4 w-10 h-10 object-cover rounded-full">
-							<h1 class="text-gray-700 font-bold hover:underline">?</h1>
+							<h1 class="text-gray-700 hover:underline">${article.extra__writer}</h1>
 						</a>
 					</div>
 				</div>

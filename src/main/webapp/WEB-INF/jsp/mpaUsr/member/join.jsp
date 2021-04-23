@@ -98,8 +98,8 @@
 		class="container mx-auto min-h-screen flex items-center justify-center">
 		<div class="w-full">
 			<div class="logo-bar flex justify-center mt-3">
-				<a href="#" class="logo">
-					<span>Cellar</span>
+				<a href="#" class="img-box w-52">
+					<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
 				</a>
 			</div>
 			<form
@@ -192,7 +192,7 @@
 				<div class="flex flex-col mb-4 md:flex-row">
 					<div class="p-1">
 						<input
-							class="btn-primary bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+							class="btn-primary bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
 							type="submit" value="회원가입" />
 						<a onclick="history.back();"
 							class="btn-info bg-green-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded inline-block">뒤로가기</a>

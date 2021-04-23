@@ -1,6 +1,19 @@
 server:
   port: 8044
 spring:
+  profiles:
+    active: local # 기본적으로 local이 선택된다는 뜻
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: si367038@gmail.com
+    password: uwcuctrcodqhmhsn
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   mvc:
     view:
       prefix: /WEB-INF/jsp/
@@ -14,6 +27,11 @@ spring:
 mybatis:
   type-aliases-package: com.sbs.untact2.dto
 custom:
+  siteName: cellar
+  siteMainUri: http://localhost:8044/mpaUsr/home/main
+  siteLoginUri: http://localhost:8044/mpaUsr/member/login
+  emailFrom: no-reply@localhost
+  emailFromName: cellar
   logging:
     dir: log
     level: debug     

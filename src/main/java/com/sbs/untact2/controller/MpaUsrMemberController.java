@@ -114,28 +114,53 @@ public class MpaUsrMemberController {
 
 		return Util.msgAndReplace(req, msg, replaceUrl);
 	}
+		
+	@RequestMapping("/mpaUsr/member/doFindLoginPw")
+	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String replaceUrl) {
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if(member == null) {
+			return Util.msgAndBack(req, "존재하지 않는 회원입니다.");
+		}
+		if(member.getEmail().equals(email) == false) {
+			return Util.msgAndBack(req, "email이 올바르지 않습니다.");
+		}
+
+		
+		memberService.sendTempLoginPwToEmail(member);
+		
+		String msg = String.format("임시 비밀번호를 해당 email로 발송하였습니다.");
+
+		return Util.msgAndReplace(req, msg, replaceUrl);
+	}
 	
 	
 	//수정하기
 	@RequestMapping("/mpaUsr/member/myPage")
-	public String showModify() {
+	public String showModify(Integer id, HttpServletRequest req) {
+		if (id == null) {
+			return Util.msgAndBack(req, "id를 입력해주세요.");
+		}
+		Member member = memberService.getMemberById(id);
+		
+		
+		req.setAttribute("member", member);
+
+		if (member == null) {
+			return Util.msgAndBack(req, "존재하지 않는 회원번호입니다.");
+		}
+		
 		return "mpaUsr/member/myPage";
 	}
 	
 	@RequestMapping("/mpaUsr/member/doMyPage")
-	public String doModify(int id, HttpServletRequest req, @RequestParam Map<String, Object> param) {		
-		Member member = memberService.getMemberById(id);
+	public String doModify(HttpServletRequest req, @RequestParam Map<String, Object> param) {		
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		param.put("id", loginedMemberId);
 
 		ResultData modifyMemberRd = memberService.modifyMemberRd(param);
 		
-		if(modifyMemberRd.isFail()) {
-			return Util.msgAndBack(req, modifyMemberRd.getMsg());
-		}
-		
-		req.setAttribute("member", member);
-		
 		String replaceUrl = "/";
-
 		return Util.msgAndReplace(req,modifyMemberRd.getMsg(), replaceUrl);
 
 	}

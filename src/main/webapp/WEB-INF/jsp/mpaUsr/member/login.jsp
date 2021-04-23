@@ -30,12 +30,12 @@
 	<div
 		class="container mx-auto min-h-screen flex items-center justify-center">
 		<div class="max-w-md mx-auto my-10">
-			<div class="logo-bar flex justify-center mt-3 mb-3">
-				<a href="#" class="logo">
-					<span>Cellar</span>
+			<div class="logo-bar flex justify-center">
+				<a href="/" class="img-box w-52">
+					<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
 				</a>
 			</div>
-			<div class="m-7">
+			<div class="m-7 mt-2">
 				<form
 					class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
 					action="doLogin" method="post"
@@ -57,7 +57,7 @@
 						</div>
 					<div class="mb-6">
 						<button
-							class="w-full px-2 py-1 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none"
+							class="w-full px-2 py-1 text-white bg-red-400 rounded-md focus:bg-red-600 focus:outline-none"
 							type="sumit">login</button>
 					</div>
 						<p class="text-sm text-center text-gray-400">

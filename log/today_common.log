@@ -1,30 +1,42 @@
-2021-04-23 05:56:46 [WARN ] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Thread starvation or clock leap detected (housekeeper delta=6h46m2s76ms390µs300ns).
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Pool stats (total=10, active=0, idle=10, waiting=0)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@4fae2d79: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6af2c200: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2f5d179d: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@925c208: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@e932742: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@45c2d602: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3f574df6: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@180c600: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6ebcd80d: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1de77a17: (connection has passed maxLifetime)
-2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:00:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:00:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:00:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:00:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:01:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:01:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:01:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:01:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:02:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:02:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:02:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:02:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:03:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:03:26 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:03:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:03:56 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool is at sufficient level.
+2021-04-24 00:04:18 [DEBUG] o.s.boot.devtools.restart.Restarter - Restarting application
+2021-04-24 00:04:18 [DEBUG] o.s.boot.devtools.restart.Restarter - Stopping application
+2021-04-24 00:04:18 [DEBUG] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@361e091c, started on Fri Apr 23 23:59:22 KST 2021
+2021-04-24 00:04:18 [DEBUG] o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2021-04-24 00:04:18 [DEBUG] o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerGracefulShutdown' completed its stop procedure
+2021-04-24 00:04:18 [DEBUG] o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483646
+2021-04-24 00:04:19 [DEBUG] o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerStartStop' completed its stop procedure
+2021-04-24 00:04:19 [DEBUG] o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2021-04-24 00:04:19 [DEBUG] o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2021-04-24 00:04:19 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-24 00:04:19 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@24d39eac: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@200e3da8: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@61333793: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5018128a: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@11cc8dc: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5523579: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@731a85e2: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7f5ef8e8: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7d575011: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@109f573: (connection evicted)
+2021-04-24 00:04:19 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+2021-04-24 00:04:19 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2021-04-24 00:04:20 [DEBUG] o.s.boot.devtools.restart.Restarter - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@d1d98
+2021-04-24 00:04:20 [DEBUG] o.s.boot.devtools.restart.Restarter - Starting application com.sbs.untact2.InstaApplication with URLs [file:/C:/work/sts-4.9.0.RELEASE-workspace/insta/target/classes/]

@@ -26,18 +26,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// beforeActionInterceptor 인터셉터가 모든 액션 실행전에 실행되도록 처리
 		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**")
-		.excludePathPatterns("/error");
+				.excludePathPatterns("/error");
 
 		// needtologin인터셉터에게 확인하도록 넘기기
+		// 로그인 없이도 접속할수 있는 url 전부 기술 exclude
+		// 로그인 있어야만 접속할수 있는 url 전부 기술 add
 		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/mpaUsr/article/write")
 				.addPathPatterns("/mpaUsr/article/dowrite").addPathPatterns("/mpaUsr/article/doDelete")
-				.addPathPatterns("/mpaUsr/article/modify").addPathPatterns("/mpaUsr/article/doModify");
+				.addPathPatterns("/mpaUsr/article/modify").addPathPatterns("/mpaUsr/article/doModify")
+				.addPathPatterns("/mpaUsr/member/doMyPage").addPathPatterns("/mpaUsr/member/myPage");
 
 		// needtologout인터셉터에게 확인하도록 넘기기
 		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/mpaUsr/member/login")
 				.addPathPatterns("/mpaUsr/member/doLogin").addPathPatterns("/mpaUsr/member/join")
-				.addPathPatterns("/mpaUsr/member/doJoin").addPathPatterns("/mpaUsr/member/findLoginId")
-				.addPathPatterns("/mpaUsr/member/doFindLoginId").addPathPatterns("/mpaUsr/member/findLoginPw")
-				.addPathPatterns("/mpaUsr/member/doFindLoginPw");
+				.addPathPatterns("/mpaUsr/member/doJoin").addPathPatterns("/mpaUsr/member/findLoginInfo")
+				.addPathPatterns("/mpaUsr/member/doFindLoginId").addPathPatterns("/mpaUsr/member/doFindLoginPw");
 	}
 }

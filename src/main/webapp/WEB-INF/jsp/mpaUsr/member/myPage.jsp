@@ -107,7 +107,7 @@
 			<span>회원정보 수정</span>
 		</div>
 		<form class="p-8" onsubmit="MemberModify__checkAndSubmit(this); return false"
-			action="doModify" method="POST">
+			action="doMyPage" method="POST">
 			<input type="hidden" name="genFileIdsStr" />
 			<input type="hidden" name="id" value="${member.id}" />
 			

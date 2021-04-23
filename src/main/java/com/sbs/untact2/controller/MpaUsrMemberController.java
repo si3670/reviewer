@@ -94,5 +94,50 @@ public class MpaUsrMemberController {
 
 		return Util.msgAndReplace(req, "로그아웃 되었습니다.", "/");
 	}
+	
+	//아이디, 비번 찾기
+	@RequestMapping("/mpaUsr/member/findLoginInfo")
+	public String showFindLoginInfo() {
+		return "mpaUsr/member/findLoginInfo";
+	}
+	
+	@RequestMapping("/mpaUsr/member/doFindLoginId")
+	public String doFindLoginId(String name, String email, HttpServletRequest req, String replaceUrl) {
+		Member member = memberService.getMemberByNameAndEmail(name, email);
+		
+		if(member == null) {
+			return Util.msgAndBack(req, "존재하지 않는 회원입니다.");
+		}
+
+		
+		String msg = String.format("아이디는 %s 입니다.", member.getLoginId());
+
+		return Util.msgAndReplace(req, msg, replaceUrl);
+	}
+	
+	
+	//수정하기
+	@RequestMapping("/mpaUsr/member/myPage")
+	public String showModify() {
+		return "mpaUsr/member/myPage";
+	}
+	
+	@RequestMapping("/mpaUsr/member/doMyPage")
+	public String doModify(int id, HttpServletRequest req, @RequestParam Map<String, Object> param) {		
+		Member member = memberService.getMemberById(id);
+
+		ResultData modifyMemberRd = memberService.modifyMemberRd(param);
+		
+		if(modifyMemberRd.isFail()) {
+			return Util.msgAndBack(req, modifyMemberRd.getMsg());
+		}
+		
+		req.setAttribute("member", member);
+		
+		String replaceUrl = "/";
+
+		return Util.msgAndReplace(req,modifyMemberRd.getMsg(), replaceUrl);
+
+	}
 
 }

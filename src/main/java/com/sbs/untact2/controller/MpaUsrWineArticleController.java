@@ -17,11 +17,11 @@ import com.sbs.untact2.service.ArticleService;
 import com.sbs.untact2.util.Util;
 
 @Controller
-public class MpaUsrArticleController {
+public class MpaUsrWineArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	@RequestMapping("/mpaUsr/article/write")
+	@RequestMapping("/mpaUsr/article/winewrite")
 	public String showWrite(HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId) {
 		Board board = articleService.getBoardById(boardId);
 
@@ -33,7 +33,7 @@ public class MpaUsrArticleController {
 		return "mpaUsr/article/write";
 	}
 
-	@RequestMapping("/mpaUsr/article/doWrite")
+	@RequestMapping("/mpaUsr/article/dowineWrite")
 	public String doWrite(HttpServletRequest req, int boardId, String title, String body) {
 		if (Util.isEmpty(title)) {
 			return Util.msgAndBack(req, "title을 입력해주세요.");
@@ -52,8 +52,9 @@ public class MpaUsrArticleController {
 
 		return Util.msgAndReplace(req, writeArticleRd.getMsg(), "../article/detail?id=" + writeArticleRd.getBody().get("id"));
 	}
-
-	@RequestMapping("/mpaUsr/article/detail")
+	
+	//wine 정보 보여주기
+	@RequestMapping("/mpaUsr/article/winedetail")
 	public String showDetail(Integer id, HttpServletRequest req) {
 		articleService.increaseArticleHit(id);
 		if (Util.isEmpty(id)) {
@@ -70,47 +71,10 @@ public class MpaUsrArticleController {
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
 
-		return "mpaUsr/article/detail";
-	}
-	
-	@RequestMapping("/mpaUsr/article/doDelete")
-	public String doDelete(Integer id, HttpServletRequest req) {
-		if (Util.isEmpty(id)) {
-			return Util.msgAndBack(req, "id을 입력해주세요.");
-		}
-
-		ResultData rd = articleService.deleteArticleById(id);
-
-		if (rd.isFail()) {
-			return Util.msgAndBack(req, rd.getMsg());
-		}
-		String replaceUrl = "../article/list?boardId=" + rd.getBody().get("boardId");
-		return Util.msgAndReplace(req, rd.getMsg(), replaceUrl);
+		return "mpaUsr/article/winedetail";
 	}
 
-	@RequestMapping("/mpaUsr/article/doModify")
-	@ResponseBody
-	public ResultData doModify(Integer id, String title, String body) {
-		if (Util.isEmpty(id)) {
-			return new ResultData("F-1", "id을 입력해주세요.");
-		}
-		if (Util.isEmpty(title)) {
-			return new ResultData("F-2", "title을 입력해주세요.");
-		}
-		if (Util.isEmpty(body)) {
-			return new ResultData("F-3", "body을 입력해주세요.");
-		}
-
-		Article article = articleService.getArticleById(id);
-
-		if (article == null) {
-			return new ResultData("F-4", "존재하지 않는 게시물 번호입니다.");
-		}
-
-		return articleService.modifyArticle(id, title, body);
-	}
-
-	@RequestMapping("/mpaUsr/article/list")
+	@RequestMapping("/mpaUsr/article/winelist")
 	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId,
 			@RequestParam(defaultValue = "1") int page, String searchKeyword,
 			@RequestParam(defaultValue = "titleAndBody") String searchKeywordType) {
@@ -157,7 +121,7 @@ public class MpaUsrArticleController {
 
 		req.setAttribute("articles", articles);
 
-		return "mpaUsr/article/list";
+		return "mpaUsr/article/winelist";
 	}
 
 }

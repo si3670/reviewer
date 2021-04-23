@@ -1,40 +1,30 @@
-2021-04-22 19:51:39 [WARN ] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Thread starvation or clock leap detected (housekeeper delta=21h3m11s500ms383µs400ns).
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Pool stats (total=10, active=0, idle=10, waiting=0)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Add connection elided, waiting 0, queue 1
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@234f426b: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@392b3776: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7639739f: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@693e8b5c: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@d5f6dda: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6d709295: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@234b27b5: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3c98c0e0: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@4c6267e1: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-6 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3e544a09: (connection has passed maxLifetime)
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Fill pool skipped, pool is at sufficient level.
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5d4803c8
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1c7509f3
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2d23179d
-2021-04-22 19:51:40 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7c5af6bc
-2021-04-22 19:51:53 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@39488c0e
-2021-04-22 19:51:54 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@78146e47
-2021-04-22 19:51:54 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1ed759da
-2021-04-22 19:51:54 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@12816a84
-2021-04-22 19:51:54 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@41c33db1
-2021-04-22 19:51:54 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-6 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7385d56f
+2021-04-23 05:56:46 [WARN ] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Thread starvation or clock leap detected (housekeeper delta=6h46m2s76ms390µs300ns).
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Add connection elided, waiting 0, queue 1
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@4fae2d79: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6af2c200: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2f5d179d: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@925c208: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@e932742: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@45c2d602: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3f574df6: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@180c600: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6ebcd80d: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.PoolBase - HikariPool-10 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1de77a17: (connection has passed maxLifetime)
+2021-04-23 05:56:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-10 - Fill pool skipped, pool is at sufficient level.

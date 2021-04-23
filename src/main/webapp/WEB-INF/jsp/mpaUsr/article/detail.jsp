@@ -12,44 +12,41 @@
 				<a href="javascript:history.back();" class="cursor-pointer">
 					<i class="fas fa-chevron-left"></i>
 				</a>
-				<span>게시물 상세페이지</span>
+				<span>정보</span>
 			</div>
 			<div class="mt-6">
 				<div class="px-4 py-8">
-					<div>
-						<span class="badge badge-outline">제목</span>
-						<div class="line-clamp-3">${article.title}</div>
-					</div>
 					<div
 						class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
 						<div>
 							<span class="badge badge-primary">번호</span>
 							<span>${article.id}</span>
 						</div>
-
-						<div>
-							<span class="badge badge-accent">작성자</span>
-							<span>${article.extra__writer}</span>
-						</div>
-
 						<div>
 							<span class="badge">등록날짜</span>
 							<span class="text-gray-600 text-light">${article.regDate}</span>
 						</div>
-
 						<div>
 							<span class="badge">수정날짜</span>
 							<span class="text-gray-600 text-light">${article.updateDate}</span>
 						</div>
-
+						<div>
+							<span class="badge badge-accent">작성자</span>
+							<span>${article.extra__writer}</span>
+						</div>
 						<div>
 							<span class="badge">조회수</span>
 							<span class="text-gray-600 text-light">${article.hitCount}</span>
 						</div>
-						
+
 						<div>
 							<span class="badge">게시판</span>
 							<span class="text-gray-600 text-light">${board.name}</span>
+						</div>
+
+						<div>
+							<span class="badge badge-outline mt-4">제목</span>
+							<div class="line-clamp-3">${article.title}</div>
 						</div>
 					</div>
 

@@ -29,4 +29,13 @@ public class MemberService {
 		return memberDao.getMemberById(id);
 	}
 
+	public Member getMemberByNameAndEmail(String name, String email) {
+		return memberDao.getMemberByNameAndEmail(name, email);
+	}
+
+	public ResultData modifyMemberRd(Map<String, Object> param) {
+		memberDao.modifyMemberRd(param);
+		return new ResultData("P-1", "수정 성공");
+	}
+
 }

@@ -21,7 +21,6 @@
 					</a>
 				</li>
 
-				<%-- 영화 장르 (시작) --%>
 				<li>
 					<a href="#" class="h-full flex items-center px-5">
 						<span>
@@ -32,19 +31,19 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/list?boardId=3">
+								<a href="../article/winelist?boardId=3">
 									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/list?boardId=4">
+								<a href="../article/winelist?boardId=4">
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
 						</ul>
 					</div>
 				</li>
-				<%-- 영화 장르 (끝) --%>
+
 
 				<li>
 					<a href="#" class="h-full flex items-center px-5">

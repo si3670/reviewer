@@ -24,6 +24,17 @@ public class Article {
 	private int likeCount;
 	private int dislikeCount;
 	
+	//wine게시글
+	private String wineKinds;
+	private String wineCountry;
+	private String winePlace;
+	private String wineVintage;
+	private String wineVariety;
+	private String wineAlcohol;
+	private String wineML;
+	private String winePrice;
+
+	
 	private String extra__writer;
 	private String extra__boardName;
 	private String extra__thumbImg;

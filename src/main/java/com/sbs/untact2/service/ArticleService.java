@@ -1,6 +1,7 @@
 package com.sbs.untact2.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,5 +84,6 @@ public class ArticleService {
 	public Article getArticleForPrintById(int id) {
 		return articleDao.getArticleForPrintById(id);
 	}
+
 
 }

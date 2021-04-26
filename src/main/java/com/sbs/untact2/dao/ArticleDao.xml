@@ -96,6 +96,7 @@
 		body = #{body}
 	</insert>
 
+
 	<update id="deleteArticleById">
 		UPDATE article
 		SET delStatus = 1,

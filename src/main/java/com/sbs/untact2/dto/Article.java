@@ -28,7 +28,7 @@ public class Article {
 	private String wineKinds;
 	private String wineCountry;
 	private String winePlace;
-	private String wineVintage;
+	private int wineVintage;
 	private String wineVariety;
 	private String wineAlcohol;
 	private String wineML;

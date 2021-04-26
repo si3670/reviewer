@@ -19,28 +19,28 @@
 					<div
 						class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
 						<div>
-							<span class="badge badge-primary">번호</span>
+							<span class="con-bg">번호</span>
 							<span>${article.id}</span>
 						</div>
 						<div>
-							<span class="badge">등록날짜</span>
+							<span class="con-bg">등록날짜</span>
 							<span class="text-gray-600 text-light">${article.regDate}</span>
 						</div>
 						<div>
-							<span class="badge">수정날짜</span>
+							<span class="con-bg">수정날짜</span>
 							<span class="text-gray-600 text-light">${article.updateDate}</span>
 						</div>
 						<div>
-							<span class="badge badge-accent">작성자</span>
+							<span class="con-bg">작성자</span>
 							<span>${article.extra__writer}</span>
 						</div>
 						<div>
-							<span class="badge">조회수</span>
+							<span class="con-bg">조회수</span>
 							<span class="text-gray-600 text-light">${article.hitCount}</span>
 						</div>
 
 						<div>
-							<span class="badge">게시판</span>
+							<span class="con-bg">게시판</span>
 							<span class="text-gray-600 text-light">${board.name}</span>
 						</div>
 

@@ -47,7 +47,7 @@
 		AND email = #{email}
 	</select>
 
-	<update id="modifyMemberRd">
+	<update id="modify">
 		UPDATE member
 		<set>
 			<if

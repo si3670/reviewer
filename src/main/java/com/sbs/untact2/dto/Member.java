@@ -20,5 +20,8 @@ public class Member{
 	private String cellphoneNo;
 	private boolean delStatus;
 
+	public String getAuthLevelName() {
+		return "일반회원";
+	}
 
 }

@@ -1,12 +1,14 @@
 package com.sbs.untact2.dto;
 
-import javax.servlet.http.HttpServletRequest;
+import com.sbs.untact2.util.Util;
 
 public class Rq {
+	private String currentUrl;
 	private Member loginedMember;
 
-	public Rq(Member loginedMember) {
+	public Rq(Member loginedMember, String currentUrl) {
 		this.loginedMember = loginedMember;
+		this.currentUrl = currentUrl;
 	}
 
 	public boolean isLogined() {
@@ -33,4 +35,14 @@ public class Rq {
 
 		return loginedMember.getNickname();
 	}
+
+	public String getEncodedCurrentUrl() {
+		return Util.getUrlEncoded(getCurrentUrl());
+	}
+
+	private String getCurrentUrl() {
+		return currentUrl;
+	}
+
+
 }

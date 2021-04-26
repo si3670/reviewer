@@ -1,3 +1,4 @@
+
 /* 폰트적용 - 시작 */
 @font-face {
   font-family: "LotteMartDream";
@@ -123,6 +124,7 @@ html > body {
   --card-title_left-btn-cell-width: 50px;
 }
 
+/* 카드타이틀 - 시작 */
 .card-title {
   background-color: rgb(87, 13, 248);
   color: white;
@@ -131,7 +133,7 @@ html > body {
 }
 
 .card-title-2 {
-  background-color:rgb(87, 13, 248);
+  background-color:#422B2B;
   color:white;
   text-align:center;
   height:var(--card-title_height);
@@ -145,6 +147,17 @@ html > body {
 .card-title + * {
   margin-top: var(--card-title_height);
 }
+/* 카드타이틀 - 끝 */
+
+.con-bg{
+	background-color:#DC908D;
+	padding:0px 15px;
+	display : inline-block;
+	border-radius: 50px;
+	color: white;
+}
+
+
 
 html > body .plain-link {
   color: rgb(59, 130, 246);

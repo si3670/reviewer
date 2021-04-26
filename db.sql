@@ -17,7 +17,15 @@ delDate DATETIME COMMENT '삭제날짜',
 hitCount INT(10) UNSIGNED DEFAULT 0 NOT NULL,
 repliesCount INT(10) UNSIGNED DEFAULT 0 NOT NULL,
 likeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL,
-dislikeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL
+dislikeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL,
+wineKinds CHAR(100) NOT NULL COMMENT '와인종류',
+wineCountry CHAR(100) NOT NULL COMMENT '와인생산국',
+winePlace CHAR(100) NOT NULL COMMENT '와인생산지',
+wineVintage INT(10) UNSIGNED NOT NULL COMMENT '와인빈티지',
+wineVariety CHAR(100) NOT NULL COMMENT '와인품종',
+wineAlcohol CHAR(100) NOT NULL COMMENT '와인알코올',
+wineML CHAR(100) NOT NULL COMMENT '와인용량',
+winePrice CHAR(100) NOT NULL COMMENT '와인권장가'
 );
 
 #테스트 게시판
@@ -56,22 +64,38 @@ memberId = 2,
 title = "제목4",
 `body` = "내용4";
 
-#############
+#wine게시글
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 3,
 memberId = 1,
-title = "dry",
-`body` = "dry";
+title = "petrus pomerol",
+`body` = "dry",
+wineKinds = "red",
+wineCountry ="France",
+winePlace ="Pomerol",
+wineVintage =2006,
+wineVariety ="Merlot",
+wineAlcohol = "13.5%",
+wineML ="750.0ml",
+winePrice ="4,300,000";
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 4,
 memberId = 1,
-title = "sweet",
-`body` = "sweet";
+title = "petrus pomerol",
+`body` = "sweet",
+wineKinds = "white",
+wineCountry ="France",
+winePlace ="Pomerol",
+wineVintage =2006,
+wineVariety ="Merlot",
+wineAlcohol = "13.5%",
+wineML ="750.0ml",
+winePrice = "4,300,000";
 
 SELECT  LAST_INSERT_ID();
 

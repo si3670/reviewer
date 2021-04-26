@@ -31,9 +31,10 @@ public class MemberService {
 		return memberDao.getMemberByLoginId(loginId);
 	}
 
-	public ResultData addMember(Map<String, Object> param) {
-		memberDao.addMember(param);
-		int id = Util.getAsInt(param.get("id"), 0);
+	public ResultData addMember(String loginId, String loginPw, String name, String nickname, String cellphoneNo, String email) {
+		memberDao.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
+		int id = memberDao.getLastInsertId();
+	
 		return new ResultData("P-1", "가입 성공", "id", id);
 	}
 
@@ -74,6 +75,18 @@ public class MemberService {
 		memberDao.modifyMemberRd(modifyParam);
 
 		return new ResultData("S-1", "임시 패스워드를 메일로 발송하였습니다.");
+	}
+
+	public ResultData modify(Map<String, Object> param) {
+		memberDao.modify(param);
+		int id = Util.getAsInt(param.get("id"), 0);
+		return new ResultData("P-1", "수정 성공", "id", id);
+	}
+
+	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {
+		memberDao.modify(id, loginPw, name, nickname, cellphoneNo, email);
+
+		return new ResultData("P-1", "수정 성공", "id", id);
 	}
 
 }

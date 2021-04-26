@@ -33,7 +33,7 @@
 		<div class="max-w-md mx-auto">
 			<div class="logo-bar flex justify-center mt-3">
 				<a href="#" class="img-box w-28">
-					<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
+					<img src="http://localhost:8044/resource/imgs/Cellar1.png" alt="" />
 				</a>
 				<span class="text-2xl pt-2">find Id/PassWord</span>
 			</div>

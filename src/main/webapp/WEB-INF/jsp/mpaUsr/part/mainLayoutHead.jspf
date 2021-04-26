@@ -5,7 +5,7 @@
 <header class="top-bar top-bar--fly">
 	<div class="container mx-auto flex h-full">
 		<a href="/" class="flex items-center img-box w-24 h-12">
-			<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
+			<img src="http://localhost:8044/resource/imgs/Cellar1.png" alt="" />
 		</a>
 
 		<div class="flex-grow"></div>
@@ -40,6 +40,11 @@
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
+							<li>
+								<a href="../article/winelist?boardId=5">
+									<span>&nbsp;Sparkling</span>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</li>
@@ -69,8 +74,7 @@
 				</li>
 				<c:if test="${rq.isLogined()}">
 					<li>
-						<a href="../member/doLogout"
-							class="h-full flex items-center px-5">
+						<a href="../member/doLogout" class="h-full flex items-center px-5">
 							<span>
 								<i class="fas fa-user"></i>
 							</span>

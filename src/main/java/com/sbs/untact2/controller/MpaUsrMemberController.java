@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.untact2.dto.Member;
 import com.sbs.untact2.dto.ResultData;
+import com.sbs.untact2.dto.Rq;
 import com.sbs.untact2.service.MemberService;
 import com.sbs.untact2.util.Util;
 
@@ -28,33 +28,14 @@ public class MpaUsrMemberController {
 
 
 	@RequestMapping("/mpaUsr/member/doJoin")
-	public String doJoin(HttpServletRequest req, @RequestParam Map<String, Object> param) {
-		if (param.get("loginId") == null) {
-			return Util.msgAndBack(req, "loginId을 입력해주세요.");
-		}
-		
-		Member oldMember = memberService.getMemberByLoginId((String)param.get("loginId"));
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, String cellphoneNo, String email) {		
+		Member oldMember = memberService.getMemberByLoginId(loginId);
 
 		if (oldMember != null) {
 			return Util.msgAndBack(req, "이미 사용 중인 아이디입니다.");
 		}
 
-		if (param.get("loginPw") == null) {
-			return Util.msgAndBack(req, "loginPw을 입력해주세요.");
-		}
-		if (param.get("name") == null) {
-			return Util.msgAndBack(req, "name을 입력해주세요.");
-		}
-		if (param.get("nickname") == null) {
-			return Util.msgAndBack(req, "nickname을 입력해주세요.");
-		}
-		if (param.get("cellphoneNo") == null) {
-			return Util.msgAndBack(req, "cellphoneNo을 입력해주세요.");
-		}
-		if (param.get("email") == null) {
-			return Util.msgAndBack(req, "email을 입력해주세요.");
-		}
-		ResultData addMemberRd = memberService.addMember(param);
+		ResultData addMemberRd = memberService.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 		
 		if(addMemberRd.isFail()) {
 			return Util.msgAndBack(req, addMemberRd.getMsg());
@@ -71,7 +52,7 @@ public class MpaUsrMemberController {
 
 
 	@RequestMapping("/mpaUsr/member/doLogin")
-	public String doLogin(HttpServletRequest req, HttpSession session, String loginId, String loginPw, String replaceUrl) {
+	public String doLogin(HttpServletRequest req, HttpSession session, String loginId, String loginPw, String redirectUrl) {
 		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member == null) {
@@ -85,7 +66,7 @@ public class MpaUsrMemberController {
 		session.setAttribute("loginedMemberId", member.getId());
 		
 		String msg = "환영합니다.";
-		return Util.msgAndReplace(req, msg, replaceUrl);
+		return Util.msgAndReplace(req, msg, redirectUrl);
 	}
 	
 	@RequestMapping("/mpaUsr/member/doLogout")
@@ -102,7 +83,7 @@ public class MpaUsrMemberController {
 	}
 	
 	@RequestMapping("/mpaUsr/member/doFindLoginId")
-	public String doFindLoginId(String name, String email, HttpServletRequest req, String replaceUrl) {
+	public String doFindLoginId(String name, String email, HttpServletRequest req, String redirectUrl) {
 		Member member = memberService.getMemberByNameAndEmail(name, email);
 		
 		if(member == null) {
@@ -112,11 +93,11 @@ public class MpaUsrMemberController {
 		
 		String msg = String.format("아이디는 %s 입니다.", member.getLoginId());
 
-		return Util.msgAndReplace(req, msg, replaceUrl);
+		return Util.msgAndReplace(req, msg, redirectUrl);
 	}
 		
 	@RequestMapping("/mpaUsr/member/doFindLoginPw")
-	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String replaceUrl) {
+	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String redirectUrl) {
 		Member member = memberService.getMemberByLoginId(loginId);
 		
 		if(member == null) {
@@ -131,38 +112,35 @@ public class MpaUsrMemberController {
 		
 		String msg = String.format("임시 비밀번호를 해당 email로 발송하였습니다.");
 
-		return Util.msgAndReplace(req, msg, replaceUrl);
+		return Util.msgAndReplace(req, msg, redirectUrl);
 	}
 	
-	
-	//수정하기
 	@RequestMapping("/mpaUsr/member/myPage")
-	public String showModify(Integer id, HttpServletRequest req) {
-		if (id == null) {
-			return Util.msgAndBack(req, "id를 입력해주세요.");
-		}
-		Member member = memberService.getMemberById(id);
-		
-		
-		req.setAttribute("member", member);
-
-		if (member == null) {
-			return Util.msgAndBack(req, "존재하지 않는 회원번호입니다.");
-		}
-		
+	public String showMyPage() {		
 		return "mpaUsr/member/myPage";
 	}
 	
-	@RequestMapping("/mpaUsr/member/doMyPage")
-	public String doModify(HttpServletRequest req, @RequestParam Map<String, Object> param) {		
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		param.put("id", loginedMemberId);
-
-		ResultData modifyMemberRd = memberService.modifyMemberRd(param);
-		
-		String replaceUrl = "/";
-		return Util.msgAndReplace(req,modifyMemberRd.getMsg(), replaceUrl);
-
+	@RequestMapping("/mpaUsr/member/modify")
+	public String showModify() {		
+		return "mpaUsr/member/modify";
 	}
+	
+	@RequestMapping("/mpaUsr/member/doModify")
+	public String doModify(HttpServletRequest req,  String loginPw, String name, String
+            nickname, String cellphoneNo, String email) {
+		if(loginPw != null && loginPw.trim().length() == 0) {
+			loginPw = null;
+		}
+		
+		 int id = ((Rq)req.getAttribute("rq")).getLoginedMemberId();
+		ResultData modifyrRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
+		
+		if(modifyrRd.isFail()) {
+			return Util.msgAndBack(req, modifyrRd.getMsg());
+		}
+
+		return Util.msgAndReplace(req,modifyrRd.getMsg(), "/");
+	}
+
 
 }

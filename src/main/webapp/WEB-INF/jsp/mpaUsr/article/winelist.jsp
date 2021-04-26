@@ -40,11 +40,11 @@
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
 			<input
-				class="ml-3 btn-primary bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+				class="ml-3 btn-primary bg-yellow-900 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
 				type="submit" value="검색" />
 		</form>
-		<a href="write?boardId=${board.id}"
-			class="btn-primary bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded">글쓰기</a>
+		<a href="winewrite?boardId=${board.id}"
+			class="btn-primary bg-yellow-900 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded">글쓰기</a>
 
 		<div class="articles mt-2">
 			<c:if test="${articles == null || articles.size() == 0 }">
@@ -66,7 +66,7 @@
 
 				<div class="flex items-center mt-4">
 					<a href="winedetail?id=${article.id}"
-						class="text-blue-500 hover:underline">자세히 보기</a>
+						class="text-yellow-500 hover:underline">자세히 보기</a>
 					<div class="flex-grow"></div>
 					<div>
 						<a class="flex items-center">

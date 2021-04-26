@@ -32,7 +32,7 @@
 		<div class="max-w-md mx-auto my-10">
 			<div class="logo-bar flex justify-center">
 				<a href="/" class="img-box w-52">
-					<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
+					<img src="http://localhost:8044/resource/imgs/Cellar1.png" alt="" />
 				</a>
 			</div>
 			<div class="m-7 mt-2">
@@ -40,8 +40,7 @@
 					class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
 					action="doLogin" method="post"
 					onsubmit="LoginForm__checkAndSubmit(this); return false;">
-					<input type="hidden" name="replaceUrl"
-						value="/" />
+					<input type="hidden" name="redirectUrl" value="${param.afterLoginUrl}" />
 					<div class="mb-6">
 						<label class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Id</label>
 						<input

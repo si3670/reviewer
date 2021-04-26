@@ -1,6 +1,7 @@
 package com.sbs.untact2.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,5 +31,6 @@ public interface ArticleDao {
 	void increaseArticleHit(@Param("id")int id);
 
 	Article getArticleForPrintById(@Param("id")int id);
+
 
 }

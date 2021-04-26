@@ -2,10 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
-<div class="visual">
-	<div class="img-box">
-		<img src="http://localhost:8044/resource/imgs/visual1.jpg" alt="" />
+<div class="visual relative">
+		<div class="img-box">
+			<img src="http://localhost:8044/resource/imgs/visual1.jpg" alt="" />
+		</div>
+
+	<div class="text absolute">
+		<h1>Wine Review</h1>
+		<p>내가 경험한 와인 리뷰 남기기</p>
 	</div>
+
 </div>
 
 

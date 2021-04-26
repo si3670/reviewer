@@ -29,6 +29,13 @@
     url("//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff")
       format("woff");
 }
+@font-face {
+    font-family: 'HSBombaram3_Thin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.1/HSBombaram3_Thin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 폰트적용 - 끝 */
 
 min-h-screen {
 	height: 100%;
@@ -321,14 +328,18 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 	
 }
 
+
 .visual>.text {
-	top: 50%;
-	left: 100px;
-	transform: translatey(-50%);
+	top: 60%;
+	left: 50%;
+	transform: translate(-60%,-50%);
+	color:white;
+	text-align: center;
 }
 
 .visual>.text>h1 {
-	font-size: 26px;
+	font-family: 'HSBombaram3_Thin';
+	font-size: 47px;
 }
 
 

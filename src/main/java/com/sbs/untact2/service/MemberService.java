@@ -19,12 +19,15 @@ public class MemberService {
 	private MemberDao memberDao;
 	@Autowired
 	private MailService mailService;
+	
+	
 	@Value("${custom.siteName}")
 	private String siteName;
 	@Value("${custom.siteMainUri}")
 	private String siteMainUri;
 	@Value("${custom.siteLoginUri}")
 	private String siteLoginUri;
+
 
 
 	public Member getMemberByLoginId(String loginId) {
@@ -34,8 +37,20 @@ public class MemberService {
 	public ResultData addMember(String loginId, String loginPw, String name, String nickname, String cellphoneNo, String email) {
 		memberDao.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 		int id = memberDao.getLastInsertId();
+		
+		sendJoinCompleteMail(email);
 	
 		return new ResultData("P-1", "가입 성공", "id", id);
+	}
+
+	private void sendJoinCompleteMail(String email) {
+		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
+
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
+		mailBodySb.append(String.format("<p><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri, siteName));
+
+		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
 
 	public Member getMemberById(int id) {

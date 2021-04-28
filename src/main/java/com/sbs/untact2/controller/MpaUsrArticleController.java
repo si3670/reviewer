@@ -84,8 +84,8 @@ public class MpaUsrArticleController {
 		if (rd.isFail()) {
 			return Util.msgAndBack(req, rd.getMsg());
 		}
-		String replaceUrl = "../article/list?boardId=" + rd.getBody().get("boardId");
-		return Util.msgAndReplace(req, rd.getMsg(), replaceUrl);
+		String replaceUri = "../article/list?boardId=" + rd.getBody().get("boardId");
+		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
 	}
 
 	@RequestMapping("/mpaUsr/article/doModify")

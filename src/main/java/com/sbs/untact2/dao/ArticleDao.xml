@@ -96,6 +96,25 @@
 		body = #{body}
 	</insert>
 
+	<insert id="writeWine">
+		INSERT INTO article
+		SET regDate = NOW(),
+		updateDate =
+		NOW(),
+		boardId = #{boardId},
+		memberId = #{memberId},
+		title = #{title},
+		body = #{body},
+		wineKinds = #{wineKinds},
+		wineCountry = #{wineCountry},
+		winePlace = #{winePlace},
+		wineVintage = #{wineVintage},
+		wineVariety = #{wineVariety},
+		wineAlcohol = #{wineAlcohol},
+		wineML = #{wineML},
+		winePrice = #{winePrice}
+	</insert>
+
 
 	<update id="deleteArticleById">
 		UPDATE article

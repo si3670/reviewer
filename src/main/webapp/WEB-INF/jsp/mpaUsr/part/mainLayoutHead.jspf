@@ -74,7 +74,7 @@
 				</li>
 				<c:if test="${rq.isLogined()}">
 					<li>
-						<a href="../member/doLogout" class="h-full flex items-center px-5">
+						<a href="#" class="h-full flex items-center px-5">
 							<span>
 								<i class="fas fa-user"></i>
 							</span>
@@ -99,7 +99,7 @@
 				</c:if>
 				<c:if test="${rq.isNotLogined()}">
 					<li>
-						<a href="/mpaUsr/member/login"
+						<a href="${rq.getLoginPageUri()}"
 							class="h-full flex items-center px-5">
 							<span>
 								<i class="fas fa-sign-in-alt"></i>

@@ -107,7 +107,7 @@
 				action="doJoin" method="POST"
 				onsubmit="JoinForm__checkAndSubmit(this); return false;">
 				<input type="hidden" name="genFileIdsStr" />
-				<input type="hidden" name="redirectUrl" value="${param.redirectUrl}" />
+				<input type="hidden" name="redirectUri" value="${param.redirectUri}" />
 				<div class="flex flex-col mb-4 md:flex-row">
 					<div class="p-1 md:w-36 md:flex md:items-center">
 						<span>로그인아이디</span>

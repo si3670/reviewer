@@ -52,7 +52,11 @@ public class MpaUsrMemberController {
 
 
 	@RequestMapping("/mpaUsr/member/doLogin")
-	public String doLogin(HttpServletRequest req, HttpSession session, String loginId, String loginPw, String redirectUrl) {
+	public String doLogin(HttpServletRequest req, HttpSession session, String loginId, String loginPw, String redirectUri) {
+		if(Util.isEmpty(redirectUri)) {
+			redirectUri = "/";
+		}
+		
 		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member == null) {
@@ -66,7 +70,7 @@ public class MpaUsrMemberController {
 		session.setAttribute("loginedMemberId", member.getId());
 		
 		String msg = "환영합니다.";
-		return Util.msgAndReplace(req, msg, redirectUrl);
+		return Util.msgAndReplace(req, msg, redirectUri);
 	}
 	
 	@RequestMapping("/mpaUsr/member/doLogout")
@@ -83,7 +87,7 @@ public class MpaUsrMemberController {
 	}
 	
 	@RequestMapping("/mpaUsr/member/doFindLoginId")
-	public String doFindLoginId(String name, String email, HttpServletRequest req, String redirectUrl) {
+	public String doFindLoginId(String name, String email, HttpServletRequest req, String redirectUri) {
 		Member member = memberService.getMemberByNameAndEmail(name, email);
 		
 		if(member == null) {
@@ -93,11 +97,11 @@ public class MpaUsrMemberController {
 		
 		String msg = String.format("아이디는 %s 입니다.", member.getLoginId());
 
-		return Util.msgAndReplace(req, msg, redirectUrl);
+		return Util.msgAndReplace(req, msg, redirectUri);
 	}
 		
 	@RequestMapping("/mpaUsr/member/doFindLoginPw")
-	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String redirectUrl) {
+	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String redirectUri) {
 		Member member = memberService.getMemberByLoginId(loginId);
 		
 		if(member == null) {
@@ -112,7 +116,7 @@ public class MpaUsrMemberController {
 		
 		String msg = String.format("임시 비밀번호를 해당 email로 발송하였습니다.");
 
-		return Util.msgAndReplace(req, msg, redirectUrl);
+		return Util.msgAndReplace(req, msg, redirectUri);
 	}
 	
 	@RequestMapping("/mpaUsr/member/myPage")

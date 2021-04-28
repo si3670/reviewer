@@ -14,23 +14,28 @@ public interface ArticleDao {
 
 	boolean modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
-	void writeArticle(@Param("boardId")int boardId, @Param("memberId")int memberId, @Param("title") String title, @Param("body") String body);
+	void writeArticle(@Param("boardId") int boardId, @Param("memberId") int memberId, @Param("title") String title,
+			@Param("body") String body);
 
 	Article getArticleById(@Param("id") int id);
-	
+
 	int getLastInsertId();
 
 	void deleteArticleById(@Param("id") int id);
 
-	Board getBoardById(@Param("id")int id);
+	Board getBoardById(@Param("id") int id);
 
-	int getArticlesTotalCount(@Param("boardId")int boardId, @Param("searchKeyword") String searchKeyword, @Param("searchKeywordType") String searchKeywordType);
+	int getArticlesTotalCount(@Param("boardId") int boardId, @Param("searchKeyword") String searchKeyword,
+			@Param("searchKeywordType") String searchKeywordType);
 
-	List<Article> getForPrintArticles(@Param("boardId")int boardId, @Param("limitStart")int limitStart, @Param("limitTake")int limitTake,@Param("searchKeyword") String searchKeyword, @Param("searchKeywordType") String searchKeywordType);
+	List<Article> getForPrintArticles(@Param("boardId") int boardId, @Param("limitStart") int limitStart,
+			@Param("limitTake") int limitTake, @Param("searchKeyword") String searchKeyword,
+			@Param("searchKeywordType") String searchKeywordType);
 
-	void increaseArticleHit(@Param("id")int id);
+	void increaseArticleHit(@Param("id") int id);
 
-	Article getArticleForPrintById(@Param("id")int id);
+	Article getArticleForPrintById(@Param("id") int id);
 
+	void writeWine(Map<String, Object> param, @Param("memberId") int memberId, @Param("boardId") int boardId);
 
 }

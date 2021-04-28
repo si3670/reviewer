@@ -87,29 +87,29 @@
 			<c:set var="EndPage"
 				value="${page +  pageMenuArmSize <= totalPage ? page +  pageMenuArmSize : totalPage}" />
 
-			<c:set var="urlBase" value="?boardId=${board.id}" />
-			<c:set var="urlBase"
-				value="${urlBase}&searchKeywordType=${param.searchKeywordType}" />
-			<c:set var="urlBase"
-				value="${urlBase}&searchKeyword=${param.searchKeyword}" />
+			<c:set var="uriBase" value="?boardId=${board.id}" />
+			<c:set var="uriBase"
+				value="${uriBase}&searchKeywordType=${param.searchKeywordType}" />
+			<c:set var="uriBase"
+				value="${uriBase}&searchKeyword=${param.searchKeyword}" />
 
 			<c:set var="aClassStr"
 				value="px-1 inline-block border border-gray-200 text-lg hover:bg-gray-200" />
 
 			<c:if test="${StartPage > 1}">
-				<a class="${aClassStr}" href="${urlBase}&page=1">◀</a>
-				<a class="${aClassStr}" href="${urlBase}&page=${StartPage - 1}">◁</a>
+				<a class="${aClassStr}" href="${uriBase}&page=1">◀</a>
+				<a class="${aClassStr}" href="${uriBase}&page=${StartPage - 1}">◁</a>
 			</c:if>
 
 
 			<c:forEach var="i" begin="${StartPage}" end="${EndPage}">
 				<a class="${aClassStr} ${page == i ? 'text-red-500' : ''}"
-					href="${urlBase}&page=${i}">${i}</a>
+					href="${uriBase}&page=${i}">${i}</a>
 			</c:forEach>
 
 			<c:if test="${EndPage < totalPage}">
-				<a class="${aClassStr}" href="${urlBase}&page=${EndPage + 1}">▷</a>
-				<a class="${aClassStr}" href="${urlBase}&page=${totalPage}">▶</a>
+				<a class="${aClassStr}" href="${uriBase}&page=${EndPage + 1}">▷</a>
+				<a class="${aClassStr}" href="${uriBase}&page=${totalPage}">▶</a>
 			</c:if>
 
 		</div>

@@ -116,7 +116,7 @@
 			</div>
 			<form class="px-8 pb-8 pt-16"
 				onsubmit="ArticleWrite__submitForm(this); return false;"
-				action="dowineWrite" method="POST" enctype="multipart/form-data">
+				action="doWineWrite" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="boardId" value="${board.id}" />
 				<div class="form-row flex flex-col lg:flex-row mt-2">
 					<div class="lg:flex lg:items-center lg:w-28">

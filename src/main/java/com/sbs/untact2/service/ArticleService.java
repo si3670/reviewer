@@ -17,40 +17,40 @@ public class ArticleService {
 	private ArticleDao articleDao;
 
 	public ResultData writeArticle(int boardId, int memberId, String title, String body) {
-		
+
 		articleDao.writeArticle(boardId, memberId, title, body);
-		
+
 		int id = articleDao.getLastInsertId();
 		return new ResultData("S-1", "게시물이 작성되었습니다.", "id", id);
 	}
-	
+
 	public Article getArticleById(int id) {
 		return articleDao.getArticleById(id);
 	}
-	
+
 	public ResultData deleteArticleById(int id) {
 		Article article = getArticleById(id);
-		
-		if(isEmpty(article)){
+
+		if (isEmpty(article)) {
 			return new ResultData("F-1", "존재하지 않는 게시물입니다.", "id", id);
 		}
-		
+
 		articleDao.deleteArticleById(id);
 		return new ResultData("S-1", "게시물이 삭제되었습니다.", "id", id, "boardId", article.getBoardId());
 	}
-	
+
 	public ResultData modifyArticle(int id, String title, String body) {
 		Article article = getArticleById(id);
-		
-		if(isEmpty(article)) {
+
+		if (isEmpty(article)) {
 			return new ResultData("F-1", "존재하지 않는 게시물입니다.", "id", id);
 		}
-		
+
 		articleDao.modifyArticle(id, title, body);
 		return new ResultData("P-1", "게시물을 수정하였습니다.", "article", article);
 	}
 
-	//article이 null, delstatus가 1인 경우 수정,삭제됨
+	// article이 null, delstatus가 1인 경우 수정,삭제됨
 	private boolean isEmpty(Article article) {
 		if (article == null) {
 			return true;
@@ -69,21 +69,28 @@ public class ArticleService {
 		return articleDao.getArticlesTotalCount(boardId, searchKeyword, searchKeywordType);
 	}
 
-	public List<Article> getForPrintArticles(int boardId, int page, int itemsInAPage, String searchKeyword, String searchKeywordType) {
+	public List<Article> getForPrintArticles(int boardId, int page, int itemsInAPage, String searchKeyword,
+			String searchKeywordType) {
 		int limitStart = (page - 1) * itemsInAPage;
 		int limitTake = itemsInAPage;
-		
+
 		return articleDao.getForPrintArticles(boardId, limitStart, limitTake, searchKeyword, searchKeywordType);
 	}
 
 	public void increaseArticleHit(Integer id) {
 		articleDao.increaseArticleHit(id);
-		
+
 	}
 
 	public Article getArticleForPrintById(int id) {
 		return articleDao.getArticleForPrintById(id);
 	}
 
+	public ResultData writeWine(Map<String, Object> param, int memberId, int boardId) {
+		articleDao.writeWine(param, memberId, boardId);
+
+		int id = articleDao.getLastInsertId();
+		return new ResultData("S-1", "게시물이 작성되었습니다.", "id", id);
+	}
 
 }

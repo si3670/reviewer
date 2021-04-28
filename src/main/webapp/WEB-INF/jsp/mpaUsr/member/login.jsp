@@ -40,7 +40,7 @@
 					class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
 					action="doLogin" method="post"
 					onsubmit="LoginForm__checkAndSubmit(this); return false;">
-					<input type="hidden" name="redirectUrl" value="${param.afterLoginUrl}" />
+					<input type="hidden" name="redirectUri" value="/" />
 					<div class="mb-6">
 						<label class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Id</label>
 						<input

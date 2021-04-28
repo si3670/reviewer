@@ -21,8 +21,33 @@ public class MpaUsrWineController {
 	@Autowired
 	private ArticleService articleService;
 
-	
-	//wine 정보 보여주기
+	@RequestMapping("/mpaUsr/article/winewrite")
+	public String showWineWrite(HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
+		Board board = articleService.getBoardById(boardId);
+
+		if (board == null) {
+			return Util.msgAndBack(req, "존재하지않는 게시판 입니다.");
+		}
+
+		req.setAttribute("board", board);
+		return "mpaUsr/article/winewrite";
+	}
+
+	@RequestMapping("/mpaUsr/article/doWineWrite")
+	public String doWineWrite(HttpServletRequest req,@RequestParam Map<String, Object> param, int boardId) {
+		int memberId = 3;
+
+		ResultData writeWineRd = articleService.writeWine(param, memberId, boardId);
+
+		if (writeWineRd.isFail()) {
+			return Util.msgAndBack(req, writeWineRd.getMsg());
+		}
+
+		return Util.msgAndReplace(req, writeWineRd.getMsg(),
+				"../article/winedetail?id=" + writeWineRd.getBody().get("id"));
+	}
+
+	// wine 정보 보여주기
 	@RequestMapping("/mpaUsr/article/winedetail")
 	public String showDetail(Integer id, HttpServletRequest req) {
 		articleService.increaseArticleHit(id);
@@ -34,9 +59,9 @@ public class MpaUsrWineController {
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");
 		}
-		
+
 		Board board = articleService.getBoardById(article.getBoardId());
-		
+
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
 

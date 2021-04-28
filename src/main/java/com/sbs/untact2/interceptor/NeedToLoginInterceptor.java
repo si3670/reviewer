@@ -23,8 +23,8 @@ public class NeedToLoginInterceptor implements HandlerInterceptor {
 		//if 로그인 상태가 아니면
 		if (rq.isNotLogined()) {
             resp.setContentType("text/html; charset=UTF-8");
-            String afterLoginUrl = rq.getEncodedCurrentUrl();
-            resp.getWriter().append(Util.msgAndReplace("로그인 후 이용해주세요.", "../member/login?afterLoginUrl=" + afterLoginUrl));
+            String afterLoginUri = rq.getEncodedcurrentUri();
+            resp.getWriter().append(Util.msgAndReplace("로그인 후 이용해주세요.", "../member/login?afterLoginUri=" + afterLoginUri));
             return false;
         }
         

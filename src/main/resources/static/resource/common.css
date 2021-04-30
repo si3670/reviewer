@@ -253,7 +253,7 @@ html > body .plain-link:hover {
   right:0;
   width:40px;
   height:100%;
-  background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));
+  background-image:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
   pointer-events:none;
 }
 /* 탑바 - 메뉴 박스 - 더보기 그림자 끝 */
@@ -337,4 +337,16 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 
 
 /* 비주얼 끝 */
+
+/* 로그인 시작 */
+.login-form{
+	border: 1px solid #e0e0e0;
+	border-top: 1px solid #e0e0e0;	
+}
+
+.login-form.brt {
+    margin-top: -1px;
+}
+/* 로그인 끝 */
+
 

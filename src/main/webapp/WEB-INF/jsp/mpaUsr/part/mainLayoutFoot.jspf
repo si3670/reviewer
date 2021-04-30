@@ -3,3 +3,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <%@ include file = "foot.jspf" %>
+
+<div class="bg-gray-100 w-full h-52"></div>

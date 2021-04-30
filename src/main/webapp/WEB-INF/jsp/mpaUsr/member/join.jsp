@@ -6,6 +6,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
+
 <script>
 	const JoinForm__checkAndSubmitDone = false;
 
@@ -30,11 +34,11 @@
 			return;
 		}
 
-		form.loginPw.value = form.loginPw.value.trim();
+		form.loginPwInput.value = form.loginPwInput.value.trim();
 
-		if (form.loginPw.value.length == 0) {
+		if (form.loginPwInput.value.length == 0) {
 			alert('로그인비번을 입력해주세요.');
-			form.loginPw.focus();
+			form.loginPwInput.focus();
 
 			return;
 		}
@@ -46,7 +50,7 @@
 			return;
 		}
 
-		if (form.loginPw.value != form.loginPwConfirm.value) {
+		if (form.loginPwInput.value != form.loginPwConfirm.value) {
 			alert('로그인비번이 일치하지 않습니다.');
 			form.loginPwConfirm.focus();
 
@@ -89,6 +93,10 @@
 			return;
 		}
 
+		form.loginPw.value = sha256(form.loginPwInput.value);
+		form.loginPwInput.value = '';
+		form.loginPwConfirm.value = '';
+
 		form.submit();
 		JoinForm__checkAndSubmitDone = true;
 	}
@@ -106,8 +114,7 @@
 				class="formLogin bg-white shadow-md rounded px-8 pt-6 pb-8 mt-4"
 				action="doJoin" method="POST"
 				onsubmit="JoinForm__checkAndSubmit(this); return false;">
-				<input type="hidden" name="genFileIdsStr" />
-				<input type="hidden" name="redirectUri" value="${param.redirectUri}" />
+				<input type="hidden" name="loginPw">
 				<div class="flex flex-col mb-4 md:flex-row">
 					<div class="p-1 md:w-36 md:flex md:items-center">
 						<span>로그인아이디</span>
@@ -128,7 +135,8 @@
 						<input
 							class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker"
 							autofocus="autofocus" type="password"
-							placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="20" />
+							placeholder="로그인 비밀번호를 입력해주세요." name="loginPwInput"
+							maxlength="20" />
 					</div>
 				</div>
 				<div class="flex flex-col mb-4 md:flex-row">

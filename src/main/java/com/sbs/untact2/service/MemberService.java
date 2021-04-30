@@ -33,8 +33,6 @@ public class MemberService {
 
 	public ResultData addMember(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
-		loginPw = Util.sha256(loginPw);
-
 		memberDao.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 		int id = memberDao.getLastInsertId();
 
@@ -48,7 +46,7 @@ public class MemberService {
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
-		mailBodySb.append(String.format("<p><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri));
+		mailBodySb.append(String.format("<a href=\"%s\" target=\"_blank\">로그인 하러가기</a>", siteLoginUri));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -72,15 +70,15 @@ public class MemberService {
 		if (sendResultData.isFail()) {
 			return sendResultData;
 		}
+		
+		tempPassword = Util.sha256(tempPassword);
 
 		setTempPassword(actor, tempPassword);
 
 		return new ResultData("S-1", "계정의 이메일주소로 임시 패스워드가 발송되었습니다.");
 	}
 
-	private void setTempPassword(Member actor, String tempPassword) {
-		tempPassword = Util.sha256(tempPassword);
-		
+	private void setTempPassword(Member actor, String tempPassword) {		
 		memberDao.modify(actor.getId(), tempPassword, null, null, null, null);
 	}
 

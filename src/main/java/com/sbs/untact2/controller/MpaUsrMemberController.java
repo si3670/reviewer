@@ -60,7 +60,7 @@ public class MpaUsrMemberController {
 			return Util.msgAndBack(req, "존재하지 않는 아이디입니다.");
 		}
 		
-		if(member.getLoginPw().equals(Util.sha256(loginPw)) == false) {
+		if(member.getLoginPw().equals(loginPw) == false) {
 			return Util.msgAndBack(req, "loginPw을 확인해주세요.");
 		}
 		

@@ -19,8 +19,7 @@ public class MemberService {
 	private MemberDao memberDao;
 	@Autowired
 	private MailService mailService;
-	
-	
+
 	@Value("${custom.siteName}")
 	private String siteName;
 	@Value("${custom.siteMainUri}")
@@ -28,18 +27,19 @@ public class MemberService {
 	@Value("${custom.siteLoginUri}")
 	private String siteLoginUri;
 
-
-
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
 	}
 
-	public ResultData addMember(String loginId, String loginPw, String name, String nickname, String cellphoneNo, String email) {
+	public ResultData addMember(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
+			String email) {
+		loginPw = Util.sha256(loginPw);
+
 		memberDao.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 		int id = memberDao.getLastInsertId();
-		
+
 		sendJoinCompleteMail(email);
-	
+
 		return new ResultData("P-1", "가입 성공", "id", id);
 	}
 
@@ -48,7 +48,7 @@ public class MemberService {
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
-		mailBodySb.append(String.format("<p><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri, siteName));
+		mailBodySb.append(String.format("<p><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -61,41 +61,27 @@ public class MemberService {
 		return memberDao.getMemberByNameAndEmail(name, email);
 	}
 
-	public ResultData modifyMemberRd(Map<String, Object> param) {
-		memberDao.modifyMemberRd(param);
-		return new ResultData("P-1", "수정 성공");
-	}
+	public ResultData notifyTempLoginPwByEmail(Member actor) {
+		String title = "[" + siteName + "] 임시 패스워드 발송";
+		String tempPassword = Util.getTempPassword(6);
+		String body = "<h1>임시 패스워드 : " + tempPassword + "</h1>";
+		body += String.format("<a href=\"%s\" target=\"_blank\">로그인 하러가기</a>", siteLoginUri);
 
-	public ResultData sendTempLoginPwToEmail(Member member) {
-		Random r = new Random();
-		String tempLoginPw = (10000 + r.nextInt(90000)) + "";
-
-		String mailTitle = String.format("[%s] 임시 비밀번호가 발송되었습니다.", siteName);
-		String mailBody = "";
-
-		mailBody += String.format("로그인아이디 : %s<br>", member.getLoginId());
-		mailBody += String.format("임시 비밀번호 : %s", tempLoginPw);
-		mailBody += "<br>";
-		mailBody += String.format("<a href=\"%s\" target=\"_blank\">로그인 하러가기</a>", siteLoginUri);
-
-		ResultData sendResultData = mailService.send(member.getEmail(), mailTitle, mailBody);
+		ResultData sendResultData = mailService.send(actor.getEmail(), title, body);
 
 		if (sendResultData.isFail()) {
-			return new ResultData("F-1", "메일발송에 실패했습니다.");
+			return sendResultData;
 		}
 
-		Map<String, Object> modifyParam = new HashMap<>();
-		modifyParam.put("loginPw", tempLoginPw);
-		modifyParam.put("id", member.getId());
-		memberDao.modifyMemberRd(modifyParam);
+		setTempPassword(actor, tempPassword);
 
-		return new ResultData("S-1", "임시 패스워드를 메일로 발송하였습니다.");
+		return new ResultData("S-1", "계정의 이메일주소로 임시 패스워드가 발송되었습니다.");
 	}
 
-	public ResultData modify(Map<String, Object> param) {
-		memberDao.modify(param);
-		int id = Util.getAsInt(param.get("id"), 0);
-		return new ResultData("P-1", "수정 성공", "id", id);
+	private void setTempPassword(Member actor, String tempPassword) {
+		tempPassword = Util.sha256(tempPassword);
+		
+		memberDao.modify(actor.getId(), tempPassword, null, null, null, null);
 	}
 
 	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {

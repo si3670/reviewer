@@ -114,7 +114,7 @@
 				class="bg-white shadow-md rounded w-max px-10 pt-6 pb-8 mb-4 flex flex-col"
 				action="doFindLoginPw" method="post"
 				onsubmit="FindLoginPwForm__checkAndSubmit(this); return false;">
-				<input type="hidden" name="replaceUrl" value="../member/login" />
+				<input type="hidden" name="redirectUri" value="../member/login" />
 
 				<h2 class="con">비밀번호 찾기</h2>
 

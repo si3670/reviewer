@@ -50,10 +50,7 @@
 	<update id="modify">
 		UPDATE member
 		<set>
-			<if
-				test="loginPw != null || name != null || nickname != null || cellphoneNo != null || email != null">
-				updateDate = NOW(),
-			</if>
+			updateDate = NOW(),
 			<if test="loginPw != null">
 				loginPw = #{loginPw},
 			</if>

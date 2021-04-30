@@ -3,6 +3,7 @@ package com.sbs.untact2.util;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -77,8 +78,6 @@ public class Util {
 		return defaultValue;
 	}
 
-
-
 	public static String toJsonStr(Map<String, Object> param) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -148,7 +147,7 @@ public class Util {
 	}
 
 	public static <T> T ifEmpty(T data, T defaultValue) {
-		if ( isEmpty(data) ) {
+		if (isEmpty(data)) {
 			return defaultValue;
 		}
 
@@ -215,7 +214,8 @@ public class Util {
 	}
 
 	public static List<Integer> getListDividedBy(String str, String divideBy) {
-		return Arrays.asList(str.split(divideBy)).stream().map(s -> Integer.parseInt(s.trim())).collect(Collectors.toList());
+		return Arrays.asList(str.split(divideBy)).stream().map(s -> Integer.parseInt(s.trim()))
+				.collect(Collectors.toList());
 	}
 
 	public static boolean delteFile(String filePath) {
@@ -238,16 +238,16 @@ public class Util {
 	}
 
 	public static boolean allNumberString(String str) {
-		if ( str == null ) {
+		if (str == null) {
 			return false;
 		}
 
-		if ( str.length() == 0 ) {
+		if (str.length() == 0) {
 			return true;
 		}
 
-		for ( int i = 0; i < str.length(); i++ ) {
-			if ( Character.isDigit(str.charAt(i)) == false ) {
+		for (int i = 0; i < str.length(); i++) {
+			if (Character.isDigit(str.charAt(i)) == false) {
 				return false;
 			}
 		}
@@ -256,11 +256,11 @@ public class Util {
 	}
 
 	public static boolean startsWithNumberString(String str) {
-		if ( str == null ) {
+		if (str == null) {
 			return false;
 		}
 
-		if ( str.length() == 0 ) {
+		if (str.length() == 0) {
 			return false;
 		}
 
@@ -268,11 +268,11 @@ public class Util {
 	}
 
 	public static boolean isStandardLoginIdString(String str) {
-		if ( str == null ) {
+		if (str == null) {
 			return false;
 		}
 
-		if ( str.length() == 0 ) {
+		if (str.length() == 0) {
 			return false;
 		}
 
@@ -326,8 +326,7 @@ public class Util {
 	public static String getNewUriAndEncoded(String uri, String paramName, String pramValue) {
 		return getUriEncoded(getNewUri(uri, paramName, pramValue));
 	}
-	
-	
+
 	public static String msgAndBack(HttpServletRequest req, String msg) {
 		req.setAttribute("msg", msg);
 		req.setAttribute("historyBack", true);
@@ -339,7 +338,7 @@ public class Util {
 		req.setAttribute("replaceUri", replaceUri);
 		return "common/redirect";
 	}
-	
+
 	public static String msgAndBack(String msg) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<script>");
@@ -360,6 +359,39 @@ public class Util {
 		return sb.toString();
 	}
 
-	
+	public static String getTempPassword(int length) {
+		int index = 0;
+		char[] charArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
+				'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < length; i++) {
+			index = (int) (charArr.length * Math.random());
+			sb.append(charArr[index]);
+		}
+
+		return sb.toString();
+	}
+
+	public static String sha256(String base) {
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(base.getBytes("UTF-8"));
+			StringBuffer hexString = new StringBuffer();
+
+			for (int i = 0; i < hash.length; i++) {
+				String hex = Integer.toHexString(0xff & hash[i]);
+				if (hex.length() == 1)
+					hexString.append('0');
+				hexString.append(hex);
+			}
+
+			return hexString.toString();
+
+		} catch (Exception ex) {
+			return "";
+		}
+	}
 
 }

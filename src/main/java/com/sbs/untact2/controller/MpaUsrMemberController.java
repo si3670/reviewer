@@ -1,14 +1,11 @@
 package com.sbs.untact2.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.untact2.dto.Member;
 import com.sbs.untact2.dto.ResultData;
@@ -63,7 +60,7 @@ public class MpaUsrMemberController {
 			return Util.msgAndBack(req, "존재하지 않는 아이디입니다.");
 		}
 		
-		if(member.getLoginPw().equals(loginPw) == false) {
+		if(member.getLoginPw().equals(Util.sha256(loginPw)) == false) {
 			return Util.msgAndBack(req, "loginPw을 확인해주세요.");
 		}
 		
@@ -102,21 +99,27 @@ public class MpaUsrMemberController {
 		
 	@RequestMapping("/mpaUsr/member/doFindLoginPw")
 	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String redirectUri) {
-		Member member = memberService.getMemberByLoginId(loginId);
-		
-		if(member == null) {
-			return Util.msgAndBack(req, "존재하지 않는 회원입니다.");
-		}
-		if(member.getEmail().equals(email) == false) {
-			return Util.msgAndBack(req, "email이 올바르지 않습니다.");
-		}
+		if (Util.isEmpty(redirectUri)) {
+            redirectUri = "/";
+        }
 
-		
-		memberService.sendTempLoginPwToEmail(member);
-		
-		String msg = String.format("임시 비밀번호를 해당 email로 발송하였습니다.");
+        Member member = memberService.getMemberByLoginId(loginId);
 
-		return Util.msgAndReplace(req, msg, redirectUri);
+        if (member == null) {
+            return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
+        }
+
+        if (member.getLoginId().equals(loginId) == false) {
+            return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
+        }
+
+        if (member.getEmail().equals(email) == false) {
+            return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
+        }
+
+        ResultData notifyTempLoginPwByEmailRs = memberService.notifyTempLoginPwByEmail(member);
+
+        return Util.msgAndReplace(req, notifyTempLoginPwByEmailRs.getMsg(), redirectUri);
 	}
 	
 	@RequestMapping("/mpaUsr/member/myPage")

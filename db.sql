@@ -97,6 +97,22 @@ wineAlcohol = "13.5%",
 wineML ="750.0ml",
 winePrice = "4,300,000";
 
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 5,
+memberId = 1,
+title = "petrus pomerol",
+`body` = "Sparkling",
+wineKinds = "white",
+wineCountry ="France",
+winePlace ="Pomerol",
+wineVintage =2006,
+wineVariety ="Merlot",
+wineAlcohol = "13.5%",
+wineML ="750.0ml",
+winePrice = "4,300,000";
+
 SELECT  LAST_INSERT_ID();
 
 CREATE TABLE board(
@@ -139,6 +155,12 @@ SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "SweetWine",
 `code` = "sweetWine";
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`name` = "SparklingWine",
+`code` = "SparklingWine";
 
 SELECT * FROM article;
 
@@ -193,5 +215,5 @@ nickname = '유저3별명',
 email = 'jangka512@gmail.com',
 cellphoneNo = '01012341234'; 
 
+ALTER TABLE `member` MODIFY COLUMN loginPw VARCHAR(100)  NOT NULL;
 
-SELECT * FROM `member`;

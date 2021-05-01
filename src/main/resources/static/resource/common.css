@@ -253,7 +253,7 @@ html > body .plain-link:hover {
   right:0;
   width:40px;
   height:100%;
-  background-image:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+
   pointer-events:none;
 }
 /* 탑바 - 메뉴 박스 - 더보기 그림자 끝 */
@@ -348,5 +348,17 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
     margin-top: -1px;
 }
 /* 로그인 끝 */
+
+/* 회원가입 시작 */
+.icon-required{
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	background-color: #f25656;
+	border-radius: 50%;
+	vertical-align: 2px;
+}
+
+/* 회원가입 끝 */
 
 

@@ -36,14 +36,14 @@
 
 <section class="section-1">
 	<div class="container mx-auto">
-		<div class="mt-14 card bordered shadow-lg item-bt-1-not-last-child">
+		<div class="my-14 card bordered shadow-lg item-bt-1-not-last-child">
 			<div class="card-title-2">
 				<a href="javascript:history.back();" class="cursor-pointer">
 					<i class="fas fa-chevron-left"></i>
 				</a>
 				<span>게시물 글쓰기</span>
 			</div>
-			<form class="px-8 pb-8 pt-16"
+			<form class="px-8 pb-10 pt-20"
 				onsubmit="ArticleWrite__submitForm(this); return false;"
 				action="doWrite" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="boardId" value="${board.id}" />

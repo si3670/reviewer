@@ -13,7 +13,7 @@
 		<nav class="menu-box-1">
 			<ul class="flex h-full">
 				<li>
-					<a href="/" class="h-full flex items-center px-5">
+					<a href="/" class="h-full flex items-center px-5 hover:underline">
 						<span>
 							<i class="fas fa-home"></i>
 						</span>
@@ -22,7 +22,7 @@
 				</li>
 
 				<li>
-					<a href="#" class="h-full flex items-center px-5">
+					<a href="#" class="h-full flex items-center px-5 hover:underline">
 						<span>
 							<i class="far fa-newspaper"></i>
 						</span>
@@ -51,7 +51,7 @@
 
 
 				<li>
-					<a href="#" class="h-full flex items-center px-5">
+					<a href="#" class="h-full flex items-center px-5 hover:underline">
 						<span>
 							<i class="far fa-clipboard"></i>
 						</span>
@@ -74,7 +74,7 @@
 				</li>
 				<c:if test="${rq.isLogined()}">
 					<li>
-						<a href="#" class="h-full flex items-center px-5">
+						<a href="#" class="h-full flex items-center px-5 hover:underline">
 							<span>
 								<i class="fas fa-user"></i>
 							</span>
@@ -100,7 +100,7 @@
 				<c:if test="${rq.isNotLogined()}">
 					<li>
 						<a href="${rq.getLoginPageUri()}"
-							class="h-full flex items-center px-5">
+							class="h-full flex items-center px-5 hover:underline">
 							<span>
 								<i class="fas fa-sign-in-alt"></i>
 							</span>

@@ -23,9 +23,9 @@ public class MpaUsrMemberController {
 		return "mpaUsr/member/join";
 	}
 
-
 	@RequestMapping("/mpaUsr/member/doJoin")
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, String cellphoneNo, String email) {		
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
+			String cellphoneNo, String email) {
 		Member oldMember = memberService.getMemberByLoginId(loginId);
 
 		if (oldMember != null) {
@@ -33,121 +33,134 @@ public class MpaUsrMemberController {
 		}
 
 		ResultData addMemberRd = memberService.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
-		
-		if(addMemberRd.isFail()) {
+
+		if (addMemberRd.isFail()) {
 			return Util.msgAndBack(req, addMemberRd.getMsg());
 		}
 
-		return Util.msgAndReplace(req,addMemberRd.getMsg(), "/");
+		return Util.msgAndReplace(req, addMemberRd.getMsg(), "/");
 	}
-	
-	
+
 	@RequestMapping("/mpaUsr/member/login")
 	public String showLogin() {
 		return "mpaUsr/member/login";
 	}
 
-
 	@RequestMapping("/mpaUsr/member/doLogin")
-	public String doLogin(HttpServletRequest req, HttpSession session, String loginId, String loginPw, String redirectUri) {
-		if(Util.isEmpty(redirectUri)) {
+	public String doLogin(HttpServletRequest req, HttpSession session, String loginId, String loginPw,
+			String redirectUri) {
+		if (Util.isEmpty(redirectUri)) {
 			redirectUri = "/";
 		}
-		
+
 		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member == null) {
 			return Util.msgAndBack(req, "존재하지 않는 아이디입니다.");
 		}
-		
-		if(member.getLoginPw().equals(loginPw) == false) {
+
+		if (member.getLoginPw().equals(loginPw) == false) {
 			return Util.msgAndBack(req, "loginPw을 확인해주세요.");
 		}
-		
+
 		session.setAttribute("loginedMemberId", member.getId());
-		
+
 		String msg = "환영합니다.";
 		return Util.msgAndReplace(req, msg, redirectUri);
 	}
-	
+
 	@RequestMapping("/mpaUsr/member/doLogout")
-	public String doLogout(HttpServletRequest req, HttpSession session) {		
+	public String doLogout(HttpServletRequest req, HttpSession session) {
 		session.removeAttribute("loginedMemberId");
 
 		return Util.msgAndReplace(req, "로그아웃 되었습니다.", "/");
 	}
-	
-	//아이디, 비번 찾기
+
+	// 아이디, 비번 찾기
 	@RequestMapping("/mpaUsr/member/findLoginInfo")
 	public String showFindLoginInfo() {
 		return "mpaUsr/member/findLoginInfo";
 	}
-	
+
 	@RequestMapping("/mpaUsr/member/doFindLoginId")
 	public String doFindLoginId(String name, String email, HttpServletRequest req, String redirectUri) {
 		Member member = memberService.getMemberByNameAndEmail(name, email);
-		
-		if(member == null) {
+
+		if (member == null) {
 			return Util.msgAndBack(req, "존재하지 않는 회원입니다.");
 		}
 
-		
 		String msg = String.format("아이디는 %s 입니다.", member.getLoginId());
 
 		return Util.msgAndReplace(req, msg, redirectUri);
 	}
-		
+
 	@RequestMapping("/mpaUsr/member/doFindLoginPw")
 	public String doFindLoginPw(String loginId, String email, HttpServletRequest req, String redirectUri) {
 		if (Util.isEmpty(redirectUri)) {
-            redirectUri = "/";
-        }
+			redirectUri = "/";
+		}
 
-        Member member = memberService.getMemberByLoginId(loginId);
+		Member member = memberService.getMemberByLoginId(loginId);
 
-        if (member == null) {
-            return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
-        }
+		if (member == null) {
+			return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
+		}
 
-        if (member.getLoginId().equals(loginId) == false) {
-            return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
-        }
+		if (member.getLoginId().equals(loginId) == false) {
+			return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
+		}
 
-        if (member.getEmail().equals(email) == false) {
-            return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
-        }
+		if (member.getEmail().equals(email) == false) {
+			return Util.msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
+		}
 
-        ResultData notifyTempLoginPwByEmailRs = memberService.notifyTempLoginPwByEmail(member);
+		ResultData notifyTempLoginPwByEmailRs = memberService.notifyTempLoginPwByEmail(member);
 
-        return Util.msgAndReplace(req, notifyTempLoginPwByEmailRs.getMsg(), redirectUri);
+		return Util.msgAndReplace(req, notifyTempLoginPwByEmailRs.getMsg(), redirectUri);
 	}
-	
+
 	@RequestMapping("/mpaUsr/member/myPage")
-	public String showMyPage() {		
+	public String showMyPage() {
 		return "mpaUsr/member/myPage";
 	}
-	
+
 	@RequestMapping("/mpaUsr/member/modify")
-	public String showModify() {		
+	public String showModify() {
 		return "mpaUsr/member/modify";
 	}
-	
+
 	@RequestMapping("/mpaUsr/member/doModify")
-	public String doModify(HttpServletRequest req,  String loginPw, String name, String
-            nickname, String cellphoneNo, String email) {
-		if(loginPw != null && loginPw.trim().length() == 0) {
+	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,
+			String email) {
+		if (loginPw != null && loginPw.trim().length() == 0) {
 			loginPw = null;
 		}
-		
-		 int id = ((Rq)req.getAttribute("rq")).getLoginedMemberId();
+
+		int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
 		ResultData modifyrRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
-		
-		if(modifyrRd.isFail()) {
+
+		if (modifyrRd.isFail()) {
 			return Util.msgAndBack(req, modifyrRd.getMsg());
 		}
 
-		return Util.msgAndReplace(req,modifyrRd.getMsg(), "/");
+		return Util.msgAndReplace(req, modifyrRd.getMsg(), "/");
 	}
 
+	@RequestMapping("/mpaUsr/member/checkPassword")
+	public String showCheckPassword() {
+		return "mpaUsr/member/checkPassword";
+	}
+
+	@RequestMapping("/mpaUsr/member/doCheckPassword")
+	public String doCheckPassword(HttpServletRequest req, String loginPw, String redirectUri) {
+		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+
+		if (loginedMember.getLoginPw().equals(loginPw) == false) {
+			return Util.msgAndBack(req, "비밀번호가 일치하지 않습니다.");
+		}
+
+		return Util.msgAndReplace(req, "", redirectUri);
+	}
 
 }

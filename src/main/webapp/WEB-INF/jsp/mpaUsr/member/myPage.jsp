@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.sbs.untact2.util.Util" %>
 
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 <div class="section section-mypage px-2">
-	<div class="container mx-auto mt-16">
+	<div class="container mx-auto my-16">
 		<div class="card bordered shadow-lg">
 			<div class="card-title-2">
 				<a href="javascript:history.back();" class="cursor-pointer">
@@ -59,7 +60,7 @@
 				</div>
 
 				<div class="grid grid-item-float gap-3 mt-4">
-					<a href="../member/modify" class="text-yellow-500 hover:underline">
+					<a href="../member/checkPassword?afterUri=${Util.getUriEncoded('../member/modify')}" class="text-yellow-500 hover:underline">
 						<span>
 							<i class="fas fa-edit"></i>
 							<span>수정</span>

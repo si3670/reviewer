@@ -132,15 +132,8 @@ html > body {
 }
 
 /* 카드타이틀 - 시작 */
-.card-title {
-  background-color: rgb(87, 13, 248);
-  color: white;
-  text-align: center;
-  display: grid;
-}
-
 .card-title-2 {
-  background-color:#422B2B;
+  background-color:#a80001;
   color:white;
   text-align:center;
   height:var(--card-title_height);
@@ -221,12 +214,11 @@ html > body .plain-link:hover {
 
 
 /* 탑바 시작 */
-:root {
-  --top-bar__color-1:#f1f1f1;
-}
+
 
 .top-bar {
   height: 3rem;
+  background-color:white;
 }
 
 /* 탑바 - 메뉴 박스 시작 */
@@ -360,5 +352,35 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 }
 
 /* 회원가입 끝 */
+
+/* 리스트 시작 */
+.li_board ul li{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+}
+.li_table ul, .li_board ul li, .li_board .board-head{
+    border-color:rgba(61,70,75,0.15);
+}
+
+.page-title{
+	font-family: 'HSBombaram3_Thin';
+	font-size: 55px;
+	text-align: center;
+}	
+
+/* 리스트 끝 */
+
+.title-box{
+	padding-top: 12px;
+    padding-bottom: 12px;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color:rgba(61,70,75,0.15);
+}
+
 
 

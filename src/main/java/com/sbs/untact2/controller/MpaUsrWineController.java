@@ -34,10 +34,13 @@ public class MpaUsrWineController {
 	}
 
 	@RequestMapping("/mpaUsr/article/doWineWrite")
-	public String doWineWrite(HttpServletRequest req,@RequestParam Map<String, Object> param, int boardId) {
+	public String doWineWrite(HttpServletRequest req, int boardId, String title, String body, String wineKinds,
+			String wineCountry, String winePlace, int wineVintage, String wineVariety, String wineAlcohol,
+			String wineML, String winePrice) {
 		int memberId = 3;
 
-		ResultData writeWineRd = articleService.writeWine(param, memberId, boardId);
+		ResultData writeWineRd = articleService.writeWine(memberId, boardId, title, body, wineKinds, wineCountry,
+				winePlace, wineVintage, wineVariety, wineAlcohol, wineML, winePrice);
 
 		if (writeWineRd.isFail()) {
 			return Util.msgAndBack(req, writeWineRd.getMsg());

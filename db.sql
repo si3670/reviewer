@@ -18,16 +18,16 @@ hitCount INT(10) UNSIGNED DEFAULT 0 NOT NULL,
 repliesCount INT(10) UNSIGNED DEFAULT 0 NOT NULL,
 likeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL,
 dislikeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL,
-wineKinds CHAR(100) NOT NULL COMMENT '와인종류',
-wineCountry CHAR(100) NOT NULL COMMENT '와인생산국',
-winePlace CHAR(100) NOT NULL COMMENT '와인생산지',
-wineVintage INT(10) UNSIGNED NOT NULL COMMENT '와인빈티지',
-wineVariety CHAR(100) NOT NULL COMMENT '와인품종',
-wineAlcohol CHAR(100) NOT NULL COMMENT '와인알코올',
-wineML CHAR(100) NOT NULL COMMENT '와인용량',
-winePrice CHAR(100) NOT NULL COMMENT '와인권장가'
+wineKinds CHAR(100) DEFAULT "" NOT NULL COMMENT '와인종류',
+wineCountry CHAR(100) DEFAULT "" NOT NULL COMMENT '와인생산국',
+winePlace CHAR(100) DEFAULT "" NOT NULL COMMENT '와인생산지',
+wineVintage INT(10) UNSIGNED DEFAULT 0 NOT NULL COMMENT '와인빈티지',
+wineVariety CHAR(100) DEFAULT "" NOT NULL COMMENT '와인품종',
+wineAlcohol CHAR(100) DEFAULT "" NOT NULL COMMENT '와인알코올',
+wineML CHAR(100) DEFAULT "" NOT NULL COMMENT '와인용량',
+winePrice CHAR(100) DEFAULT "" NOT NULL COMMENT '와인권장가'
 );
-
+SELECT * FROM article;
 #테스트 게시판
 #1번 회원이 1번 게시판에 글 작성
 INSERT INTO article
@@ -215,9 +215,8 @@ nickname = '유저3별명',
 email = 'jangka512@gmail.com',
 cellphoneNo = '01012341234'; 
 
-# 로그인비번 칼럼의 길이를 100으로 늘림
-ALTER TABLE `member` MODIFY COLUMN loginPw VARCHAR(100) NOT NULL;
-
-# 기존 회원의 비밀번호를 암호화 해서 저장
+ALTER TABLE `member` MODIFY COLUMN loginPw VARCHAR(100)  NOT NULL;
 UPDATE `member`
 SET loginPw = SHA2(loginPw, 256);
+
+SELECT * FROM `member`;

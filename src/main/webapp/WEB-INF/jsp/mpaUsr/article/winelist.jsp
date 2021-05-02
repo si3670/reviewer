@@ -2,25 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle"
-	value="<span><i class='far fa-clipboard'></i></span> <span>${board.name} ARTICLE LIST</span>" />
+	value="<span>${board.name}</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 
 <div class="section section-article-list">
 	<div class="container mx-auto">
-		<div class="mt-12">
-			<div class="total-items">
-				<span>TOTAL ITEMS : </span>
-				<span>${totalCount}</span>
-			</div>
-			<div class="total-pages">
-				<span>TOTAL PAGES : </span>
-				<span>${totalPage}</span>
-			</div>
-			<div class="page">
-				<span>CURRENT PAGE : </span>
-				<span>${page}</span>
-			</div>
+		<div class="mt-20 mb-4">
+			<div class="mx-auto container page-title">${pageTitle}</div>
 		</div>
 
 		<form class="flex mt-3">
@@ -30,9 +19,10 @@
 				<option value="body">본문</option>
 			</select>
 			<script>
-				if (param.searchKeywordType) {
+				const param__searchKeywordType = '${param.searchKeywordType}';
+				if (param__searchKeywordType.length > 0) {
 					$('.section-1 select[name="searchKeywordType"]').val(
-							param.searchKeywordType);
+							param__searchKeywordType);
 				}
 			</script>
 			<input
@@ -40,13 +30,12 @@
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
 			<input
-				class="ml-3 btn-primary bg-yellow-900 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+				class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer"
 				type="submit" value="검색" />
 		</form>
-		<a href="winewrite?boardId=${board.id}"
-			class="btn-primary bg-yellow-900 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded">글쓰기</a>
+		
 
-		<div class="articles mt-2">
+		<div class="articles mt-10">
 			<c:if test="${articles == null || articles.size() == 0 }">
 			검색결과가 존재하지 않습니다.
 			</c:if>
@@ -61,7 +50,8 @@
 				<div class="mt-2">
 					<a href="winedetail?id=${article.id}"
 						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
-					<a href="winedetail?id=${article.id}" class="mt-2 text-gray-600 block">${article.body}</a>
+					<a href="winedetail?id=${article.id}"
+						class="mt-2 text-gray-600 block">${article.body}</a>
 				</div>
 
 				<div class="flex items-center mt-4">
@@ -78,6 +68,27 @@
 					</div>
 				</div>
 			</c:forEach>
+			<div class="mt-2 flex">
+				<div class="flex-grow"></div>
+				<a href="winewrite?boardId=${board.id}"
+					class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer">글쓰기</a>
+			</div>
+			
+		</div>
+
+		<div class="mt-12">
+			<div class="total-items">
+				<span>TOTAL ITEMS : </span>
+				<span>${totalCount}</span>
+			</div>
+			<div class="total-pages">
+				<span>TOTAL PAGES : </span>
+				<span>${totalPage}</span>
+			</div>
+			<div class="page">
+				<span>CURRENT PAGE : </span>
+				<span>${page}</span>
+			</div>
 		</div>
 
 		<div class="pages mt-4 mb-4 text-center">

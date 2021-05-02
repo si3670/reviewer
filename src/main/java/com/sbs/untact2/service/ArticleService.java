@@ -86,9 +86,12 @@ public class ArticleService {
 		return articleDao.getArticleForPrintById(id);
 	}
 
-	public ResultData writeWine(Map<String, Object> param, int memberId, int boardId) {
-		articleDao.writeWine(param, memberId, boardId);
-
+	public ResultData writeWine(int memberId, int boardId, String title, String body, String wineKinds,
+			String wineCountry, String winePlace, int wineVintage, String wineVariety, String wineAlcohol,
+			String wineML, String winePrice) {
+		
+		articleDao.writeWine(memberId, boardId, title, body, wineKinds, wineCountry,
+				winePlace, wineVintage, wineVariety, wineAlcohol, wineML, winePrice);
 		int id = articleDao.getLastInsertId();
 		return new ResultData("S-1", "게시물이 작성되었습니다.", "id", id);
 	}

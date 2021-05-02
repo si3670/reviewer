@@ -11,7 +11,7 @@
 
 
 <script>
-	const JoinForm__checkAndSubmitDone = false;
+	let JoinForm__checkAndSubmitDone = false;
 
 	function JoinForm__checkAndSubmit(form) {
 		if (JoinForm__checkAndSubmitDone) {
@@ -22,13 +22,6 @@
 
 		if (form.loginId.value.length == 0) {
 			alert('로그인아이디를 입력해주세요.');
-			form.loginId.focus();
-
-			return;
-		}
-
-		if (form.loginId.value != JoinForm__validLoginId) {
-			alert('로그인아이디 중복체크를해주세요.');
 			form.loginId.focus();
 
 			return;

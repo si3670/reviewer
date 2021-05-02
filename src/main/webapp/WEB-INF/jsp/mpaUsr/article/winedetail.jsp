@@ -85,12 +85,12 @@
 						</div>
 						<div>
 							<span class="con-bg">알코올</span>
-							<span class="text-gray-600 text-light">${article.wineAlcohol}</span>
+							<span class="text-gray-600 text-light">${article.wineAlcohol}%</span>
 						</div>
 
 						<div>
 							<span class="con-bg">용량</span>
-							<span class="text-gray-600 text-light">${article.wineML}</span>
+							<span class="text-gray-600 text-light">${article.wineML}ml</span>
 						</div>
 
 						<div>

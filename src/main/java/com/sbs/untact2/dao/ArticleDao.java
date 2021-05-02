@@ -36,6 +36,10 @@ public interface ArticleDao {
 
 	Article getArticleForPrintById(@Param("id") int id);
 
-	void writeWine(Map<String, Object> param, @Param("memberId") int memberId, @Param("boardId") int boardId);
+	void writeWine(@Param("memberId") int memberId, @Param("boardId") int boardId, @Param("title") String title,
+			@Param("body") String body, @Param("wineKinds") String wineKinds, @Param("wineCountry") String wineCountry,
+			@Param("winePlace") String winePlace, @Param("wineVintage") int wineVintage,
+			@Param("wineVariety") String wineVariety, @Param("wineAlcohol") String wineAlcohol, @Param("wineML") String wineML,
+			@Param("winePrice") String winePrice);
 
 }

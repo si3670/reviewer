@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%@ include file="head.jspf"%>
+
 <header class="top-bar top-bar--fly">
 	<div class="container mx-auto flex h-full">
 		<a href="/" class="flex items-center img-box w-24 h-12">
@@ -31,17 +33,17 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/winelist?boardId=3">
+								<a href="../article/winelist?boardId=3" class="hover:underline">
 									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=4">
+								<a href="../article/winelist?boardId=4" class="hover:underline">
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=5">
+								<a href="../article/winelist?boardId=5" class="hover:underline">
 									<span>&nbsp;Sparkling</span>
 								</a>
 							</li>
@@ -60,12 +62,12 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/list?boardId=1">
+								<a href="../article/list?boardId=1" class="hover:underline">
 									<span>&nbsp;NOTICE</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/list?boardId=2">
+								<a href="../article/list?boardId=2" class="hover:underline">
 									<span>&nbsp;FREE</span>
 								</a>
 							</li>
@@ -84,12 +86,12 @@
 						<div>
 							<ul>
 								<li>
-									<a href="../member/myPage">
+									<a href="../member/myPage" class="hover:underline">
 										<span>&nbsp;MY PAGE</span>
 									</a>
 								</li>
 								<li>
-									<a href="/mpaUsr/member/doLogout">
+									<a href="/mpaUsr/member/doLogout" class="hover:underline">
 										<span>&nbsp;LOGOUT</span>
 									</a>
 								</li>
@@ -116,4 +118,3 @@
 
 </header>
 
-<%@ include file="head.jspf"%>

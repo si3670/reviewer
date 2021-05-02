@@ -2,37 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle"
-	value="<span><i class='far fa-clipboard'></i></span> <span>${board.name} ARTICLE LIST</span>" />
+	value="<span>${board.code}</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 
 <div class="section section-article-list">
 	<div class="container mx-auto">
-		<div class="mt-12">
-			<div class="total-items">
-				<span>TOTAL ITEMS : </span>
-				<span>${totalCount}</span>
-			</div>
-			<div class="total-pages">
-				<span>TOTAL PAGES : </span>
-				<span>${totalPage}</span>
-			</div>
-			<div class="page">
-				<span>CURRENT PAGE : </span>
-				<span>${page}</span>
-			</div>
+		<div class="mt-20 mb-4">
+			<div class="mx-auto container page-title">${pageTitle}</div>
 		</div>
 
-		<form class="flex mt-3">
+		<form class="flex px-20">
 			<select name="searchKeywordType">
 				<option value="titleAndBody">전체</option>
 				<option value="title">제목</option>
 				<option value="body">본문</option>
 			</select>
 			<script>
-				if (param.searchKeywordType) {
+				const param__searchKeywordType = '${param.searchKeywordType}';
+				if (param__searchKeywordType.length > 0) {
 					$('.section-1 select[name="searchKeywordType"]').val(
-							param.searchKeywordType);
+							param__searchKeywordType);
 				}
 			</script>
 			<input
@@ -40,47 +30,53 @@
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
 			<input
-				class="ml-3 btn-primary bg-yellow-900 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded"
+				class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer"
 				type="submit" value="검색" />
 		</form>
-		<a href="write?boardId=${board.id}"
-			class="btn-primary bg-yellow-900 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">글쓰기</a>
 
-		<div class="articles mt-2">
+		<div class="articles pt-10 pb-4 px-20">
+			<div class="li_board">
+				<ul class="li_header flex">
+					<li class="w-full font-bold">No.</li>
+					<li class="w-full font-bold">제목</li>
+					<li class="w-full text-center font-bold">작성날짜</li>
+					<li class="w-full text-right font-bold">조회</li>
+				</ul>
+			</div>
 			<c:if test="${articles == null || articles.size() == 0 }">
 			검색결과가 존재하지 않습니다.
 			</c:if>
 			<c:forEach items="${articles}" var="article">
-				<div class="flex items-center mt-4">
-					<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
-					<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
-					<a href="${detailUrl}" class="ml-2 font-light text-gray-600">조회
-						: ${article.hitCount}</a>
-				</div>
+				<div class="li_board">
+					<ul class="li_header flex items-center">
+						<li class="w-full font-light text-gray-600">
+							<a href="${detailUrl}">${article.id}</a>
+						</li>
 
-				<div class="mt-2">
-					<a href="detail?id=${article.id}"
-						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
-					<a href="detail?id=${article.id}" class="mt-2 text-gray-600 block">${article.body}</a>
-				</div>
+						<li class="w-full hover:underline font-light text-gray-600">
+							<a href="detail?id=${article.id}">${article.title}</a>
+						</li>
 
-				<div class="flex items-center mt-4">
-					<a href="detail?id=${article.id}"
-						class="text-yellow-500 hover:underline">자세히 보기</a>
-					<div class="flex-grow"></div>
-					<div>
-						<a class="flex items-center">
-							<img
-								src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
-								alt="avatar" class="mx-4 w-10 h-10 object-cover rounded-full">
-							<h1 class="text-gray-700 hover:underline">${article.extra__writer}</h1>
-						</a>
-					</div>
+						<li class="w-full text-center">
+							<a href="${detailUrl}" class="font-light text-gray-600">${article.regDate}</a>
+						</li>
+						<li class="w-full text-right">
+							<a href="${detailUrl}" class=" font-light text-gray-600">
+								${article.hitCount}</a>
+						</li>
+					</ul>
 				</div>
 			</c:forEach>
+
+
+			<div class="mt-2 flex">
+				<div class="flex-grow"></div>
+				<a href="write?boardId=${board.id}"
+					class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer">글쓰기</a>
+			</div>
 		</div>
 
-		<div class="pages mt-4 mb-4 text-center">
+		<div class="pages mb-6 text-center">
 			<c:set var="pageMenuArmSize" value="4" />
 			<c:set var="StartPage"
 				value="${page -  pageMenuArmSize >= 1 ? page -  pageMenuArmSize : 1}" />

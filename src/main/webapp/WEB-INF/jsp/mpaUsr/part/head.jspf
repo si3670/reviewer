@@ -28,7 +28,7 @@
 <script src="/resource/common.js" defer></script>
 
 <%="<script>"%>
-const param = ${paramJson};
+//const param = ${paramJson};
 <%="</script>"%>
 </head>
 

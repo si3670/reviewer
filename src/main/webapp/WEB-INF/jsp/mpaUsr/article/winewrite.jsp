@@ -149,7 +149,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="wineKinds" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="종류을 입력해주세요." />
+							placeholder="종류을 입력해주세요. ex) red" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -159,7 +159,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="wineCountry" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="생산국을 입력해주세요." />
+							placeholder="생산국을 입력해주세요. ex) Italy" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -169,7 +169,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="winePlace" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="생산지를 입력해주세요." />
+							placeholder="생산지를 입력해주세요. ex) Toscana" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -179,7 +179,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="wineVintage" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="빈티지를 입력해주세요." />
+							placeholder="빈티지를 입력해주세요. ex) 2006" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -189,7 +189,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="wineVariety" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="품종을 입력해주세요." />
+							placeholder="품종을 입력해주세요. ex) Pinot Noir" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -199,7 +199,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="wineAlcohol" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="알코올을 입력해주세요." />
+							placeholder="알코올을 입력해주세요. ex) 12.5" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -209,7 +209,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="wineML" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="용량을 입력해주세요." />
+							placeholder="용량을 입력해주세요. ex) 750" />
 					</div>
 				</div>
 				<div class="form-row flex flex-col lg:flex-row mt-2">
@@ -219,7 +219,7 @@
 					<div class="lg:flex-grow">
 						<input type="text" name="winePrice" autofocus="autofocus"
 							class="form-row-input w-full rounded-sm"
-							placeholder="권장가를 입력해주세요." />
+							placeholder="권장가를 입력해주세요. ex) 10,000" />
 					</div>
 				</div>
 

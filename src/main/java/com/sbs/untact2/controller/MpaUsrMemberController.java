@@ -125,14 +125,34 @@ public class MpaUsrMemberController {
 		return "mpaUsr/member/myPage";
 	}
 
+	// checkPasswordAuthCode : 체크비밀번호인증코드
 	@RequestMapping("/mpaUsr/member/modify")
-	public String showModify() {
+	public String showModify(HttpServletRequest req, String checkPasswordAuthCode) {
+		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+				.checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
+
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
+		}
+
 		return "mpaUsr/member/modify";
 	}
 
 	@RequestMapping("/mpaUsr/member/doModify")
 	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,
-			String email) {
+			String email, String checkPasswordAuthCode) {
+		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
+				.checkValidCheckPasswordAuthCode(loginedMember.getId(), checkPasswordAuthCode);
+
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
+		}
+		
+		
 		if (loginPw != null && loginPw.trim().length() == 0) {
 			loginPw = null;
 		}
@@ -159,7 +179,12 @@ public class MpaUsrMemberController {
 		if (loginedMember.getLoginPw().equals(loginPw) == false) {
 			return Util.msgAndBack(req, "비밀번호가 일치하지 않습니다.");
 		}
+		
+		//회원 인증 됐으니 인증키 만들기
+		String authCode = memberService.getCheckPasswordAuthCode(loginedMember.getId());
 
+		redirectUri = Util.getNewUri(redirectUri,"checkPasswordAuthCode", authCode);
+		
 		return Util.msgAndReplace(req, "", redirectUri);
 	}
 

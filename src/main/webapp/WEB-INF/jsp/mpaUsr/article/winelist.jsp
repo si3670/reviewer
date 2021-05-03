@@ -50,8 +50,7 @@
 				<div class="mt-2">
 					<a href="winedetail?id=${article.id}"
 						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
-					<a href="winedetail?id=${article.id}"
-						class="mt-2 text-gray-600 block">${article.body}</a>
+
 				</div>
 
 				<div class="flex items-center mt-4">
@@ -68,7 +67,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			<div class="mt-2 flex">
+			<div class="mt-2 flex mt-6">
 				<div class="flex-grow"></div>
 				<a href="winewrite?boardId=${board.id}"
 					class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer">글쓰기</a>

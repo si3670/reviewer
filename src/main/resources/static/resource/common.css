@@ -35,6 +35,8 @@
     font-weight: normal;
     font-style: normal;
 }
+
+
 /* 폰트적용 - 끝 */
 
 min-h-screen {
@@ -369,6 +371,11 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 .page-title{
 	font-family: 'HSBombaram3_Thin';
 	font-size: 55px;
+	text-align: center;
+}
+.page-title-find{
+	font-family: 'HSBombaram3_Thin';
+	font-size: 45px;
 	text-align: center;
 }	
 

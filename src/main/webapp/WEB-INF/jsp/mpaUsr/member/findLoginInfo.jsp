@@ -29,8 +29,8 @@
 <section class="section-Login flex items-center pt-20">
 	<div class="container mx-auto flex items-center justify-center">
 		<div class="max-w-md mx-auto">
-			<div class="logo-bar flex justify-center mt-3 pb-3">
-				<span class="text-2xl pt-2">Find Id/PassWord</span>
+			<div class="logo-bar flex justify-center mt-6">
+				<div class="page-title-find">Find Id/PassWord</div>
 			</div>
 			<div class="m-7">
 				<form action="doFindLoginId" method="post"

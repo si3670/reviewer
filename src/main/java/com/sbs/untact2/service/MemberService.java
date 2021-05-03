@@ -1,8 +1,6 @@
 package com.sbs.untact2.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +17,8 @@ public class MemberService {
 	private MemberDao memberDao;
 	@Autowired
 	private MailService mailService;
+	@Autowired
+	private AttrService attrService;
 
 	@Value("${custom.siteName}")
 	private String siteName;
@@ -87,5 +87,25 @@ public class MemberService {
 
 		return new ResultData("P-1", "수정 성공", "id", id);
 	}
+
+
+	public String getCheckPasswordAuthCode(int actorId) {
+        String attrName = "member__" + actorId + "__extra__checkPasswordAuthCode";
+        String authCode = UUID.randomUUID().toString();
+        String expireDate = Util.getDateStrLater(60 * 60);
+
+        attrService.setValue(attrName, authCode, expireDate);
+
+        return authCode;
+	}
+
+	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
+        if (attrService.getValue("member__" + actorId + "__extra__checkPasswordAuthCode").equals(checkPasswordAuthCode)) {
+            return new ResultData("S-1", "유효한 키 입니다.");
+        }
+
+        return new ResultData("F-1", "유효하지 않은 키 입니다.");
+	}
+
 
 }

@@ -32,7 +32,7 @@
 		class="container mx-auto min-h-screen flex items-center justify-center">
 		<div class="max-w-md mx-auto my-10">
 			<div class="logo-bar flex justify-center">
-				<h1 class="text-5xl">CheckPassword</h1>
+				<div class="page-title-find">CheckPassword</div>
 			</div>
 			<div class="mt-6">
 				<form action="doCheckPassword" method="post"
@@ -56,9 +56,6 @@
 					</div>
 
 					<div class="flex">
-						<a href="../member/join"
-							class="text-gray-700 focus:outline-none focus:underline focus:text-indigo-500 dark:focus:border-indigo-800"
-							type="sumit">SignUp</a>
 						<div class="flex-grow"></div>
 
 						<a href="../member/findLoginInfo"

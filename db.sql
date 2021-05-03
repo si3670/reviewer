@@ -136,13 +136,13 @@ INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "공지사항",
-`code` = "notice";
+`code` = "Notice";
 
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "자유게시판",
-`code` = "free";
+`code` = "Free";
 
 INSERT INTO board
 SET regDate = NOW(),
@@ -220,3 +220,28 @@ UPDATE `member`
 SET loginPw = SHA2(loginPw, 256);
 
 SELECT * FROM `member`;
+
+
+# 부가정보테이블
+# 댓글 테이블 추가
+CREATE TABLE attr (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    `relTypeCode` CHAR(20) NOT NULL,
+    `relId` INT(10) UNSIGNED NOT NULL,
+    `typeCode` CHAR(30) NOT NULL,
+    `type2Code` CHAR(70) NOT NULL,
+    `value` TEXT NOT NULL
+);
+
+# attr 유니크 인덱스 걸기
+## 중복변수 생성금지
+## 변수찾는 속도 최적화
+ALTER TABLE `attr` ADD UNIQUE INDEX (`relTypeCode`, `relId`, `typeCode`, `type2Code`);
+
+## 특정 조건을 만족하는 회원 또는 게시물(기타 데이터)를 빠르게 찾기 위해서
+ALTER TABLE `attr` ADD INDEX (`relTypeCode`, `typeCode`, `type2Code`);
+
+# attr에 만료날짜 추가
+ALTER TABLE `attr` ADD COLUMN `expireDate` DATETIME NULL AFTER `value`;

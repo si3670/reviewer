@@ -34,7 +34,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/mpaUsr/article/write")
 				.addPathPatterns("/mpaUsr/article/dowrite").addPathPatterns("/mpaUsr/article/doDelete")
 				.addPathPatterns("/mpaUsr/article/modify").addPathPatterns("/mpaUsr/article/doModify")
-				.addPathPatterns("/mpaUsr/member/doMyPage").addPathPatterns("/mpaUsr/member/myPage");
+				.addPathPatterns("/mpaUsr/member/doMyPage").addPathPatterns("/mpaUsr/member/myPage")
+				.addPathPatterns("/mpaUsr/member/modify").addPathPatterns("/mpaUsr/member/doModify")
+				.addPathPatterns("/mpaUsr/member/checkPassword").addPathPatterns("/mpaUsr/member/doCheckPassword");
 
 		// needtologout인터셉터에게 확인하도록 넘기기
 		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/mpaUsr/member/login")

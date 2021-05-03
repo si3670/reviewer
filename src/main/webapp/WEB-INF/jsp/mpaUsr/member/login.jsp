@@ -40,7 +40,7 @@
 		class="container mx-auto min-h-screen flex items-center justify-center">
 		<div class="max-w-md mx-auto my-10">
 			<div class="logo-bar flex justify-center">
-				<h1 class="text-5xl">LOGIN</h1>
+				<div class="page-title">Login</div>
 			</div>
 			<div class="mt-4">
 				<form action="doLogin" method="post"

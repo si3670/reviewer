@@ -98,8 +98,8 @@
 	<div
 		class="container mx-auto min-h-screen flex items-center justify-center">
 		<div class="mt-16">
-			<div class="logo-bar flex justify-center mt-3">
-				<h1 class="text-5xl">JOIN</h1>
+			<div class="logo-bar flex justify-center mt-6">
+				<div class="page-title">Join</div>
 			</div>
 			<form class="formLogin px-8 pt-6 pb-8 mt-4" action="doJoin"
 				method="POST"

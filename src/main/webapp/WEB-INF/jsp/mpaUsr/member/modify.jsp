@@ -70,55 +70,56 @@
 			<form method="POST" action="doModify"
 				onsubmit="MemberModify__submitForm(this); return false;"
 				class="px-4 py-8 mt-4">
+				<input type="hidden" name="checkPasswordAuthCode" value="${param.checkPasswordAuthCode}">
 				<input type="hidden" name="loginPw">
 				<div class="form-control">
-					<label class="label"> 로그인아이디 </label>
+					<label class="label"> 아이디 </label>
 					<div class="plain-text">${rq.loginedMember.loginId}</div>
 				</div>
 
 				<div class="form-control">
-					<label class="label"> 로그인비밀번호 </label>
-					<input class="input input-bordered w-full" type="password"
-						maxlength="30" name="loginPwInput" placeholder="로그인비밀번호를 입력해주세요." />
+					<label class="label"> 비밀번호 </label>
+					<input class="login-form px-3 py-2" type="password"
+						maxlength="30" name="loginPwInput" placeholder="비밀번호를 입력해주세요." />
 				</div>
 
 				<div class="form-control">
-					<label class="label"> 로그인비밀번호 확인 </label>
-					<input class="input input-bordered w-full" type="password"
+					<label class="label"> 비밀번호 확인 </label>
+					<input class="login-form px-3 py-2" type="password"
 						maxlength="30" name="loginPwConfirm"
-						placeholder="로그인비밀번호 확인을 입력해주세요." />
+						placeholder="비밀번호 확인을 입력해주세요." />
 				</div>
 
 				<div class="form-control">
 					<label class="label"> 이름 </label>
 					<input value="${rq.loginedMember.name}"
-						class="input input-bordered w-full" type="text" maxlength="30"
+						class="login-form px-3 py-2" type="text" maxlength="30"
 						name="name" placeholder="이름을 입력해주세요." />
 				</div>
 
 				<div class="form-control">
-					<label class="label"> 별명 </label>
+					<label class="label"> 닉네임 </label>
 					<input value="${rq.loginedMember.nickname}"
-						class="input input-bordered w-full" type="text" maxlength="30"
-						name="nickname" placeholder="별명을 입력해주세요." />
+						class="login-form px-3 py-2" type="text" maxlength="30"
+						name="nickname" placeholder="닉네임을 입력해주세요." />
 				</div>
 
 				<div class="form-control">
-					<label class="label"> 휴대전화번호 </label>
+					<label class="label"> 연락처 </label>
 					<input value="${rq.loginedMember.cellphoneNo}"
-						class="input input-bordered w-full" type="tel" maxlength="30"
-						name="cellphoneNo" placeholder="휴대전화번호를 입력해주세요." />
+						class="login-form px-3 py-2" type="tel" maxlength="30"
+						name="cellphoneNo" placeholder="연락처를 입력해주세요." />
 				</div>
 
 				<div class="form-control">
 					<label class="label"> 이메일 </label>
 					<input value="${rq.loginedMember.email}"
-						class="input input-bordered w-full" type="email" maxlength="50"
+						class="login-form px-3 py-2" type="email" maxlength="50"
 						name="email" placeholder="이메일을 입력해주세요." />
 				</div>
 
 				<div class="mt-4 btn-wrap gap-1">
-					<button type="submit" href="#" class="btn btn-primary btn-sm mb-1">
+					<button type="submit" href="#" class="bg-red-600 hover:bg-gray-600 text-white btn-sm">
 						<span>
 							<i class="fas fa-user-plus"></i>
 						</span>
@@ -126,21 +127,14 @@
 						<span>수정</span>
 					</button>
 
-					<a href="../member/mypage" class="btn btn-link btn-sm mb-1">
+					<a href="../member/mypage" class="btn-sm text-red-600 hover:underline">
 						<span>
 							<i class="fas fa-home"></i>
 						</span>
 						&nbsp;
-						<span>마이페이지</span>
+						<span class="">마이페이지</span>
 					</a>
 
-					<a href="/" class="btn btn-link btn-sm mb-1">
-						<span>
-							<i class="fas fa-home"></i>
-						</span>
-						&nbsp;
-						<span>홈</span>
-					</a>
 				</div>
 			</form>
 		</div>

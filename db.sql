@@ -35,16 +35,17 @@ SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 1,
 memberId = 1,
-title = "제목1",
-`body` = "내용1";
+title = "셀러 오픈 프로모션 안내",
+`body` = "깊고 진한 루비 컬러와 과일향, 부드러운 타닌의 조화가 뛰어난 
+도맨 상타 뒥 지공다스 오 리우디를 특별한 가격에 만나보세요!";
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 1,
 memberId = 1,
-title = "제목2",
-`body` = "내용2";
+title = "셀러 소믈리에 멘토를 만나보세요!",
+`body` = "베테랑 전문가 분들과 와인 리뷰와 전문적인 지식을 여러분과 공유합니다.";
 
 #1번 회원이 2번 게시판에 글 작성
 INSERT INTO article
@@ -52,8 +53,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 2,
 memberId = 1,
-title = "제목3",
-`body` = "내용3";
+title = "와인 추천해주세요!",
+`body` = "모스카토 다스티 종류 와인 추천해주세요 :D";
 
 #2번 회원이 1번 게시판에 글 작성
 INSERT INTO article
@@ -61,8 +62,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 1,
 memberId = 2,
-title = "제목4",
-`body` = "내용4";
+title = "답변 이벤트 안내 및 활동 주의사항",
+`body` = "좋은 답변을 응원합니다!";
 
 #wine게시글
 INSERT INTO article

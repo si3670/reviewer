@@ -44,7 +44,7 @@ public class Rq {
 		return Util.getUriEncoded(getcurrentUri());
 	}
 
-	private String getcurrentUri() {
+	public String getcurrentUri() {
 		return currentUri;
 	}
 
@@ -61,7 +61,7 @@ public class Rq {
 	}
 
 	private boolean isLoginPage() {
-	        return currentUrl.equals("/mpaUsr/member/login");
+		return currentUrl.equals("/mpaUsr/member/login");
 	}
 
 }

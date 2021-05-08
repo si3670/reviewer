@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Board;
+import com.sbs.untact2.dto.Reply;
 import com.sbs.untact2.dto.ResultData;
+import com.sbs.untact2.dto.Rq;
 import com.sbs.untact2.service.ArticleService;
+import com.sbs.untact2.service.ReplyService;
 import com.sbs.untact2.util.Util;
 
 @Controller
 public class MpaUsrArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private ReplyService replyService;
 
 	@RequestMapping("/mpaUsr/article/write")
 	public String showWrite(HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId) {
@@ -42,7 +47,9 @@ public class MpaUsrArticleController {
 			return Util.msgAndBack(req, "body을 입력해주세요.");
 		}
 		
-		int memberId = 3;
+		Rq rq = (Rq)req.getAttribute("rq");
+		
+		int memberId = rq.getLoginedMemberId();
 		
 		ResultData writeArticleRd = articleService.writeArticle(boardId, memberId, title, body);
 
@@ -56,10 +63,8 @@ public class MpaUsrArticleController {
 	@RequestMapping("/mpaUsr/article/detail")
 	public String showDetail(Integer id, HttpServletRequest req) {
 		articleService.increaseArticleHit(id);
-		if (Util.isEmpty(id)) {
-			return Util.msgAndBack(req, "id을 입력해주세요.");
-		}
 		Article article = articleService.getArticleForPrintById(id);
+		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
 
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");
@@ -67,6 +72,7 @@ public class MpaUsrArticleController {
 		
 		Board board = articleService.getBoardById(article.getBoardId());
 		
+		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
 

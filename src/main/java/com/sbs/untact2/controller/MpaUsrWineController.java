@@ -1,7 +1,6 @@
 package com.sbs.untact2.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,14 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Board;
+import com.sbs.untact2.dto.Reply;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.service.ArticleService;
+import com.sbs.untact2.service.ReplyService;
 import com.sbs.untact2.util.Util;
 
 @Controller
 public class MpaUsrWineController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private ReplyService replyService;
 
 	@RequestMapping("/mpaUsr/article/winewrite")
 	public String showWineWrite(HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
@@ -54,10 +57,9 @@ public class MpaUsrWineController {
 	@RequestMapping("/mpaUsr/article/winedetail")
 	public String showDetail(Integer id, HttpServletRequest req) {
 		articleService.increaseArticleHit(id);
-		if (Util.isEmpty(id)) {
-			return Util.msgAndBack(req, "id을 입력해주세요.");
-		}
 		Article article = articleService.getArticleForPrintById(id);
+		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
+		
 
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");
@@ -65,6 +67,7 @@ public class MpaUsrWineController {
 
 		Board board = articleService.getBoardById(article.getBoardId());
 
+		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
 

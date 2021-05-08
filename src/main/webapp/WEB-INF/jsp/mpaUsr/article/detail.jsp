@@ -39,8 +39,10 @@
 				<h1 class="title-bar-type-2 px-4">댓글</h1>
 				<div class="px-4 py-2">
 					<!-- 댓글 입력 시작 -->
-					<form
+					<form method="POST" action="../reply/doWrite"
 						class="relative flex py-4 text-gray-600 focus-within:text-gray-400">
+						<input type="hidden" name="relTypeCode" value="article" />
+						<input type="hidden" name="relId" value="${article.id}" />
 						<img
 							class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
 							alt="User avatar"
@@ -58,7 +60,7 @@
                                 </svg>
 							</button>
 						</span>
-						<input type="search"
+						<input name="body" type="text"
 							class="w-full py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-blue-500 focus:text-gray-900 focus:shadow-outline-blue"
 							style="border-radius: 25px" placeholder="댓글을 입력해주세요."
 							autocomplete="off">

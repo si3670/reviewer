@@ -7,7 +7,7 @@
 <header class="top-bar top-bar--fly">
 	<div class="container mx-auto flex h-full">
 		<a href="/" class="flex items-center img-box w-24 h-12">
-			<img src="http://localhost:8044/resource/imgs/Cellar2.png" alt="" />
+			<img src="http://localhost:8044/resource/imgs/Cellar1.png" alt="" />
 		</a>
 
 		<div class="flex-grow"></div>

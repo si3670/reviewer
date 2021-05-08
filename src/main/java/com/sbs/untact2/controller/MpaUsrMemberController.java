@@ -66,6 +66,15 @@ public class MpaUsrMemberController {
 		session.setAttribute("loginedMemberId", member.getId());
 
 		String msg = "환영합니다.";
+		
+		boolean isUsingTempPassword = memberService.isUsingTempPassword(member.getId());
+		
+		if(isUsingTempPassword) {
+			msg = "임시 비밀번호를 변경해주세요";
+			redirectUri = "/mpaUsr/member/myPage";
+		}
+		
+		
 		return Util.msgAndReplace(req, msg, redirectUri);
 	}
 

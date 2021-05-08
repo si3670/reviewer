@@ -70,7 +70,7 @@ public class MemberService {
 		if (sendResultData.isFail()) {
 			return sendResultData;
 		}
-		
+
 		tempPassword = Util.sha256(tempPassword);
 
 		setTempPassword(actor, tempPassword);
@@ -78,34 +78,42 @@ public class MemberService {
 		return new ResultData("S-1", "계정의 이메일주소로 임시 패스워드가 발송되었습니다.");
 	}
 
-	private void setTempPassword(Member actor, String tempPassword) {		
+	private void setTempPassword(Member actor, String tempPassword) {
+		attrService.setValue("member", actor.getId(), "extra", "useTempPassword", "1", null);
 		memberDao.modify(actor.getId(), tempPassword, null, null, null, null);
 	}
 
 	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {
 		memberDao.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
+		if (loginPw != null) {
+			attrService.remove("member", id, "extra", "useTempPassword");
+		}
+
 		return new ResultData("P-1", "수정 성공", "id", id);
 	}
 
-
 	public String getCheckPasswordAuthCode(int actorId) {
-        String attrName = "member__" + actorId + "__extra__checkPasswordAuthCode";
-        String authCode = UUID.randomUUID().toString();
-        String expireDate = Util.getDateStrLater(60 * 60);
+		String attrName = "member__" + actorId + "__extra__checkPasswordAuthCode";
+		String authCode = UUID.randomUUID().toString();
+		String expireDate = Util.getDateStrLater(60 * 60);
 
-        attrService.setValue(attrName, authCode, expireDate);
+		attrService.setValue(attrName, authCode, expireDate);
 
-        return authCode;
+		return authCode;
 	}
 
 	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
-        if (attrService.getValue("member__" + actorId + "__extra__checkPasswordAuthCode").equals(checkPasswordAuthCode)) {
-            return new ResultData("S-1", "유효한 키 입니다.");
-        }
+		if (attrService.getValue("member__" + actorId + "__extra__checkPasswordAuthCode")
+				.equals(checkPasswordAuthCode)) {
+			return new ResultData("S-1", "유효한 키 입니다.");
+		}
 
-        return new ResultData("F-1", "유효하지 않은 키 입니다.");
+		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
 
+	public boolean isUsingTempPassword(int actorId) {
+		return attrService.getValue("member", actorId, "extra", "useTempPassword").equals("1");
+	}
 
 }

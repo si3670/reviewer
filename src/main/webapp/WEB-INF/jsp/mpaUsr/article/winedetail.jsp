@@ -6,7 +6,7 @@
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 <div class="section-article-detail">
-	<div class="container mx-auto">
+	<div class="container mx-auto  px-40">
 		<div
 			class="mt-20 mb-10 card bordered shadow-lg item-bt-1-not-last-child">
 			<div class="card-title-2">
@@ -28,7 +28,14 @@
 
 					<span class="text-gray-600 ml-4">카테고리 : ${board.name}</span>
 				</div>
-
+				<c:if test="${rq.logined}">
+					<div class="text-blue-500">
+						<a href="../article/modify?id=${article.id}"
+							class="hover:underline">수정</a>
+						<a href="../article/doDelete?id=${article.id}"
+							class="hover:underline">삭제</a>
+					</div>
+				</c:if>
 			</div>
 			<hr class="mt-4" />
 
@@ -108,10 +115,18 @@
 
 
 			<div class="mt-4">
-				<h1 class="title-bar-type-2 px-4">댓글</h1>
+				<div class="px-4 flex">
+					<h1 class="title-bar-type-2 mr-4">댓글</h1>
+					<p>${totalCount}</p>
+				</div>
+
 				<c:if test="${rq.notLogined}">
-                    글 작성은 <a href="${rq.loginPageUri}">로그인</a> 후 이용할 수 있습니다.
-                </c:if>
+					<div class="text-center py-4">
+						글 작성은
+						<a class="plain-link" href="${rq.loginPageUri}">로그인</a>
+						후 이용할 수 있습니다.
+					</div>
+				</c:if>
 
 				<c:if test="${rq.logined}">
 					<div class="px-4 py-2">
@@ -160,22 +175,41 @@
 								</div>
 								<div class="break-all">${reply.bodyForPrint}</div>
 								<div class="mt-1">
-									<span>
-										<span>업</span>
+									<span class="text-gray-600 cursor-pointer">
+										<span>
+											<i class="fas fa-thumbs-up"></i>
+										</span>
 										<span>5,600</span>
 									</span>
-									<span class="ml-1">
-										<span>다</span>
+									<span class="ml-1 text-gray-600 cursor-pointer">
+										<span>
+											<i class="fas fa-thumbs-down"></i>
+										</span>
 										<span>5,600</span>
 									</span>
 								</div>
 							</div>
+
+							<div class="plain-link-wrap gap-3 mt-3 text-sm">
+								<c:if test="${reply.memberId == rq.loginedMemberId}">
+									<a onclick="if ( !confirm('정말 삭제하시겠습니까?') ) return false;"
+										href="../reply/doDelete?id=${reply.id}&redirectUri=${rq.currentUri}"
+										class="plain-link">
+										<span>
+											<i class="fas fa-trash-alt"></i>
+										</span>
+										<span>글 삭제</span>
+									</a>
+								</c:if>
+							</div>
+
+
 						</div>
 					</c:forEach>
 				</div>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 

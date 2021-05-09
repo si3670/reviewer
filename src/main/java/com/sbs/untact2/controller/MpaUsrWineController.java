@@ -55,7 +55,7 @@ public class MpaUsrWineController {
 
 	// wine 정보 보여주기
 	@RequestMapping("/mpaUsr/article/winedetail")
-	public String showDetail(Integer id, HttpServletRequest req) {
+	public String showDetail(Integer id, HttpServletRequest req,@RequestParam(defaultValue = "3") int boardId) {
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getArticleForPrintById(id);
 		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
@@ -66,6 +66,7 @@ public class MpaUsrWineController {
 		}
 
 		Board board = articleService.getBoardById(article.getBoardId());
+
 
 		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);

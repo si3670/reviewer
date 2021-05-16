@@ -1,18 +1,28 @@
 package com.sbs.untact2.dto;
 
+import java.util.Map;
+
 import com.sbs.untact2.util.Util;
 
 public class Rq {
 	private String currentUrl;
 	private String currentUri;
 	private Member loginedMember;
+	private Map<String, String> paramMap;
 
 	public Rq(Member loginedMember, String currentUri) {
 		this.loginedMember = loginedMember;
+
 		// test
 		this.currentUrl = currentUri.split("\\?")[0];
 		// test?ab=c3&&bb=2
 		this.currentUri = currentUri;
+
+		this.paramMap = paramMap;
+	}
+
+	public String getParamJsonStr() {
+		return Util.toJsonStr(paramMap);
 	}
 
 	public boolean isLogined() {

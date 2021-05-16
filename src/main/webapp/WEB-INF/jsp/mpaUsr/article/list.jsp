@@ -30,7 +30,7 @@
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
 			<input
-				class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer"
+				class="ml-3 btn-border"
 				type="submit" value="검색" />
 		</form>
 
@@ -72,7 +72,7 @@
 			<div class="mt-2 flex">
 				<div class="flex-grow"></div>
 				<a href="write?boardId=${board.id}"
-					class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer">글쓰기</a>
+					class="ml-3 btn-border">글쓰기</a>
 			</div>
 		</div>
 

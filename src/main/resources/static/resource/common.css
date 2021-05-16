@@ -47,7 +47,7 @@ html > body {
   font-family: "LotteMartDream", sans-serif;
 }
 
-.img-box>img {
+.-box>img {
 	display: block;
 	width: 100%;
 }
@@ -153,7 +153,7 @@ html > body {
 
 .con-bg{
 	background-color:#6e6f75;
-	padding:0px 15px;
+	padding:1px 15px;
 	display : inline-block;
 	border-radius: 50px;
 	color: white;
@@ -306,28 +306,42 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 /* 탑바 끝 */ 
 
 /* 비주얼 시작 */
-.con-1{
-	width: 450px;
-	height: 450px;
-	background:url(imgs/wine2.jpg) no-repeat center;
-	background-size: cover;
-	border-radius: 50%;
-	
-}
-
-
-.visual>.text {
-	top: 60%;
+.item>.text {
+	top: 50%;
 	left: 50%;
-	transform: translate(-60%,-50%);
-	color:white;
+	transform: translate(-50%,-50%);
 	text-align: center;
 }
+.item>.text-visual-2{
+	top: 50%;
+	left: 20%;
+	transform: translate(-50%,-30%);
+}
+.item>.text-visual-2>h1{
+		font-size: 55px;
+}
 
-.visual>.text>h1 {
+.item>.text>.wine-review {
 	font-family: 'HSBombaram3_Thin';
 	font-size: 47px;
 }
+
+.item>.text-visual-3{
+	top: 50%;
+	right: 7%;
+	transform: translate(-50%,-7%);
+	text-align: right;
+}
+.item>.text-visual-3>h1{
+		font-size: 55px;
+}
+.slick-list{
+	position: relative;
+}
+.slick-dots{
+	position: absolute;
+	bottom: 20px;
+} 
 
 
 /* 비주얼 끝 */
@@ -390,6 +404,37 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 }
 
 
+/* 버튼 시작 */
+.btn-border{
+	padding:4px 13px;
+	background-color:white;
+	border-radius: 10px;
+	border: 1px solid red;
+	cursor: pointer;
+	font-size: 14px;
+}
+.btn-border:hover{
+	color:red;
+	transition: .2s;
+}
+
+.btn-bg{
+	padding:4px 13px;
+	background-color:red;
+	border: 1px solid red;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 14px;
+	color:white;
+}
+.btn-bg:hover{
+	color:red;
+	background-color:white;
+	transition: .2s;
+}
+
+
+/* 버튼 끝 */
 
 
 

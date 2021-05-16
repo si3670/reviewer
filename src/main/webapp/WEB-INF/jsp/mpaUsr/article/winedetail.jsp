@@ -105,13 +105,7 @@
 				</div>
 			</div>
 
-
-
-
-
 			<hr class="mt-6" />
-
-
 
 
 			<div class="mt-4">
@@ -122,7 +116,7 @@
 
 				<c:if test="${rq.notLogined}">
 					<div class="text-center py-4">
-						글 작성은
+						댓글 작성은
 						<a class="plain-link" href="${rq.loginPageUri}">로그인</a>
 						후 이용할 수 있습니다.
 					</div>
@@ -131,8 +125,29 @@
 				<c:if test="${rq.logined}">
 					<div class="px-4 py-2">
 						<!-- 댓글 입력 시작 -->
+						<script>
+							let ReplyWrite__submitFormDone = false;
+							function ReplyWrite__submitForm(form) {
+								if (ReplyWrite__submitFormDone) {
+									return;
+								}
+
+								form.body.value = form.body.value.trim();
+
+								if (form.body.value.length == 0) {
+									alert('댓글을 입력해주세요');
+									form.body.focus();
+
+									return;
+								}
+
+								form.submit();
+								ReplyWrite__submitFormDone = true;
+							}
+						</script>
 						<form method="POST" action="../reply/doWrite"
-							class="relative flex py-4 text-gray-600 focus-within:text-gray-400">
+							class="relative flex py-4 text-gray-600 focus-within:text-gray-400"
+							onsubmit="ReplyWrite__submitForm(this); return false;">
 							<input type="hidden" name="relTypeCode" value="article" />
 							<input type="hidden" name="relId" value="${article.id}" />
 							<input type="hidden" name="redirectUri" value="${rq.currentUri}" />
@@ -154,11 +169,66 @@
 						<!-- 댓글 입력 끝 -->
 					</div>
 				</c:if>
+				
+				
+				
 
 				<!-- 댓글 리스트 -->
-				<div>
+				<style>
+                .reply-list [data-id] {
+                  transition: background-color 1s;
+                }
+                .reply-list [data-id].focus {
+                  background-color:#efefef;
+                  transition: background-color 0s;
+                }
+                </style>
+
+                <script>
+                function ReplyList__goToReply(id) {
+                    setTimeout(function() {
+                        const $target = $('.reply-list [data-id="' + id + '"]');
+                        const targetOffset = $target.offset();
+                        $(window).scrollTop(targetOffset.top - 50);
+                        $target.addClass('focus');
+                        setTimeout(function() {
+                            $target.removeClass('focus');
+                        }, 1000);
+                    }, 1000);
+                }
+                function ReplyList__deleteReply(btn) {
+                    const $clicked = $(btn);
+                    const $target = $clicked.closest('[data-id]');
+                    const id = $target.attr('data-id');
+                    $clicked.text('삭제중...');
+                    $.post(
+                        '../reply/doDeleteAjax',
+                        {
+                            id: id
+                        },
+                        function(data) {
+                            if ( data.success ) {
+                                $target.remove();
+                            }
+                            else {
+                                if ( data.msg ) {
+                                    alert(data.msg);
+                                }
+                                $clicked.text('삭제실패!!');
+                            }
+                        },
+                        'json'
+                    );
+                }
+                if ( param.focusReplyId ) {
+                    ReplyList__goToReply(param.focusReplyId);
+                }
+                </script>
+				
+				
+				<div class="reply-list">
 					<c:forEach items="${replies}" var="reply">
-						<div class="flex py-5 px-4">
+						<div data-id="${reply.id}" class="flex py-5 px-4">
 							<!-- 아바타 이미지 -->
 							<div class="flex-shrink-0">
 								<img
@@ -192,9 +262,7 @@
 
 							<div class="plain-link-wrap gap-3 mt-3 text-sm">
 								<c:if test="${reply.memberId == rq.loginedMemberId}">
-									<a onclick="if ( !confirm('정말 삭제하시겠습니까?') ) return false;"
-										href="../reply/doDelete?id=${reply.id}&redirectUri=${rq.currentUri}"
-										class="plain-link">
+									<a onclick="if ( confirm('정말 삭제하시겠습니까?') ) { ReplyList__deleteReply(this); } return false;" class="plain-link">
 										<span>
 											<i class="fas fa-trash-alt"></i>
 										</span>
@@ -202,8 +270,6 @@
 									</a>
 								</c:if>
 							</div>
-
-
 						</div>
 					</c:forEach>
 				</div>

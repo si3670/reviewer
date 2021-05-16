@@ -1,16 +1,13 @@
 package com.sbs.untact2.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.untact2.dto.Article;
-import com.sbs.untact2.dto.Board;
 import com.sbs.untact2.dto.Reply;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.dto.Rq;
@@ -24,7 +21,6 @@ public class MpaUsrReplyController {
 	private ArticleService articleService;
 	@Autowired
 	private ReplyService replyService;
-	
 
 	@RequestMapping("/mpaUsr/reply/doWrite")
 	public String showWrite(HttpServletRequest req, String relTypeCode, int relId, String body, String redirectUri) {
@@ -46,7 +42,31 @@ public class MpaUsrReplyController {
 
 		ResultData writeResultData = replyService.write(relTypeCode, relId, memberId, body);
 
+		int newReplyId = (int) writeResultData.getBody().get("id");
+
+		redirectUri = Util.getNewUri(redirectUri, "focusReplyId", newReplyId + "");
+
 		return Util.msgAndReplace(req, writeResultData.getMsg(), redirectUri);
+	}
+
+	@RequestMapping("/mpaUsr/reply/doDeleteAjax")
+	@ResponseBody
+	public ResultData doDeleteAjax(HttpServletRequest req, int id, String redirectUri) {
+		Reply reply = replyService.getReplyById(id);
+
+		if (reply == null) {
+			return new ResultData("F-1", "존재하지 않는 댓글입니다.");
+		}
+
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		if (reply.getMemberId() != rq.getLoginedMemberId()) {
+			return new ResultData("F-1", "권한이 없습니다.");
+		}
+
+		ResultData deleteResultData = replyService.delete(id);
+
+		return new ResultData("S-1", String.format("%d번 댓글이 삭제되었습니다.", id));
 	}
 
 	@RequestMapping("/mpaUsr/reply/doDelete")
@@ -59,12 +79,12 @@ public class MpaUsrReplyController {
 
 		// 누가 썼는지 알기
 		Rq rq = (Rq) req.getAttribute("rq");
-		
-		if(reply.getMemberId() != rq.getLoginedMemberId()) {
+
+		if (reply.getMemberId() != rq.getLoginedMemberId()) {
 			return Util.msgAndBack(req, "권한이 없습니다.");
 		}
 		ResultData deleteResultData = replyService.delete(id);
-		
+
 		return Util.msgAndReplace(req, deleteResultData.getMsg(), redirectUri);
 
 	}

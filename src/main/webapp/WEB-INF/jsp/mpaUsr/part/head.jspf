@@ -21,6 +21,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!-- slick 불러오기 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+
+
 <!-- vue -->
 <script src="https://unpkg.com/vue@next"></script>
 
@@ -28,7 +37,7 @@
 <script src="/resource/common.js" defer></script>
 
 <%="<script>"%>
-//const param = ${paramJson};
+const param = ${rq.paramJsonStr};
 <%="</script>"%>
 </head>
-
+<body>

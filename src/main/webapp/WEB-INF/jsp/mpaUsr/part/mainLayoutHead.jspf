@@ -4,10 +4,11 @@
 
 <%@ include file="head.jspf"%>
 
-<header class="top-bar top-bar--fly">
+
+<header class="top-bar top-bar--fly relative">
 	<div class="container mx-auto flex h-full">
-		<a href="/" class="flex items-center img-box w-24 h-12">
-			<img src="http://localhost:8044/resource/imgs/Cellar1.png" alt="" />
+		<a href="/" class="flex items-center img-box w-32 h-14">
+			<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
 		</a>
 
 		<div class="flex-grow"></div>
@@ -15,7 +16,7 @@
 		<nav class="menu-box-1">
 			<ul class="flex h-full">
 				<li>
-					<a href="/" class="h-full flex items-center px-5 hover:underline">
+					<a href="/" class="h-full flex items-center px-5 hover:text-black">
 						<span>
 							<i class="fas fa-home"></i>
 						</span>
@@ -24,7 +25,7 @@
 				</li>
 
 				<li>
-					<a href="#" class="h-full flex items-center px-5 hover:underline">
+					<a href="#" class="h-full flex items-center px-5 hover:text-black">
 						<span>
 							<i class="far fa-newspaper"></i>
 						</span>
@@ -33,17 +34,20 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/winelist?boardId=3" class="hover:underline">
+								<a href="../article/winelist?boardId=3"
+									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=4" class="hover:underline">
+								<a href="../article/winelist?boardId=4"
+									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=5" class="hover:underline">
+								<a href="../article/winelist?boardId=5"
+									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Sparkling</span>
 								</a>
 							</li>
@@ -53,7 +57,7 @@
 
 
 				<li>
-					<a href="#" class="h-full flex items-center px-5 hover:underline">
+					<a href="#" class="h-full flex items-center px-5 hover:text-black">
 						<span>
 							<i class="far fa-clipboard"></i>
 						</span>
@@ -62,12 +66,14 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/list?boardId=1" class="hover:underline">
+								<a href="../article/list?boardId=1"
+									class="text-gray-500 hover:text-black">
 									<span>&nbsp;NOTICE</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/list?boardId=2" class="hover:underline">
+								<a href="../article/list?boardId=2"
+									class="text-gray-500 hover:text-black">
 									<span>&nbsp;FREE</span>
 								</a>
 							</li>
@@ -76,7 +82,7 @@
 				</li>
 				<c:if test="${rq.isLogined()}">
 					<li>
-						<a href="#" class="h-full flex items-center px-5 hover:underline">
+						<a href="#" class="h-full flex items-center px-5 hover:text-black">
 							<span>
 								<i class="fas fa-user"></i>
 							</span>
@@ -86,12 +92,14 @@
 						<div>
 							<ul>
 								<li>
-									<a href="../member/myPage" class="hover:underline">
+									<a href="../member/myPage"
+										class="text-gray-500 hover:text-black">
 										<span>&nbsp;MY PAGE</span>
 									</a>
 								</li>
 								<li>
-									<a href="/mpaUsr/member/doLogout" class="hover:underline">
+									<a href="/mpaUsr/member/doLogout"
+										class="text-gray-500 hover:text-black">
 										<span>&nbsp;LOGOUT</span>
 									</a>
 								</li>
@@ -102,7 +110,7 @@
 				<c:if test="${rq.isNotLogined()}">
 					<li>
 						<a href="${rq.getLoginPageUri()}"
-							class="h-full flex items-center px-5 hover:underline">
+							class="h-full flex items-center px-5 hover:text-black">
 							<span>
 								<i class="fas fa-sign-in-alt"></i>
 							</span>

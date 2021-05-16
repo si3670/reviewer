@@ -78,10 +78,10 @@ public class Util {
 		return defaultValue;
 	}
 
-	public static String toJsonStr(Map<String, Object> param) {
+	public static String toJsonStr(Map<String, String> paramMap) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			return mapper.writeValueAsString(param);
+			return mapper.writeValueAsString(paramMap);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

@@ -226,18 +226,16 @@
 
 
 
-				<div class="form-row flex flex-col lg:flex-row">
-					<div class="lg:flex-grow">
+				<div class="form-row flex justify-end flex-col lg:flex-row mt-6">
 						<div class="btns">
 							<input type="submit"
-								class="btn btn-accent btn-sm mb-1 text-white" value="작성">
+								class="btn-bg" value="작성">
 
 							<input onclick="history.back();" type="button"
-								class="btn btn-sm mb-1" "
+								class="btn-border" 
 							value="취소">
 						</div>
 					</div>
-				</div>
 			</form>
 		</div>
 	</div>

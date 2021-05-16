@@ -35,9 +35,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 boardId = 1,
 memberId = 1,
-title = "셀러 오픈 프로모션 안내",
-`body` = "깊고 진한 루비 컬러와 과일향, 부드러운 타닌의 조화가 뛰어난 
-도맨 상타 뒥 지공다스 오 리우디를 특별한 가격에 만나보세요!";
+title = "첫 회원가입 이벤트",
+`body` = "추첨을 통해 선착순 50명에게 와인을 드립니다!";
 
 INSERT INTO article
 SET regDate = NOW(),
@@ -275,5 +274,8 @@ ALTER TABLE `reply` ADD KEY (`relTypeCode`, `relId`);
 
 
 SELECT * FROM reply 
+
+
+
 
 

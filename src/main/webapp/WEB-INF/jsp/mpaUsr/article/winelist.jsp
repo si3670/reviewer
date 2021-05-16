@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle"
-	value="<span>${board.name}</span>" />
+<c:set var="pageTitle" value="<span>${board.name}</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 
@@ -30,16 +29,19 @@
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
 			<input
-				class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer"
+				class="ml-3 btn-border"
 				type="submit" value="검색" />
 		</form>
-		
+
 
 		<div class="articles mt-10">
 			<c:if test="${articles == null || articles.size() == 0 }">
 			검색결과가 존재하지 않습니다.
 			</c:if>
+
 			<c:forEach items="${articles}" var="article">
+
+				<hr class="mt-6"/>
 				<div class="flex items-center mt-4">
 					<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
 					<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
@@ -70,9 +72,9 @@
 			<div class="mt-2 flex mt-6">
 				<div class="flex-grow"></div>
 				<a href="winewrite?boardId=${board.id}"
-					class="ml-3 font-bold py-2 px-4 text-white bg-red-700 hover:bg-gray-600 cursor-pointer">글쓰기</a>
+					class="btn-border">글쓰기</a>
 			</div>
-			
+
 		</div>
 
 		<div class="mt-12">

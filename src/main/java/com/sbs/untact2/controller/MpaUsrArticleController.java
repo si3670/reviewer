@@ -65,7 +65,7 @@ public class MpaUsrArticleController {
 	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId) {
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getArticleForPrintById(id);
-		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId(boardId, "article", id);
+		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
 
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");

@@ -1,8 +1,10 @@
 package com.sbs.untact2.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.sbs.untact2.interceptor.BeforeActionInterceptor;
@@ -20,6 +22,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
 	NeedToLogoutInterceptor needToLogoutInterceptor;
+	
+	@Value("${custom.genFileDirPath}")
+    private String genFileDirPath;
+
 
 	// 이 함수는 인터셉터를 적용하는 역할을 합니다.
 	@Override
@@ -38,7 +44,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.addPathPatterns("/mpaUsr/member/modify").addPathPatterns("/mpaUsr/member/doModify")
 				.addPathPatterns("/mpaUsr/member/checkPassword").addPathPatterns("/mpaUsr/member/doCheckPassword")
 				.addPathPatterns("/mpaUsr/reply/doWrite").addPathPatterns("/mpaUsr/reply/doDelete")
-				.addPathPatterns("/mpaUsr/reply/modify").addPathPatterns("/mpaUsr/reply/doModify");
+				.addPathPatterns("/mpaUsr/reply/doDeleteAjax").addPathPatterns("/mpaUsr/reply/modify")
+				.addPathPatterns("/mpaUsr/reply/doModify");
 
 		// needtologout인터셉터에게 확인하도록 넘기기
 		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/mpaUsr/member/login")
@@ -46,4 +53,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.addPathPatterns("/mpaUsr/member/doJoin").addPathPatterns("/mpaUsr/member/findLoginInfo")
 				.addPathPatterns("/mpaUsr/member/doFindLoginId").addPathPatterns("/mpaUsr/member/doFindLoginPw");
 	}
+	
+	@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/gen/**").addResourceLocations("file:///" + genFileDirPath + "/")
+                .setCachePeriod(20);
+    }
 }

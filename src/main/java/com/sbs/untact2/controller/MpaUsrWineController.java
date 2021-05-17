@@ -76,7 +76,7 @@ public class MpaUsrWineController {
 	}
 
 	@RequestMapping("/mpaUsr/article/winelist")
-	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId,
+	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId,
 			@RequestParam(defaultValue = "1") int page, String searchKeyword,
 			@RequestParam(defaultValue = "titleAndBody") String searchKeywordType) {
 		Board board = articleService.getBoardById(boardId);

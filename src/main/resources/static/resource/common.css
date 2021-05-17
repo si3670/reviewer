@@ -342,6 +342,10 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 	position: absolute;
 	bottom: 20px;
 } 
+.slick-dotted.slick-slider
+{
+    margin-bottom: 0px;
+}
 
 
 /* 비주얼 끝 */

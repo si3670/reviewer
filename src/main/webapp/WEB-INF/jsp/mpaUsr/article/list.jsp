@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle"
-	value="<span>${board.code}</span>" />
+<c:set var="pageTitle" value="<span>${board.code}</span>" />
+<c:set var="pageExplain" value="<span>${board.explain}</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
+
+<style>
+.pageExplain{
+	font-size: 14px;
+	font-family: "LotteMartDream", sans-serif;
+	text-align: center;
+}
+</style>
 
 
 <div class="section section-article-list">
 	<div class="container mx-auto">
-		<div class="mt-20 mb-4">
+		<div class="mt-20 mb-6">
 			<div class="mx-auto container page-title">${pageTitle}</div>
+			<div class="mx-auto container pageExplain">${pageExplain}</div>
 		</div>
 
 		<form class="flex px-20">
@@ -29,9 +38,7 @@
 				class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
-			<input
-				class="ml-3 btn-border"
-				type="submit" value="검색" />
+			<input class="ml-3 btn-border" type="submit" value="검색" />
 		</form>
 
 		<div class="articles pt-10 pb-4 px-20">
@@ -71,8 +78,7 @@
 
 			<div class="mt-2 flex">
 				<div class="flex-grow"></div>
-				<a href="write?boardId=${board.id}"
-					class="ml-3 btn-border">글쓰기</a>
+				<a href="write?boardId=${board.id}" class="ml-3 btn-border">글쓰기</a>
 			</div>
 		</div>
 

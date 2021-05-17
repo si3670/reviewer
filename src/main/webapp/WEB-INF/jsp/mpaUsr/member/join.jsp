@@ -102,9 +102,22 @@
 				<div class="page-title">Join</div>
 			</div>
 			<form class="formLogin px-8 pt-6 pb-8 mt-4" action="doJoin"
-				method="POST"
+				method="POST" enctype="multipart/form-data"
 				onsubmit="JoinForm__checkAndSubmit(this); return false;">
 				<input type="hidden" name="loginPw">
+
+				<div class="mb-4">
+					<div class="p-1">
+						<span>프로필 사진</span>
+						<i aria-hidden="true" class="icon-required"></i>
+					</div>
+					<div class="p-1 md:flex-grow">
+						<input type="file" name="file__member__0__extra__profileImg__1"
+							placeholder="프로필 이미지를 선택해주세요." />
+					</div>
+				</div>
+
+
 				<div class="flex flex-col mb-4 md:flex-row">
 					<div class="p-1 md:flex-grow">
 						<input class="inputLoginId login-form w-full px-3 py-2"

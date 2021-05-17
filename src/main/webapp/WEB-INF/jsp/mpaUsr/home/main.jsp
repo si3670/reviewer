@@ -17,19 +17,20 @@
 .top-bar.bg-white {
 	background-color: white;
 }
-.slick-top{
- overflow:hidden; 
+
+.slick-top {
+	overflow: hidden;
 }
 
-.item {
-	width: 100%;
-}
+
 
 .item>img {
 	width: 100%;
 	display: block;
 	margin: 0 auto;
 }
+
+
 </style>
 
 <script>
@@ -76,8 +77,10 @@
 		<img src="http://localhost:8044/resource/imgs/visual3.jpg"
 			alt="슬라이드이미지">
 		<div class="absolute text-visual-2">
-			<h1>
-				첫 회원가입 시
+			<h1 class="font-extralight">
+				첫
+				<p class="inline-block" style="font-weight: 400;">회원가입</p>
+				시
 				<br />
 				와인을 드립니다!
 			</h1>

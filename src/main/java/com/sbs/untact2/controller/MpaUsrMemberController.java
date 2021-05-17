@@ -1,15 +1,20 @@
 package com.sbs.untact2.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.sbs.untact2.dto.Member;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.dto.Rq;
+import com.sbs.untact2.service.GenFileService;
 import com.sbs.untact2.service.MemberService;
 import com.sbs.untact2.util.Util;
 
@@ -17,15 +22,20 @@ import com.sbs.untact2.util.Util;
 public class MpaUsrMemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private GenFileService genFileService;
 
 	@RequestMapping("/mpaUsr/member/join")
 	public String showJoin() {
 		return "mpaUsr/member/join";
 	}
 
+	
+	//MultipartRequest multipartRequest = 파일들 압축되어서 들어감
 	@RequestMapping("/mpaUsr/member/doJoin")
 	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
-			String cellphoneNo, String email) {
+			String cellphoneNo, String email,  MultipartRequest multipartRequest) {
+		      
 		Member oldMember = memberService.getMemberByLoginId(loginId);
 
 		if (oldMember != null) {
@@ -37,6 +47,21 @@ public class MpaUsrMemberController {
 		if (addMemberRd.isFail()) {
 			return Util.msgAndBack(req, addMemberRd.getMsg());
 		}
+		
+		//회원이 만들어진 후 파일 작업 시작, relid가 정해져야 하기 때문
+		
+		int newMemberId = (int)addMemberRd.getBody().get("id");
+
+        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+        for (String fileInputName : fileMap.keySet()) {
+            MultipartFile multipartFile = fileMap.get(fileInputName);
+
+            //파일이 비어있지 않을 때 save , multipartFile의 관련된 것은 newMemberId이란 사람이다
+            if ( multipartFile.isEmpty() == false ) {
+                genFileService.save(multipartFile, newMemberId);
+            }
+        }
 
 		return Util.msgAndReplace(req, addMemberRd.getMsg(), "/");
 	}

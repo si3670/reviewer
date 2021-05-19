@@ -26,6 +26,12 @@ public class MemberService {
 	private String siteMainUri;
 	@Value("${custom.siteLoginUri}")
 	private String siteLoginUri;
+	@Value("${custom.needToChangePasswordFreeDays}")
+	private int needToChangePasswordFreeDays;
+	
+	public int getNeedToChangePasswordFreeDays() {
+		return needToChangePasswordFreeDays;
+	}
 
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
@@ -37,8 +43,16 @@ public class MemberService {
 		int id = memberDao.getLastInsertId();
 
 		sendJoinCompleteMail(email);
+		
+		setNeedToChangePasswordLater(id);
 
 		return new ResultData("P-1", "가입 성공", "id", id);
+	}
+
+	private void setNeedToChangePasswordLater(int actorId) {
+		int days = getNeedToChangePasswordFreeDays();
+		attrService.setValue("member", actorId, "extra", "needToChangePassword", "0", Util.getDateStrLater(60 * 60 * 24 * days));
+		
 	}
 
 	private void sendJoinCompleteMail(String email) {
@@ -87,6 +101,7 @@ public class MemberService {
 		memberDao.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
 		if (loginPw != null) {
+			setNeedToChangePasswordLater(id);
 			attrService.remove("member", id, "extra", "useTempPassword");
 		}
 
@@ -112,8 +127,14 @@ public class MemberService {
 		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
 
-	public boolean isUsingTempPassword(int actorId) {
+	public boolean usingTempPassword(int actorId) {
 		return attrService.getValue("member", actorId, "extra", "useTempPassword").equals("1");
+	}
+
+	//비번바꿔야하는지 물어보기 
+	//needToChangePassword 값이 0이면 안바꿔도 됌
+	public boolean needToChangePassword(int actorId) {
+		return attrService.getValue("member", actorId, "extra", "needToChangePassword").equals("0")==false;
 	}
 
 }

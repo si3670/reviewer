@@ -89,10 +89,18 @@ public class MpaUsrMemberController {
 		}
 
 		session.setAttribute("loginedMemberId", member.getId());
+		session.setAttribute("loginedMemberJsonStr", member.toJsonStr());
 
 		String msg = "환영합니다.";
 		
-		boolean isUsingTempPassword = memberService.isUsingTempPassword(member.getId());
+		boolean needToChangePassword = memberService.needToChangePassword(member.getId());
+
+        if ( needToChangePassword ) {
+            msg = "현재 비밀번호를 사용한지 "+ memberService.getNeedToChangePasswordFreeDays() +"일이 지났습니다. 비밀번호를 변경해주세요.";
+            redirectUri = "/mpaUsr/member/mypage";
+        }
+		
+		boolean isUsingTempPassword = memberService.usingTempPassword(member.getId());
 		
 		if(isUsingTempPassword) {
 			msg = "임시 비밀번호를 변경해주세요";

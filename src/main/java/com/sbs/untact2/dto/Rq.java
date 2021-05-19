@@ -4,13 +4,17 @@ import java.util.Map;
 
 import com.sbs.untact2.util.Util;
 
+import lombok.Getter;
+
 public class Rq {
 	private String currentUrl;
 	private String currentUri;
 	private Member loginedMember;
 	private Map<String, String> paramMap;
+	@Getter
+	private boolean needToChangePassword;
 
-	public Rq(Member loginedMember, String currentUri) {
+	public Rq(Member loginedMember, String currentUri, Map<String, String> paramMap, boolean needToChangePassword) {
 		this.loginedMember = loginedMember;
 
 		// test
@@ -19,6 +23,7 @@ public class Rq {
 		this.currentUri = currentUri;
 
 		this.paramMap = paramMap;
+		this.needToChangePassword = needToChangePassword;
 	}
 
 	public String getParamJsonStr() {

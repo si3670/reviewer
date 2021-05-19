@@ -1,6 +1,5 @@
 package com.sbs.untact2.util;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -20,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sbs.untact2.dto.Member;
 
 public class Util {
 	public static String getNowDateStr() {
@@ -77,6 +77,17 @@ public class Util {
 
 		return defaultValue;
 	}
+	
+	public static String toJsonStr(Object obj) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.writeValueAsString(obj);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return "";
+	}
 
 	public static String toJsonStr(Map<String, String> paramMap) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -89,20 +100,20 @@ public class Util {
 		return "";
 	}
 
-	public static Map<String, Object> getParamMap(HttpServletRequest request) {
-		Map<String, Object> param = new HashMap<>();
+    public static Map<String, String> getParamMap(HttpServletRequest request) {
+        Map<String, String> param = new HashMap<>();
 
-		Enumeration<String> parameterNames = request.getParameterNames();
+        Enumeration<String> parameterNames = request.getParameterNames();
 
-		while (parameterNames.hasMoreElements()) {
-			String paramName = parameterNames.nextElement();
-			Object paramValue = request.getParameter(paramName);
+        while (parameterNames.hasMoreElements()) {
+            String paramName = parameterNames.nextElement();
+            String paramValue = request.getParameter(paramName);
 
-			param.put(paramName, paramValue);
-		}
+            param.put(paramName, paramValue);
+        }
 
-		return param;
-	}
+        return param;
+    }
 
 	public static String getUriEncoded(String str) {
 		try {
@@ -394,12 +405,22 @@ public class Util {
 		}
 	}
 
-    public static String getDateStrLater(int seconds) {
+    public static String getDateStrLater(long seconds) {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         String dateStr = format1.format(System.currentTimeMillis() + seconds * 1000);
 
         return dateStr;
+    }
+
+    public static <T> T fromJsonStr(String jsonStr, Class<T> cls) {
+        ObjectMapper om = new ObjectMapper();
+        try {
+            return (T) om.readValue(jsonStr, cls);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -50,24 +50,24 @@ public class MpaUsrReplyController {
 	}
 
 	@RequestMapping("/mpaUsr/reply/doDeleteAjax")
-	@ResponseBody
-	public ResultData doDeleteAjax(HttpServletRequest req, int id, String redirectUri) {
-		Reply reply = replyService.getReplyById(id);
+    @ResponseBody
+    public ResultData doDeleteAjax(HttpServletRequest req, int id, String redirectUri) {
+        Reply reply = replyService.getReplyById(id);
 
-		if (reply == null) {
-			return new ResultData("F-1", "존재하지 않는 댓글입니다.");
-		}
+        if ( reply == null ) {
+            return new ResultData("F-1", "존재하지 않는 댓글입니다.");
+        }
 
-		Rq rq = (Rq) req.getAttribute("rq");
+        Rq rq = (Rq)req.getAttribute("rq");
 
-		if (reply.getMemberId() != rq.getLoginedMemberId()) {
-			return new ResultData("F-1", "권한이 없습니다.");
-		}
+        if ( reply.getMemberId() != rq.getLoginedMemberId() ) {
+            return new ResultData("F-1", "권한이 없습니다.");
+        }
 
-		ResultData deleteResultData = replyService.delete(id);
+        ResultData deleteResultData = replyService.delete(id);
 
-		return new ResultData("S-1", String.format("%d번 댓글이 삭제되었습니다.", id));
-	}
+        return new ResultData("S-1", String.format("%d번 댓글이 삭제되었습니다.", id));
+    }
 
 	@RequestMapping("/mpaUsr/reply/doDelete")
 	public String doDelete(HttpServletRequest req, int id, String redirectUri) {
@@ -86,6 +86,60 @@ public class MpaUsrReplyController {
 		ResultData deleteResultData = replyService.delete(id);
 
 		return Util.msgAndReplace(req, deleteResultData.getMsg(), redirectUri);
+
+	}
+	
+	@RequestMapping("/mpaUsr/reply/modify")
+	public String showModify(HttpServletRequest req, int id, String redirectUri) {
+		Reply reply = replyService.getReplyById(id);
+
+		if (reply == null) {
+			return Util.msgAndBack(req, "존재하지 않는 댓글입니다.");
+		}
+
+		// 누가 썼는지 알기
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		if (reply.getMemberId() != rq.getLoginedMemberId()) {
+			return Util.msgAndBack(req, "권한이 없습니다.");
+		}
+		
+		req.setAttribute("reply", reply);
+		
+		String title = "";
+		
+		switch(reply.getRelTypeCode()) {
+		case "article":
+			Article article = articleService.getArticleById(reply.getRelId());
+			title = article.getTitle();
+		
+		}
+		
+		req.setAttribute("title", title);
+		
+		return "mpaUsr/reply/modify";
+
+	}
+	
+	@RequestMapping("/mpaUsr/reply/doModify")
+	public String doModify(HttpServletRequest req, int id, String body, String redirectUri) {
+		Reply reply = replyService.getReplyById(id);
+
+		if (reply == null) {
+			return Util.msgAndBack(req, "존재하지 않는 댓글입니다.");
+		}
+
+		// 누가 썼는지 알기
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		if (reply.getMemberId() != rq.getLoginedMemberId()) {
+			return Util.msgAndBack(req, "권한이 없습니다.");
+		}
+		ResultData modifyResultData = replyService.modify(id, body);
+		
+		redirectUri = Util.getNewUri(redirectUri, "focusReplyId", id + "");
+
+		return Util.msgAndReplace(req, modifyResultData.getMsg(), redirectUri);
 
 	}
 

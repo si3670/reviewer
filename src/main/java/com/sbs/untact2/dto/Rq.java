@@ -7,14 +7,22 @@ import com.sbs.untact2.util.Util;
 import lombok.Getter;
 
 public class Rq {
+	@Getter
+	private boolean isAjax;
+	@Getter
+	private boolean isAdmin;
 	private String currentUrl;
+	@Getter
 	private String currentUri;
 	private Member loginedMember;
 	private Map<String, String> paramMap;
 	@Getter
 	private boolean needToChangePassword;
 
-	public Rq(Member loginedMember, String currentUri, Map<String, String> paramMap, boolean needToChangePassword) {
+	public Rq(boolean isAjax, boolean isAdmin, Member loginedMember, String currentUri, Map<String, String> paramMap,
+			boolean needToChangePassword) {
+		this.isAjax = isAjax;
+		this.isAdmin = isAdmin;
 		this.loginedMember = loginedMember;
 
 		// test
@@ -28,6 +36,10 @@ public class Rq {
 
 	public String getParamJsonStr() {
 		return Util.toJsonStr(paramMap);
+	}
+
+	public boolean isNotAdmin() {
+		return isAdmin == false;
 	}
 
 	public boolean isLogined() {

@@ -22,4 +22,6 @@ public interface ReplyDao {
 
 	void delete(@Param("id") int id);
 
+	void modify(@Param("id")int id, @Param("body")String body);
+
 }

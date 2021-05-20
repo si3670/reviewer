@@ -57,5 +57,14 @@
 		= #{id}
 	</update>
 
+	<update id="modify">
+		UPDATE reply
+		<set>
+			updateDate = NOW(),
+			body = #{body},
+		</set>
+		WHERE id = ${id}
+	</update>
+
 
 </mapper>  

@@ -174,7 +174,8 @@
 				
 
 				<!-- 댓글 리스트 -->
-				<style>
+				<!-- 댓글 리스트 -->
+                <style>
                 .reply-list [data-id] {
                   transition: background-color 1s;
                 }
@@ -225,7 +226,6 @@
                 }
                 </script>
 				
-				
 				<div class="reply-list">
 					<c:forEach items="${replies}" var="reply">
 						<div data-id="${reply.id}" class="flex py-5 px-4">
@@ -266,7 +266,15 @@
 										<span>
 											<i class="fas fa-trash-alt"></i>
 										</span>
-										<span>글 삭제</span>
+										<span>삭제</span>
+									</a>
+								</c:if>
+								<c:if test="${reply.memberId == rq.loginedMemberId}">
+									<a href="../reply/modify?id=${reply.id}&redirectUri=${rq.encodedcurrentUri}" class="plain-link">
+										<span>
+											<i class="far fa-edit"></i>
+										</span>
+										<span>수정</span>
 									</a>
 								</c:if>
 							</div>

@@ -56,7 +56,7 @@
 	$(function() {
 		$('.slick-top').slick({
 			autoplay : true,
-			autoplaySpeed : 6000,
+			autoplaySpeed : 5000,
 			dots : true,
 		});
 	});

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.sbs.untact2.interceptor.BeforeActionInterceptor;
+import com.sbs.untact2.interceptor.NeedAdminInterceptor;
 import com.sbs.untact2.interceptor.NeedToLoginInterceptor;
 import com.sbs.untact2.interceptor.NeedToLogoutInterceptor;
 
@@ -22,6 +23,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
 	NeedToLogoutInterceptor needToLogoutInterceptor;
+	
+	@Autowired
+	NeedAdminInterceptor needAdminInterceptor;
 	
 	@Value("${custom.genFileDirPath}")
     private String genFileDirPath;
@@ -52,6 +56,36 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.addPathPatterns("/mpaUsr/member/doLogin").addPathPatterns("/mpaUsr/member/join")
 				.addPathPatterns("/mpaUsr/member/doJoin").addPathPatterns("/mpaUsr/member/findLoginInfo")
 				.addPathPatterns("/mpaUsr/member/doFindLoginId").addPathPatterns("/mpaUsr/member/doFindLoginPw");
+		
+		registry.addInterceptor(needAdminInterceptor)
+        .addPathPatterns("/mpaAdm/**")
+        .excludePathPatterns("/mpaAdm/member/findLoginId")
+        .excludePathPatterns("/mpaAdm/member/doFindLoginId")
+        .excludePathPatterns("/mpaAdm/member/findLoginPw")
+        .excludePathPatterns("/mpaAdm/member/doFindLoginPw")
+        .excludePathPatterns("/mpaAdm/member/login")
+        .excludePathPatterns("/mpaAdm/member/doLogin")
+        .excludePathPatterns("/mpaAdm/member/getLoginIdDup")
+        .excludePathPatterns("/mpaAdm/member/join")
+        .excludePathPatterns("/mpaAdm/member/doJoin")
+        .excludePathPatterns("/mpaAdm/member/findLoginInfo")
+        .excludePathPatterns("/mpaAdm/member/doFindLoginId")
+        .excludePathPatterns("/mpaAdm/member/doFindLoginPw");
+
+registry.addInterceptor(needToLogoutInterceptor)
+        .addPathPatterns("/mpaAdm/member/findLoginId")
+        .addPathPatterns("/mpaAdm/member/doFindLoginId")
+        .addPathPatterns("/mpaAdm/member/findLoginPw")
+        .addPathPatterns("/mpaAdm/member/doFindLoginPw")
+        .addPathPatterns("/mpaAdm/member/login")
+        .addPathPatterns("/mpaAdm/member/doLogin")
+        .addPathPatterns("/mpaAdm/member/getLoginIdDup")
+        .addPathPatterns("/mpaAdm/member/join")
+        .addPathPatterns("/mpaAdm/member/doJoin")
+        .addPathPatterns("/mpaAdm/member/findLoginId")
+        .addPathPatterns("/mpaAdm/member/findLoginInfo")
+        .addPathPatterns("/mpaAdm/member/doFindLoginId")
+        .addPathPatterns("/mpaAdm/member/doFindLoginPw");
 	}
 	
 	@Override

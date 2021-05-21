@@ -37,4 +37,20 @@ public class Member {
 		return Util.toJsonStr(this);
 	}
 
+	public String getProfileImgUri() {
+		return "/common/genFile/file/member/" + id + "/extra/profileImg/1";
+	}
+
+	public String getProfileFallbackImgUri() {
+		return "https://via.placeholder.com/70?text=^_^";
+	}
+
+	public String getProfileFallbackImgOnErrorHtmlAttr() {
+		return "this.src = '" + getProfileFallbackImgUri() + "'";
+	}
+
+	public String getRemoveProfileImgIfNotExistsOnErrorHtmlAttr() {
+		return "$(this).remove();";
+	}
+
 }

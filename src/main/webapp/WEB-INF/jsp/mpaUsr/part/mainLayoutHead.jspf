@@ -96,7 +96,9 @@
 					<li>
 						<a href="#" class="h-full flex items-center px-5 hover:text-black">
 							<span>
-								<i class="fas fa-user"></i>
+								<img class="rounded-full w-6 h-6"
+									onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
+									src="${rq.loginedMember.profileImgUri} alt="">
 							</span>
 							<span class="hidden md:block">&nbsp;${rq.getLoginedMemberNickname()}＇s
 							</span>

@@ -28,9 +28,7 @@
 				class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
 				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
 				value="${param.searchKeyword}" />
-			<input
-				class="ml-3 btn-border"
-				type="submit" value="검색" />
+			<input class="ml-3 btn-border" type="submit" value="검색" />
 		</form>
 
 
@@ -41,7 +39,7 @@
 
 			<c:forEach items="${articles}" var="article">
 
-				<hr class="mt-6"/>
+				<hr class="mt-6" />
 				<div class="flex items-center mt-4">
 					<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
 					<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
@@ -61,9 +59,8 @@
 					<div class="flex-grow"></div>
 					<div>
 						<a class="flex items-center">
-							<img
-								src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
-								alt="avatar" class="mx-4 w-10 h-10 object-cover rounded-full">
+							<img onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}" src="${article.writerProfileImgUri}" 
+								class="mx-4 w-10 h-10 object-cover rounded-full" alt="" >
 							<h1 class="text-gray-700 hover:underline">${article.extra__writer}</h1>
 						</a>
 					</div>
@@ -71,8 +68,7 @@
 			</c:forEach>
 			<div class="mt-2 flex mt-6">
 				<div class="flex-grow"></div>
-				<a href="winewrite?boardId=${board.id}"
-					class="btn-border">글쓰기</a>
+				<a href="winewrite?boardId=${board.id}" class="btn-border">글쓰기</a>
 			</div>
 
 		</div>

@@ -13,6 +13,7 @@ import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Board;
 import com.sbs.untact2.dto.Reply;
 import com.sbs.untact2.dto.ResultData;
+import com.sbs.untact2.dto.Rq;
 import com.sbs.untact2.service.ArticleService;
 import com.sbs.untact2.service.ReplyService;
 import com.sbs.untact2.util.Util;
@@ -40,8 +41,9 @@ public class MpaUsrWineController {
 	public String doWineWrite(HttpServletRequest req, int boardId, String title, String body, String wineKinds,
 			String wineCountry, String winePlace, int wineVintage, String wineVariety, String wineAlcohol,
 			String wineML, String winePrice) {
-		int memberId = 3;
 
+		Rq rq = (Rq) req.getAttribute("rq");
+		int memberId = rq.getLoginedMemberId();
 		ResultData writeWineRd = articleService.writeWine(memberId, boardId, title, body, wineKinds, wineCountry,
 				winePlace, wineVintage, wineVariety, wineAlcohol, wineML, winePrice);
 
@@ -55,18 +57,16 @@ public class MpaUsrWineController {
 
 	// wine 정보 보여주기
 	@RequestMapping("/mpaUsr/article/winedetail")
-	public String showDetail(Integer id, HttpServletRequest req,@RequestParam(defaultValue = "3") int boardId) {
+	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getArticleForPrintById(id);
 		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
-		
 
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");
 		}
 
 		Board board = articleService.getBoardById(article.getBoardId());
-
 
 		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);

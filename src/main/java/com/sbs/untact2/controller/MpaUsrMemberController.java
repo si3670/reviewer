@@ -30,12 +30,11 @@ public class MpaUsrMemberController {
 		return "mpaUsr/member/join";
 	}
 
-	
-	//MultipartRequest multipartRequest = 파일들 압축되어서 들어감
+	// MultipartRequest multipartRequest = 파일들 압축되어서 들어감
 	@RequestMapping("/mpaUsr/member/doJoin")
 	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
-			String cellphoneNo, String email,  MultipartRequest multipartRequest) {
-		      
+			String cellphoneNo, String email, MultipartRequest multipartRequest) {
+
 		Member oldMember = memberService.getMemberByLoginId(loginId);
 
 		if (oldMember != null) {
@@ -47,21 +46,21 @@ public class MpaUsrMemberController {
 		if (addMemberRd.isFail()) {
 			return Util.msgAndBack(req, addMemberRd.getMsg());
 		}
-		
-		//회원이 만들어진 후 파일 작업 시작, relid가 정해져야 하기 때문
-		
-		int newMemberId = (int)addMemberRd.getBody().get("id");
 
-        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 회원이 만들어진 후 파일 작업 시작, relid가 정해져야 하기 때문
 
-        for (String fileInputName : fileMap.keySet()) {
-            MultipartFile multipartFile = fileMap.get(fileInputName);
+		int newMemberId = (int) addMemberRd.getBody().get("id");
 
-            //파일이 비어있지 않을 때 save , multipartFile의 관련된 것은 newMemberId이란 사람이다
-            if ( multipartFile.isEmpty() == false ) {
-                genFileService.save(multipartFile, newMemberId);
-            }
-        }
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+		for (String fileInputName : fileMap.keySet()) {
+			MultipartFile multipartFile = fileMap.get(fileInputName);
+
+			// 파일이 비어있지 않을 때 save , multipartFile의 관련된 것은 newMemberId이란 사람이다
+			if (multipartFile.isEmpty() == false) {
+				genFileService.save(multipartFile, newMemberId);
+			}
+		}
 
 		return Util.msgAndReplace(req, addMemberRd.getMsg(), "/");
 	}
@@ -92,22 +91,21 @@ public class MpaUsrMemberController {
 		session.setAttribute("loginedMemberJsonStr", member.toJsonStr());
 
 		String msg = "환영합니다.";
-		
+
 		boolean needToChangePassword = memberService.needToChangePassword(member.getId());
 
-        if ( needToChangePassword ) {
-            msg = "현재 비밀번호를 사용한지 "+ memberService.getNeedToChangePasswordFreeDays() +"일이 지났습니다. 비밀번호를 변경해주세요.";
-            redirectUri = "/mpaUsr/member/mypage";
-        }
-		
+		if (needToChangePassword) {
+			msg = "현재 비밀번호를 사용한지 " + memberService.getNeedToChangePasswordFreeDays() + "일이 지났습니다. 비밀번호를 변경해주세요.";
+			redirectUri = "/mpaUsr/member/mypage";
+		}
+
 		boolean isUsingTempPassword = memberService.usingTempPassword(member.getId());
-		
-		if(isUsingTempPassword) {
+
+		if (isUsingTempPassword) {
 			msg = "임시 비밀번호를 변경해주세요";
 			redirectUri = "/mpaUsr/member/myPage";
 		}
-		
-		
+
 		return Util.msgAndReplace(req, msg, redirectUri);
 	}
 
@@ -184,7 +182,7 @@ public class MpaUsrMemberController {
 
 	@RequestMapping("/mpaUsr/member/doModify")
 	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,
-			String email, String checkPasswordAuthCode) {
+			String email, String checkPasswordAuthCode, MultipartRequest multipartRequest) {
 		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
 
 		ResultData checkValidCheckPasswordAuthCodeResultData = memberService
@@ -193,8 +191,7 @@ public class MpaUsrMemberController {
 		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
 			return Util.msgAndBack(req, checkValidCheckPasswordAuthCodeResultData.getMsg());
 		}
-		
-		
+
 		if (loginPw != null && loginPw.trim().length() == 0) {
 			loginPw = null;
 		}
@@ -204,6 +201,20 @@ public class MpaUsrMemberController {
 
 		if (modifyrRd.isFail()) {
 			return Util.msgAndBack(req, modifyrRd.getMsg());
+		}
+		
+		if(req.getParameter("deleteFile__member__0__extra__profileImg__1") != null) {
+			genFileService.deleteGenFile("member", loginedMember.getId(), "extra", "profileImg", 1);
+		}
+
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+		for (String fileInputName : fileMap.keySet()) {
+			MultipartFile multipartFile = fileMap.get(fileInputName);
+
+			if (multipartFile.isEmpty() == false) {
+				genFileService.save(multipartFile, loginedMember.getId());
+			}
 		}
 
 		return Util.msgAndReplace(req, modifyrRd.getMsg(), "/");
@@ -221,12 +232,12 @@ public class MpaUsrMemberController {
 		if (loginedMember.getLoginPw().equals(loginPw) == false) {
 			return Util.msgAndBack(req, "비밀번호가 일치하지 않습니다.");
 		}
-		
-		//회원 인증 됐으니 인증키 만들기
+
+		// 회원 인증 됐으니 인증키 만들기
 		String authCode = memberService.getCheckPasswordAuthCode(loginedMember.getId());
 
-		redirectUri = Util.getNewUri(redirectUri,"checkPasswordAuthCode", authCode);
-		
+		redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
+
 		return Util.msgAndReplace(req, "", redirectUri);
 	}
 

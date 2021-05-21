@@ -19,8 +19,9 @@
 				<div
 					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
 					<a href="#" class="row-span-3 order-1">
-						<img class="rounded-full" src="https://i.pravatar.cc/100?img=37"
-							alt="">
+						<img class="rounded-full"
+							onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
+							src="${rq.loginedMember.profileImgUri} alt="">
 					</a>
 					<a href="#" class="order-8 sm:order-4 md:order-8 hover:underline">
 						<span class="con-bg">닉네임</span>

@@ -23,13 +23,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
 	NeedToLogoutInterceptor needToLogoutInterceptor;
-	
+
 	@Autowired
 	NeedAdminInterceptor needAdminInterceptor;
-	
-	@Value("${custom.genFileDirPath}")
-    private String genFileDirPath;
 
+	@Value("${custom.genFileDirPath}")
+	private String genFileDirPath;
 
 	// 이 함수는 인터셉터를 적용하는 역할을 합니다.
 	@Override
@@ -44,6 +43,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/mpaUsr/article/write")
 				.addPathPatterns("/mpaUsr/article/dowrite").addPathPatterns("/mpaUsr/article/doDelete")
 				.addPathPatterns("/mpaUsr/article/modify").addPathPatterns("/mpaUsr/article/doModify")
+				.addPathPatterns("/mpaUsr/article/winewrite").addPathPatterns("/mpaUsr/article/doWineWrite")
 				.addPathPatterns("/mpaUsr/member/doMyPage").addPathPatterns("/mpaUsr/member/myPage")
 				.addPathPatterns("/mpaUsr/member/modify").addPathPatterns("/mpaUsr/member/doModify")
 				.addPathPatterns("/mpaUsr/member/checkPassword").addPathPatterns("/mpaUsr/member/doCheckPassword")
@@ -56,41 +56,28 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.addPathPatterns("/mpaUsr/member/doLogin").addPathPatterns("/mpaUsr/member/join")
 				.addPathPatterns("/mpaUsr/member/doJoin").addPathPatterns("/mpaUsr/member/findLoginInfo")
 				.addPathPatterns("/mpaUsr/member/doFindLoginId").addPathPatterns("/mpaUsr/member/doFindLoginPw");
-		
-		registry.addInterceptor(needAdminInterceptor)
-        .addPathPatterns("/mpaAdm/**")
-        .excludePathPatterns("/mpaAdm/member/findLoginId")
-        .excludePathPatterns("/mpaAdm/member/doFindLoginId")
-        .excludePathPatterns("/mpaAdm/member/findLoginPw")
-        .excludePathPatterns("/mpaAdm/member/doFindLoginPw")
-        .excludePathPatterns("/mpaAdm/member/login")
-        .excludePathPatterns("/mpaAdm/member/doLogin")
-        .excludePathPatterns("/mpaAdm/member/getLoginIdDup")
-        .excludePathPatterns("/mpaAdm/member/join")
-        .excludePathPatterns("/mpaAdm/member/doJoin")
-        .excludePathPatterns("/mpaAdm/member/findLoginInfo")
-        .excludePathPatterns("/mpaAdm/member/doFindLoginId")
-        .excludePathPatterns("/mpaAdm/member/doFindLoginPw");
 
-registry.addInterceptor(needToLogoutInterceptor)
-        .addPathPatterns("/mpaAdm/member/findLoginId")
-        .addPathPatterns("/mpaAdm/member/doFindLoginId")
-        .addPathPatterns("/mpaAdm/member/findLoginPw")
-        .addPathPatterns("/mpaAdm/member/doFindLoginPw")
-        .addPathPatterns("/mpaAdm/member/login")
-        .addPathPatterns("/mpaAdm/member/doLogin")
-        .addPathPatterns("/mpaAdm/member/getLoginIdDup")
-        .addPathPatterns("/mpaAdm/member/join")
-        .addPathPatterns("/mpaAdm/member/doJoin")
-        .addPathPatterns("/mpaAdm/member/findLoginId")
-        .addPathPatterns("/mpaAdm/member/findLoginInfo")
-        .addPathPatterns("/mpaAdm/member/doFindLoginId")
-        .addPathPatterns("/mpaAdm/member/doFindLoginPw");
+		registry.addInterceptor(needAdminInterceptor).addPathPatterns("/mpaAdm/**")
+				.excludePathPatterns("/mpaAdm/member/findLoginId").excludePathPatterns("/mpaAdm/member/doFindLoginId")
+				.excludePathPatterns("/mpaAdm/member/findLoginPw").excludePathPatterns("/mpaAdm/member/doFindLoginPw")
+				.excludePathPatterns("/mpaAdm/member/login").excludePathPatterns("/mpaAdm/member/doLogin")
+				.excludePathPatterns("/mpaAdm/member/getLoginIdDup").excludePathPatterns("/mpaAdm/member/join")
+				.excludePathPatterns("/mpaAdm/member/doJoin").excludePathPatterns("/mpaAdm/member/findLoginInfo")
+				.excludePathPatterns("/mpaAdm/member/doFindLoginId")
+				.excludePathPatterns("/mpaAdm/member/doFindLoginPw");
+
+		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/mpaAdm/member/findLoginId")
+				.addPathPatterns("/mpaAdm/member/doFindLoginId").addPathPatterns("/mpaAdm/member/findLoginPw")
+				.addPathPatterns("/mpaAdm/member/doFindLoginPw").addPathPatterns("/mpaAdm/member/login")
+				.addPathPatterns("/mpaAdm/member/doLogin").addPathPatterns("/mpaAdm/member/getLoginIdDup")
+				.addPathPatterns("/mpaAdm/member/join").addPathPatterns("/mpaAdm/member/doJoin")
+				.addPathPatterns("/mpaAdm/member/findLoginId").addPathPatterns("/mpaAdm/member/findLoginInfo")
+				.addPathPatterns("/mpaAdm/member/doFindLoginId").addPathPatterns("/mpaAdm/member/doFindLoginPw");
 	}
-	
+
 	@Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/gen/**").addResourceLocations("file:///" + genFileDirPath + "/")
-                .setCachePeriod(20);
-    }
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/gen/**").addResourceLocations("file:///" + genFileDirPath + "/")
+				.setCachePeriod(20);
+	}
 }

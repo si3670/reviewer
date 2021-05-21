@@ -80,8 +80,9 @@
 							<input type="hidden" name="redirectUri" value="${rq.currentUri}" />
 							<img
 								class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
-								alt="User avatar"
-								src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=200">
+								alt=""
+								onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
+								src="${article.writerProfileImgUri}">
 							<span class="absolute inset-y-0 right-0 flex items-center pr-6">
 								<button type="submit"
 									class="p-1 focus:outline-none focus:shadow-none hover:text-blue-500">
@@ -156,8 +157,9 @@
 							<div class="flex-shrink-0">
 								<img
 									class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
-									alt="User avatar"
-									src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=200">
+									alt=""
+									onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
+									src="${article.writerProfileImgUri}">
 							</div>
 
 							<div class="flex-grow px-1">

@@ -86,6 +86,25 @@ winePrice ="4,300,000";
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Atalaya Laya",
+`body` = "70%의 가르나차와 30% 모나스트렐이 블렌딩 되었으며 
+허브, 연기, 얼니 과일의 아로마가 피어 오르고
+라이트한 바디감에 미디엄 정도의 탄닌의 균형이 좋다.",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
 boardId = 4,
 memberId = 1,
 title = "petrus pomerol",
@@ -123,14 +142,12 @@ regDate DATETIME NOT NULL,
 updateDate DATETIME NOT NULL,
 `name` CHAR(20) NOT NULL UNIQUE,
 `code` CHAR(20) NOT NULL UNIQUE,
+`explain` CHAR(100) DEFAULT "" NOT NULL COMMENT '간략 설명',
 blindStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '블라인드여부',
 blindDate DATETIME COMMENT '블라인드날짜',
 delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부',
 delDate DATETIME COMMENT '삭제날짜',
-hitCount INT(10) UNSIGNED DEFAULT 0 NOT NULL,
-repliesCount INT(10) UNSIGNED DEFAULT 0 NOT NULL,
-likeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL,
-dislikeCount INT(10) UNSIGNED DEFAULT 0  NOT NULL
+hitCount INT(10) UNSIGNED DEFAULT 0 NOT NULL
 );
 
 
@@ -138,13 +155,15 @@ INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "공지사항",
-`code` = "Notice";
+`code` = "Notice",
+`explain` = "cellar의 소식을 전해드립니다.";
 
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "자유게시판",
-`code` = "Free";
+`code` = "Free",
+`explain` = "와인, 어울리는 안주 등 추천하며 자유롭게 소통해요!";
 
 INSERT INTO board
 SET regDate = NOW(),
@@ -295,7 +314,17 @@ CREATE TABLE genFile (
   KEY relId (relTypeCode,relId,typeCode,type2Code,fileNo)
 ); 
 
+# 회원 테이블에 권한레벨 필드 추가
+ALTER TABLE `member`
+ADD COLUMN `authLevel` SMALLINT(2) UNSIGNED
+DEFAULT 3 NOT NULL COMMENT '(3=일반,7=관리자)' AFTER `loginPw`;
 
+# 1번 회원을 관리자로 지정
+UPDATE `member`
+SET authLevel = 7
+WHERE id = 1; 
+
+SELECT * FROM article;
 
 
 

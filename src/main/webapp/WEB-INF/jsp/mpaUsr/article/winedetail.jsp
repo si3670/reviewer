@@ -153,8 +153,9 @@
 							<input type="hidden" name="redirectUri" value="${rq.currentUri}" />
 							<img
 								class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
-								alt="User avatar"
-								src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=200">
+								alt=""
+								onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
+								src="${article.writerProfileImgUri}">
 							<span class="absolute inset-y-0 right-0 flex items-center pr-6">
 								<button type="submit"
 									class="p-1 focus:outline-none focus:shadow-none hover:text-blue-500">
@@ -169,63 +170,59 @@
 						<!-- 댓글 입력 끝 -->
 					</div>
 				</c:if>
-				
-				
-				
+
+
+
 
 				<!-- 댓글 리스트 -->
 				<!-- 댓글 리스트 -->
-                <style>
-                .reply-list [data-id] {
-                  transition: background-color 1s;
-                }
-                .reply-list [data-id].focus {
-                  background-color:#efefef;
-                  transition: background-color 0s;
-                }
-                </style>
+				<style>
+.reply-list [data-id] {
+	transition: background-color 1s;
+}
 
-                <script>
-                function ReplyList__goToReply(id) {
-                    setTimeout(function() {
-                        const $target = $('.reply-list [data-id="' + id + '"]');
-                        const targetOffset = $target.offset();
-                        $(window).scrollTop(targetOffset.top - 50);
-                        $target.addClass('focus');
-                        setTimeout(function() {
-                            $target.removeClass('focus');
-                        }, 1000);
-                    }, 1000);
-                }
-                function ReplyList__deleteReply(btn) {
-                    const $clicked = $(btn);
-                    const $target = $clicked.closest('[data-id]');
-                    const id = $target.attr('data-id');
-                    $clicked.text('삭제중...');
-                    $.post(
-                        '../reply/doDeleteAjax',
-                        {
-                            id: id
-                        },
-                        function(data) {
-                            if ( data.success ) {
-                                $target.remove();
-                            }
-                            else {
-                                if ( data.msg ) {
-                                    alert(data.msg);
-                                }
-                                $clicked.text('삭제실패!!');
-                            }
-                        },
-                        'json'
-                    );
-                }
-                if ( param.focusReplyId ) {
-                    ReplyList__goToReply(param.focusReplyId);
-                }
-                </script>
-				
+.reply-list [data-id].focus {
+	background-color: #efefef;
+	transition: background-color 0s;
+}
+</style>
+
+				<script>
+					function ReplyList__goToReply(id) {
+						setTimeout(function() {
+							const $target = $('.reply-list [data-id="' + id
+									+ '"]');
+							const targetOffset = $target.offset();
+							$(window).scrollTop(targetOffset.top - 50);
+							$target.addClass('focus');
+							setTimeout(function() {
+								$target.removeClass('focus');
+							}, 1000);
+						}, 1000);
+					}
+					function ReplyList__deleteReply(btn) {
+						const $clicked = $(btn);
+						const $target = $clicked.closest('[data-id]');
+						const id = $target.attr('data-id');
+						$clicked.text('삭제중...');
+						$.post('../reply/doDeleteAjax', {
+							id : id
+						}, function(data) {
+							if (data.success) {
+								$target.remove();
+							} else {
+								if (data.msg) {
+									alert(data.msg);
+								}
+								$clicked.text('삭제실패!!');
+							}
+						}, 'json');
+					}
+					if (param.focusReplyId) {
+						ReplyList__goToReply(param.focusReplyId);
+					}
+				</script>
+
 				<div class="reply-list">
 					<c:forEach items="${replies}" var="reply">
 						<div data-id="${reply.id}" class="flex py-5 px-4">
@@ -233,8 +230,9 @@
 							<div class="flex-shrink-0">
 								<img
 									class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
-									alt="User avatar"
-									src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=200">
+									alt=""
+									onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
+									src="${article.writerProfileImgUri}">
 							</div>
 
 							<div class="flex-grow px-1">
@@ -262,7 +260,9 @@
 
 							<div class="plain-link-wrap gap-3 mt-3 text-sm">
 								<c:if test="${reply.memberId == rq.loginedMemberId}">
-									<a onclick="if ( confirm('정말 삭제하시겠습니까?') ) { ReplyList__deleteReply(this); } return false;" class="plain-link">
+									<a
+										onclick="if ( confirm('정말 삭제하시겠습니까?') ) { ReplyList__deleteReply(this); } return false;"
+										class="plain-link">
 										<span>
 											<i class="fas fa-trash-alt"></i>
 										</span>
@@ -270,7 +270,9 @@
 									</a>
 								</c:if>
 								<c:if test="${reply.memberId == rq.loginedMemberId}">
-									<a href="../reply/modify?id=${reply.id}&redirectUri=${rq.encodedcurrentUri}" class="plain-link">
+									<a
+										href="../reply/modify?id=${reply.id}&redirectUri=${rq.encodedcurrentUri}"
+										class="plain-link">
 										<span>
 											<i class="far fa-edit"></i>
 										</span>

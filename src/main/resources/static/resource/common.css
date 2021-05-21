@@ -47,7 +47,7 @@ html > body {
   font-family: "LotteMartDream", sans-serif;
 }
 
-.-box>img {
+.img-box>img {
 	display: block;
 	width: 100%;
 }
@@ -314,11 +314,14 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 }
 .item>.text-visual-2{
 	top: 50%;
-	left: 20%;
-	transform: translate(-50%,-30%);
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background-color: white;
+	text-align: center;
+	padding: 10px 40px;
 }
 .item>.text-visual-2>h1{
-		font-size: 55px;
+		font-size: 40px;
 }
 
 .item>.text>.wine-review {
@@ -346,7 +349,16 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 {
     margin-bottom: 0px;
 }
-
+.img-box-content>img {
+	display: block;
+	width: 230px;
+	height: 230px;
+}
+.content-h1-1{
+	font-family: 'HSBombaram3_Thin';
+	text-align: center;
+	font-size: 40px;
+}
 
 /* 비주얼 끝 */
 

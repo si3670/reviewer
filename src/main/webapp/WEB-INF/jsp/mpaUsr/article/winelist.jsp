@@ -4,6 +4,13 @@
 <c:set var="pageTitle" value="<span>${board.name}</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
+<
+<style>
+.wine-content:first-child {
+	margin-left: 0;
+}
+</style>
+
 
 <div class="section section-article-list">
 	<div class="container mx-auto px-20">
@@ -32,46 +39,55 @@
 		</form>
 
 
-		<div class="articles mt-10">
+		<div class="articles mt-10 flex">
+
 			<c:if test="${articles == null || articles.size() == 0 }">
 			검색결과가 존재하지 않습니다.
 			</c:if>
 
 			<c:forEach items="${articles}" var="article">
 
-				<hr class="mt-6" />
-				<div class="flex items-center mt-4">
-					<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
-					<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
-					<a href="${detailUrl}" class="ml-2 font-light text-gray-600">조회
-						: ${article.hitCount}</a>
-				</div>
 
-				<div class="mt-2">
-					<a href="winedetail?id=${article.id}"
-						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
+				<div class="wine-content ml-10">
 
-				</div>
+					<div class="flex items-center mt-4 text-sm">
+						<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
+						<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
+						<a href="${detailUrl}" class="ml-2 font-light text-gray-600">조회
+							: ${article.hitCount}</a>
+					</div>
 
-				<div class="flex items-center mt-4">
-					<a href="winedetail?id=${article.id}"
-						class="text-yellow-500 hover:underline">자세히 보기</a>
-					<div class="flex-grow"></div>
+					<div class="mt-2 text-center">
+						<a href="winedetail?id=${article.id}"
+							class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
+
+						<img class="rounded mt-10"
+							src="http://localhost:8044/resource/imgs/dry1.jpg" alt="">
+
+					</div>
+
 					<div>
-						<a class="flex items-center">
-							<img onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}" src="${article.writerProfileImgUri}" 
-								class="mx-4 w-10 h-10 object-cover rounded-full" alt="" >
+						<a class="flex items-center  mt-6 text-sm">
+							<img onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
+								src="${article.writerProfileImgUri}"
+								class="mx-4 w-6 h-6 object-cover rounded-full" alt="">
 							<h1 class="text-gray-700 hover:underline">${article.extra__writer}</h1>
 						</a>
 					</div>
-				</div>
-			</c:forEach>
-			<div class="mt-2 flex mt-6">
-				<div class="flex-grow"></div>
-				<a href="winewrite?boardId=${board.id}" class="btn-border">글쓰기</a>
-			</div>
 
+				</div>
+
+
+
+
+			</c:forEach>
 		</div>
+
+		<div class="mt-2 flex mt-6">
+			<div class="flex-grow"></div>
+			<a href="winewrite?boardId=${board.id}" class="btn-border">글쓰기</a>
+		</div>
+
 
 		<div class="mt-12">
 			<div class="total-items">

@@ -11,6 +11,8 @@
 
 
 <script>
+	let MemberJoin__validLoginId = "";
+	let MemberJoin__lastDupCheckedLoginId = "";
 	let JoinForm__checkAndSubmitDone = false;
 
 	function JoinForm__checkAndSubmit(form) {
@@ -35,6 +37,17 @@
 			alert('로그인아이디를 입력해주세요.');
 			form.loginId.focus();
 
+			return;
+		}
+
+		if (form.loginId.value.length <= 4) {
+			alert('로그인아이디를 5자 이상으로 입력해주세요.');
+			form.loginId.focus();
+			return;
+		}
+		if (MemberJoin__validLoginId != form.loginId.value) {
+			alert('해당 로그인아이디를 이용할 수 없습니다. 다른 로그인아이디를 입력해주세요.');
+			form.loginId.focus();
 			return;
 		}
 
@@ -104,6 +117,35 @@
 		form.submit();
 		JoinForm__checkAndSubmitDone = true;
 	}
+
+	function MemberJoin__checkLoginIdDup(el) {
+		const form = $(el).closest('form').get(0);
+		form.loginId.value = form.loginId.value.trim();
+
+		if (form.loginId.value == MemberJoin__lastDupCheckedLoginId) {
+			return;
+		}
+		MemberJoin__validLoginId = "";
+		$('.login-id-input-success-msg').text('');
+		$('.login-id-input-success-msg').hide();
+		$('.login-id-input-error-msg').text('');
+		$('.login-id-input-error-msg').hide();
+
+		if (form.loginId.value.length > 4) {
+			$.get("../member/getLoginIdDup", {
+				loginId : form.loginId.value
+			}, function(data) {
+				if (data.success) {
+					MemberJoin__validLoginId = data.body.loginId;
+					$('.login-id-input-success-msg').text(data.msg);
+					$('.login-id-input-success-msg').show();
+				} else {
+					$('.login-id-input-error-msg').text(data.msg);
+					$('.login-id-input-error-msg').show();
+				}
+			}, "json");
+		}
+	}
 </script>
 <section class="section-login">
 	<div
@@ -130,20 +172,20 @@
 				</div>
 
 
-				<div class="flex flex-col mb-4 md:flex-row">
-					<div class="p-1 md:flex-grow">
-						<input class="inputLoginId login-form w-full px-3 py-2"
-							autofocus="autofocus" type="text" placeholder="아이디"
-							name="loginId" maxlength="20" />
+				<div class="flex-col mb-4 md:flex-row">
+					<input onkeyup="MemberJoin__checkLoginIdDup(this);"
+						class="login-form w-full px-3 py-2" type="text" maxlength="20"
+						name="loginId" placeholder="아이디를 입력해주세요" />
+					<div class="mt-2 text-sm text-red-500 login-id-input-error-msg"></div>
+					<div class="mt-2 text-sm text-green-500 login-id-input-success-msg"></div>
+				</div>
 
-						<input class="login-form brt w-full px-3 py-2"
-							autofocus="autofocus" type="password" placeholder="비밀번호"
-							name="loginPwInput" maxlength="20" />
+				<div class="flex-col mb-4 md:flex-row">
+					<input class="login-form brt w-full px-3 py-2" type="password"
+						placeholder="비밀번호" name="loginPwInput" maxlength="20" />
 
-						<input class="login-form brt w-full px-3 py-2"
-							autofocus="autofocus" type="password" placeholder="비밀번호확인"
-							name="loginPwConfirm" maxlength="20" />
-					</div>
+					<input class="login-form brt w-full px-3 py-2" type="password"
+						placeholder="비밀번호확인" name="loginPwConfirm" maxlength="20" />
 				</div>
 
 				<div class="flex-col mb-4 md:flex-row">
@@ -152,11 +194,10 @@
 						<i aria-hidden="true" class="icon-required"></i>
 					</div>
 					<div class="p-1 md:flex-grow">
-						<input class="login-form w-full px-3 py-2" autofocus="autofocus"
-							type="text" placeholder="이름을(를) 입력하세요" name="name" maxlength="20" />
-						<input class="login-form brt w-full px-3 py-2"
-							autofocus="autofocus" type="text" placeholder="닉네임을(를) 입력하세요"
-							name="nickname" maxlength="20" />
+						<input class="login-form w-full px-3 py-2" type="text"
+							placeholder="이름을(를) 입력해주세요" name="name" maxlength="20" />
+						<input class="login-form brt w-full px-3 py-2" type="text"
+							placeholder="닉네임을(를) 입력해주세요" name="nickname" maxlength="20" />
 					</div>
 				</div>
 
@@ -166,8 +207,8 @@
 						<i aria-hidden="true" class="icon-required"></i>
 					</div>
 					<div class="p-1 md:flex-grow">
-						<input class="login-form w-full px-3 py-2" autofocus="autofocus"
-							type="email" placeholder="이메일" name="email" maxlength="100" />
+						<input class="login-form w-full px-3 py-2" type="email"
+							placeholder="이메일" name="email" maxlength="100" />
 					</div>
 				</div>
 				<div class="mb-4">
@@ -176,9 +217,8 @@
 						<i aria-hidden="true" class="icon-required"></i>
 					</div>
 					<div class="p-1 md:flex-grow">
-						<input class="login-form w-full px-3 py-2" autofocus="autofocus"
-							type="tel" placeholder="연락처(- 없이 입력해주세요.)" name="cellphoneNo"
-							maxlength="11" />
+						<input class="login-form w-full px-3 py-2" type="tel"
+							placeholder="연락처(- 없이 입력해주세요)" name="cellphoneNo" maxlength="11" />
 					</div>
 				</div>
 

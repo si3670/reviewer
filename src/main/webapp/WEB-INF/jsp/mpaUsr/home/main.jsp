@@ -28,9 +28,10 @@
 	margin: 0 auto;
 }
 
-.slick-arrow {
-	background-color: red;
+.slick-arrow::before {
+	color:black;
 }
+
 </style>
 
 <script>

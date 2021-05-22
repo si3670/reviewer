@@ -24,4 +24,6 @@ public interface ReplyDao {
 
 	void modify(@Param("id")int id, @Param("body")String body);
 
+	int getReplyTotalCount(@Param("relTypeCode")String relTypeCode, @Param("relId")int relId);
+
 }

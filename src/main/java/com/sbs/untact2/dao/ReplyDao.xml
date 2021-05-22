@@ -67,4 +67,13 @@
 	</update>
 
 
+	<select id="getReplyTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM `reply`
+		WHERE relTypeCode = #{relTypeCode}
+		AND relId = #{relId}
+		AND delStatus = 0
+	</select>
+
+
 </mapper>  

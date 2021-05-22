@@ -1,13 +1,17 @@
 package com.sbs.untact2.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.untact2.dto.Article;
+import com.sbs.untact2.dto.Board;
 import com.sbs.untact2.dto.Reply;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.dto.Rq;
@@ -22,6 +26,7 @@ public class MpaUsrReplyController {
 	@Autowired
 	private ReplyService replyService;
 
+	
 	@RequestMapping("/mpaUsr/reply/doWrite")
 	public String showWrite(HttpServletRequest req, String relTypeCode, int relId, String body, String redirectUri) {
 

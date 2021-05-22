@@ -105,6 +105,64 @@ winePrice ="30,000";
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Pétrus Pomerol",
+`body` = "검은 자두, 블루베리, 장미, 실론 티, 제비꽃, 초콜릿 코팅한 체리, 
+감초, 계피, 시가 향이 느껴진다. 풀 바디의 와인으로 촘촘하고 조밀한 동시에 매끄럽고 
+섬세한 타닌, 흠잡을 데 없는 산도, 미네랄 풍미 충만한 아주 긴 피니시가 느껴진다.",
+wineKinds = "red",
+wineCountry ="France",
+winePlace ="Pomerol",
+wineVintage =2006,
+wineVariety ="Merlot",
+wineAlcohol = "13.5%",
+wineML ="750.0ml",
+winePrice ="4,300,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Atalaya Laya",
+`body` = "70%의 가르나차와 30% 모나스트렐이 블렌딩 되었으며 
+허브, 연기, 얼니 과일의 아로마가 피어 오르고
+라이트한 바디감에 미디엄 정도의 탄닌의 균형이 좋다.",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Atalaya Laya",
+`body` = "70%의 가르나차와 30% 모나스트렐이 블렌딩 되었으며 
+허브, 연기, 얼니 과일의 아로마가 피어 오르고
+라이트한 바디감에 미디엄 정도의 탄닌의 균형이 좋다.",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
 boardId = 4,
 memberId = 1,
 title = "petrus pomerol",
@@ -324,7 +382,15 @@ UPDATE `member`
 SET authLevel = 7
 WHERE id = 1; 
 
+SELECT * FROM `member`;
+SELECT * FROM attr;
+SELECT * FROM reply;
+
+SELECT COUNT(*) 
+FROM `reply`
+WHERE relTypeCode = "article"
+AND relId = 5
+AND delStatus = 0;
+
 SELECT * FROM article;
-
-
 

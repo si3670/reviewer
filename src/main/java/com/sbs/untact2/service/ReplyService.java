@@ -39,5 +39,9 @@ public class ReplyService {
 		return new ResultData("S-1", "댓글이 수정되었습니다.", "id", id);
 	}
 
+	public int getReplyTotalCount(String relTypeCode, int relId) {
+		return replyDao.getReplyTotalCount(relTypeCode, relId);
+	}
+
 
 }

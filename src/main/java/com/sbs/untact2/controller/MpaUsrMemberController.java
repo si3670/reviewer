@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
@@ -40,7 +41,13 @@ public class MpaUsrMemberController {
 		if (oldMember != null) {
 			return Util.msgAndBack(req, "이미 사용 중인 아이디입니다.");
 		}
+		
+		oldMember = memberService.getMemberByNameAndEmail(name, email);
 
+        if (oldMember != null) {
+            return Util.msgAndBack(req, String.format("%s님은 이미 %s 메일주소로 %s 에 가입하셨습니다.", name, email, oldMember.getRegDate()));
+        }
+		
 		ResultData addMemberRd = memberService.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 
 		if (addMemberRd.isFail()) {
@@ -63,6 +70,21 @@ public class MpaUsrMemberController {
 		}
 
 		return Util.msgAndReplace(req, addMemberRd.getMsg(), "/");
+	}
+
+	@RequestMapping("/mpaUsr/member/getLoginIdDup")
+	@ResponseBody
+	public ResultData getLoginIdDup(HttpServletRequest req, String loginId) {
+		if (loginId.length() <= 4) {
+			return new ResultData("F-2", "아이디는 4자 이상으로 입력해주세요.");
+		}
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		if (member != null) {
+			return new ResultData("F-1", "이미 사용 중인 아이디입니다.", "loginId", loginId);
+		}
+
+		return new ResultData("P-1", "사용가능한 로그인 아이디입니다.", "loginId", loginId);
 	}
 
 	@RequestMapping("/mpaUsr/member/login")
@@ -96,7 +118,7 @@ public class MpaUsrMemberController {
 
 		if (needToChangePassword) {
 			msg = "현재 비밀번호를 사용한지 " + memberService.getNeedToChangePasswordFreeDays() + "일이 지났습니다. 비밀번호를 변경해주세요.";
-			redirectUri = "/mpaUsr/member/mypage";
+			redirectUri = "/mpaUsr/member/myPage";
 		}
 
 		boolean isUsingTempPassword = memberService.usingTempPassword(member.getId());
@@ -202,8 +224,8 @@ public class MpaUsrMemberController {
 		if (modifyrRd.isFail()) {
 			return Util.msgAndBack(req, modifyrRd.getMsg());
 		}
-		
-		if(req.getParameter("deleteFile__member__0__extra__profileImg__1") != null) {
+
+		if (req.getParameter("deleteFile__member__0__extra__profileImg__1") != null) {
 			genFileService.deleteGenFile("member", loginedMember.getId(), "extra", "profileImg", 1);
 		}
 

@@ -68,6 +68,7 @@
 			A.`body` LIKE
 			CONCAT('%', #{searchKeyword} ,'%'))
 		</if>
+		AND A.delStatus = 0
 		ORDER BY A.id DESC
 		LIMIT #{limitStart}, #{limitTake}
 	</select>
@@ -109,7 +110,8 @@
 		wineCountry = #{wineCountry},
 		winePlace = #{winePlace},
 		wineVintage = #{wineVintage},
-		wineVariety = #{wineVariety},
+		wineVariety =
+		#{wineVariety},
 		wineAlcohol = #{wineAlcohol},
 		wineML = #{wineML},
 		winePrice = #{winePrice}

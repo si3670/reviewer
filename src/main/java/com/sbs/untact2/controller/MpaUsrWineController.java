@@ -57,7 +57,11 @@ public class MpaUsrWineController {
 
 	// wine 정보 보여주기
 	@RequestMapping("/mpaUsr/article/winedetail")
-	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
+	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId
+			) {
+		//String relTypeCode, int relId
+		
+		
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getArticleForPrintById(id);
 		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
@@ -67,6 +71,10 @@ public class MpaUsrWineController {
 		}
 
 		Board board = articleService.getBoardById(article.getBoardId());
+
+		//int totalCount = replyService.getReplyTotalCount(relTypeCode, relId);
+
+		//req.setAttribute("totalCount", totalCount);
 
 		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);
@@ -124,5 +132,22 @@ public class MpaUsrWineController {
 
 		return "mpaUsr/article/winelist";
 	}
+	
+	@RequestMapping("/mpaUsr/article/doWineDelete")
+	public String doDelete(Integer id, HttpServletRequest req) {
+		if (Util.isEmpty(id)) {
+			return Util.msgAndBack(req, "id을 입력해주세요.");
+		}
+
+		ResultData rd = articleService.deleteArticleById(id);
+
+		if (rd.isFail()) {
+			return Util.msgAndBack(req, rd.getMsg());
+		}
+		String replaceUri = "../article/list?boardId=" + rd.getBody().get("boardId");
+		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
+	}
+	
+	
 
 }

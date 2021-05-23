@@ -21,7 +21,7 @@
 					<a href="#" class="row-span-3 order-1">
 						<img class="rounded-full"
 							onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
-							src="${rq.loginedMember.profileImgUri} alt="">
+							src="${rq.loginedMember.profileImgUri}" alt="">
 					</a>
 					<a href="#" class="order-8 sm:order-4 md:order-8 hover:underline">
 						<span class="con-bg">닉네임</span>

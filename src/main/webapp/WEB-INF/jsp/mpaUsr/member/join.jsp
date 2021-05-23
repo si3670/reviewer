@@ -34,19 +34,23 @@
 		form.loginId.value = form.loginId.value.trim();
 
 		if (form.loginId.value.length == 0) {
-			alert('로그인아이디를 입력해주세요.');
+			$('.login-id-input-success-msg').text('');
+			$('.login-id-input-success-msg').hide();
+			$('.login-id-input-error-msg').text('로그인아이디를 입력해주세요.');
+			$('.login-id-input-error-msg').show();
+
 			form.loginId.focus();
 
 			return;
 		}
 
-		if (form.loginId.value.length <= 4) {
-			alert('로그인아이디를 5자 이상으로 입력해주세요.');
-			form.loginId.focus();
-			return;
-		}
+	
 		if (MemberJoin__validLoginId != form.loginId.value) {
-			alert('해당 로그인아이디를 이용할 수 없습니다. 다른 로그인아이디를 입력해주세요.');
+			$('.login-id-input-success-msg').text('');
+			$('.login-id-input-success-msg').hide();
+			$('.login-id-input-error-msg').text('해당 로그인아이디를 이용할 수 없습니다. 다른 로그인아이디를 입력해주세요.');
+			$('.login-id-input-error-msg').show();
+			
 			form.loginId.focus();
 			return;
 		}

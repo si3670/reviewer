@@ -72,9 +72,9 @@ public class MpaUsrWineController {
 
 		Board board = articleService.getBoardById(article.getBoardId());
 
-		//int totalCount = replyService.getReplyTotalCount(relTypeCode, relId);
+		int replyTotalCount = replyService.getReplyTotalCount("article", id);
 
-		//req.setAttribute("totalCount", totalCount);
+		req.setAttribute("replyTotalCount", replyTotalCount);
 
 		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);

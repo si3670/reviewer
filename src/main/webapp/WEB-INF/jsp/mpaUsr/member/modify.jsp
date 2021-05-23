@@ -4,6 +4,9 @@
 
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+
 <script>
 	let MemberModify__submitFormDone = false;
 	function MemberModify__submitForm(form) {

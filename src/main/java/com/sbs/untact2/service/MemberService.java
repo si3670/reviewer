@@ -102,6 +102,7 @@ public class MemberService {
 		memberDao.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
 		if (loginPw != null) {
+			System.out.println("실행됨");
 			setNeedToChangePasswordLater(id);
 			attrService.remove("member", id, "extra", "useTempPassword");
 		}

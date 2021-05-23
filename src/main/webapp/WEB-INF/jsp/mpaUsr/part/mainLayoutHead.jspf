@@ -98,7 +98,7 @@
 							<span>
 								<img class="rounded-full w-6 h-6"
 									onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
-									src="${rq.loginedMember.profileImgUri} alt="">
+									src="${rq.loginedMember.profileImgUri}" alt="">
 							</span>
 							<span class="hidden md:block">&nbsp;${rq.getLoginedMemberNickname()}＇s
 							</span>

@@ -134,6 +134,7 @@ public class MpaUsrMemberController {
 	@RequestMapping("/mpaUsr/member/doLogout")
 	public String doLogout(HttpServletRequest req, HttpSession session) {
 		session.removeAttribute("loginedMemberId");
+		session.removeAttribute("needToChangePassword");
 
 		return Util.msgAndReplace(req, "로그아웃 되었습니다.", "/");
 	}
@@ -237,6 +238,10 @@ public class MpaUsrMemberController {
 			if (multipartFile.isEmpty() == false) {
 				genFileService.save(multipartFile, loginedMember.getId());
 			}
+		}
+		
+		if ( loginPw != null ) {
+			req.getSession().removeAttribute("needToChangePassword");
 		}
 
 		return Util.msgAndReplace(req, modifyrRd.getMsg(), "/");

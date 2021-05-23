@@ -210,7 +210,7 @@
 			<div class="mt-4">
 				<div class="px-4 flex">
 					<h1 class="title-bar-type-2 mr-4">댓글</h1>
-					<p>${totalCount}</p>
+					<p>${Util.numberFormat(replyTotalCount)}</p>
 				</div>
 
 				<c:if test="${rq.notLogined}">

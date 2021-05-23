@@ -5,7 +5,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
 <script>
-	const CheckPassword__checkAndSubmitDone = false;
+	let CheckPassword__checkAndSubmitDone = false;
 	function CheckPassword__checkAndSubmit(form) {
 		if (CheckPassword__checkAndSubmitDone) {
 			return;

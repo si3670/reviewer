@@ -4,10 +4,18 @@
 <c:set var="pageTitle" value="<span>${board.name}</span>" />
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
-<
 <style>
-.wine-content:first-child {
-	margin-left: 0;
+.articles {
+	margin:0 -15px;
+}
+
+.wine-content {
+	margint-top:20px;
+	width:calc(100% / 4);
+	padding:0 15px;
+}
+
+.wine-content:nth-child(2n) {
 }
 </style>
 
@@ -19,6 +27,8 @@
 		</div>
 
 		<form class="flex mt-3">
+			<input type="hidden" name="boardId" value="${param.boardId}" />
+		
 			<select name="searchKeywordType">
 				<option value="titleAndBody">전체</option>
 				<option value="title">제목</option>
@@ -39,7 +49,7 @@
 		</form>
 
 
-		<div class="articles mt-10 flex">
+		<div class="articles mt-10 flex flex-wrap">
 
 			<c:if test="${articles == null || articles.size() == 0 }">
 			검색결과가 존재하지 않습니다.
@@ -48,7 +58,7 @@
 			<c:forEach items="${articles}" var="article">
 
 
-				<div class="wine-content ml-10">
+				<div class="wine-content">
 
 					<div class="flex items-center mt-4 text-sm">
 						<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
@@ -61,7 +71,7 @@
 						<a href="winedetail?id=${article.id}"
 							class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
 
-						<img class="rounded mt-10"
+						<img class="rounded mt-10 w-full"
 							src="http://localhost:8044/resource/imgs/dry1.jpg" alt="">
 
 					</div>

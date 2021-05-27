@@ -4,6 +4,11 @@
 <%@ page import="com.sbs.untact2.util.Util"%>
 
 <%@ include file="../part/mainLayoutHead.jspf"%>
+<c:set var="fileInputMaxCount" value="1" />
+
+<style>
+
+</style>
 
 <div class="section-article-detail">
 	<div class="container mx-auto">
@@ -37,6 +42,15 @@
 
 
 
+			</div>
+
+			<div class="img-size mt-10">
+				<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
+					<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
+					<c:set var="file"
+						value="${article.extra.file__common__attachment[fileNo]}" />
+					${file.mediaHtml}
+				</c:forEach>
 			</div>
 
 			<div class="mt-6">

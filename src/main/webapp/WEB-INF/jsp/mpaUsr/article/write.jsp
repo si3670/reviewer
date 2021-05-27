@@ -28,6 +28,17 @@
 
 			return;
 		}
+		
+		const maxSizeMb = 10;
+		const maxSize = maxSizeMb * 1024 * 1024;
+		const profileImgFileInput = form["file__article__0__common__attachment__1"];
+		if (profileImgFileInput.value) {
+			if (profileImgFileInput.files[0].size > maxSize) {
+				alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
+				profileImgFileInput.focus();
+				return;
+			}
+		}
 
 		form.submit();
 		ArticleWrite__submitFormDone = true;
@@ -65,6 +76,16 @@
 					<div class="lg:flex-grow">
 						<textarea name="body" class="form-row-input w-full rounded-sm"
 							placeholder="내용을 입력해주세요."></textarea>
+					</div>
+				</div>
+				
+				<div class="form-row flex flex-col lg:flex-row mt-2">
+					<div class="lg:flex lg:items-center lg:w-28">
+						<span>첨부파일</span>
+					</div>
+					<div class="lg:flex-grow">
+						<input type="file" name="file__article__0__common__attachment__1"
+							class="form-row-input w-full rounded-sm" />
 					</div>
 				</div>
 

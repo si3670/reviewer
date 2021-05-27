@@ -11,6 +11,17 @@
 			return;
 		}
 
+		const maxSizeMb = 10;
+		const maxSize = maxSizeMb * 1024 * 1024;
+		const profileImgFileInput = form["file__article__0__common__attachment__1"];
+		if (profileImgFileInput.value) {
+			if (profileImgFileInput.files[0].size > maxSize) {
+				alert(maxSizeMb + "MB 이하의 파일을 업로드 해주세요.");
+				profileImgFileInput.focus();
+				return;
+			}
+		}
+
 		form.title.value = form.title.value.trim();
 
 		if (form.title.value.length == 0) {
@@ -118,6 +129,19 @@
 				onsubmit="ArticleWrite__submitForm(this); return false;"
 				action="doWineWrite" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="boardId" value="${board.id}" />
+
+				<div class="form-row flex flex-col lg:flex-row mt-2">
+					<div class="lg:flex lg:items-center lg:w-28">
+						<span>첨부파일</span>
+					</div>
+					<div class="lg:flex-grow">
+						<input type="file" name="file__article__0__common__attachment__1"
+							class="form-row-input w-full rounded-sm" />
+					</div>
+				</div>
+
+
+
 				<div class="form-row flex flex-col lg:flex-row mt-2">
 					<div class="lg:flex lg:items-center lg:w-28">
 						<span>이름</span>
@@ -227,15 +251,13 @@
 
 
 				<div class="form-row flex justify-end flex-col lg:flex-row mt-6">
-						<div class="btns">
-							<input type="submit"
-								class="btn-bg" value="작성">
+					<div class="btns">
+						<input type="submit" class="btn-bg" value="작성">
 
-							<input onclick="history.back();" type="button"
-								class="btn-border" 
+						<input onclick="history.back();" type="button" class="btn-border"
 							value="취소">
-						</div>
 					</div>
+				</div>
 			</form>
 		</div>
 	</div>

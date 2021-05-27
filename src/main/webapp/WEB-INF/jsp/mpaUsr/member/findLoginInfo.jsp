@@ -35,6 +35,7 @@
 			<div class="m-7">
 				<form action="doFindLoginId" method="post"
 					onsubmit="FindLoginIdForm__checkAndSubmit(this); return false;">
+					<input type="hidden" name="redirectUri" value="../member/login" />
 					<div class="mb-2">
 						<span>아이디 찾기</span>
 						<i aria-hidden="true" class="icon-required"></i>

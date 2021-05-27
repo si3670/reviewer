@@ -5,6 +5,20 @@
 
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
+<c:set var="fileInputMaxCount" value="1" />
+
+<style>
+.img-size {
+	width: 300px;
+	height: 300px;
+	background-color:gray;
+}
+
+.img-size>img {
+	width: 100%;
+}
+</style>
+
 <div class="section-article-detail">
 	<div class="container mx-auto  px-40">
 		<div
@@ -43,8 +57,15 @@
 			<div class="mt-10 mb-10 flex justify-center">
 				<div>
 					<div class="mt-3 flex justify-center">
-						<img class="rounded mt-10"
-							src="http://localhost:8044/resource/imgs/dry1.jpg" alt="">
+						<div class="img-size">
+							<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
+								<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
+								<c:set var="file"
+									value="${article.extra.file__common__attachment[fileNo]}" />
+					${file.mediaHtml}
+				</c:forEach>
+						</div>
+
 					</div>
 
 					<div class="mt-6 text-center text-3xl">
@@ -388,7 +409,9 @@
 
 		</div>
 	</div>
+</div>
 
 
 
-	<%@ include file="../part/mainLayoutFoot.jspf"%>
+
+<%@ include file="../part/mainLayoutFoot.jspf"%>

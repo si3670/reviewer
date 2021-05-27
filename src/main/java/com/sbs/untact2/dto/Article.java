@@ -1,5 +1,8 @@
 package com.sbs.untact2.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -62,5 +65,15 @@ public class Article {
     public String getWriterProfileFallbackImgOnErrorHtmlAttr() {
         return "this.src = '" + getWriterProfileFallbackImgUri() + "'";
     }
+    
+    private Map<String, Object> extra;
+
+    public Map<String, Object> getExtraNotNull() {
+		if ( extra == null ) {
+			extra = new HashMap<String, Object>();
+		}
+
+		return extra;
+	}
 
 }

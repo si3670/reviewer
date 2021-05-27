@@ -6,16 +6,19 @@
 
 <style>
 .articles {
-	margin:0 -15px;
+	margin: 0 -15px;
 }
 
 .wine-content {
-	margint-top:20px;
-	width:calc(100% / 4);
-	padding:0 15px;
+	margint-top: 20px;
+	width: calc(100%/ 4);
+	padding: 0 15px;
 }
 
-.wine-content:nth-child(2n) {
+.img-size {
+	width: 200px;
+	height: 200px;
+	background-color: gray;
 }
 </style>
 
@@ -28,7 +31,7 @@
 
 		<form class="flex mt-3">
 			<input type="hidden" name="boardId" value="${param.boardId}" />
-		
+
 			<select name="searchKeywordType">
 				<option value="titleAndBody">전체</option>
 				<option value="title">제목</option>
@@ -59,32 +62,27 @@
 
 
 				<div class="wine-content">
-
-					<div class="flex items-center mt-4 text-sm">
+					<div class="flex justify-center mt-14 text-sm">
 						<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
 						<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
 						<a href="${detailUrl}" class="ml-2 font-light text-gray-600">조회
 							: ${article.hitCount}</a>
 					</div>
-
+					
+					
 					<div class="mt-2 text-center">
-						<a href="winedetail?id=${article.id}"
-							class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
-
-						<img class="rounded mt-10 w-full"
-							src="http://localhost:8044/resource/imgs/dry1.jpg" alt="">
-
+					<a href="winedetail?id=${article.id}"
+						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
 					</div>
+					
+					<div class="mt-2 flex justify-center">
+						<a href="winedetail?id=${article.id}" class="img-size">
+							<c:if test="${article.extra__thumbImg != null}">
+								<img src="${article.extra__thumbImg}" alt="" />
+							</c:if>
 
-					<div>
-						<a class="flex items-center  mt-6 text-sm">
-							<img onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
-								src="${article.writerProfileImgUri}"
-								class="mx-4 w-6 h-6 object-cover rounded-full" alt="">
-							<h1 class="text-gray-700 hover:underline">${article.extra__writer}</h1>
 						</a>
 					</div>
-
 				</div>
 
 
@@ -98,21 +96,6 @@
 			<a href="winewrite?boardId=${board.id}" class="btn-border">글쓰기</a>
 		</div>
 
-
-		<div class="mt-12">
-			<div class="total-items">
-				<span>TOTAL ITEMS : </span>
-				<span>${totalCount}</span>
-			</div>
-			<div class="total-pages">
-				<span>TOTAL PAGES : </span>
-				<span>${totalPage}</span>
-			</div>
-			<div class="page">
-				<span>CURRENT PAGE : </span>
-				<span>${page}</span>
-			</div>
-		</div>
 
 		<div class="pages mt-4 mb-4 text-center">
 			<c:set var="pageMenuArmSize" value="4" />

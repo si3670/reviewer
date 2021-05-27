@@ -29,10 +29,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 
-
-<!-- vue -->
-<script src="https://unpkg.com/vue@next"></script>
-
 <link rel="stylesheet" href="/resource/common.css" />
 <script src="/resource/common.js" defer></script>
 

@@ -12,17 +12,16 @@ public interface MemberDao {
 
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
-	int getLastInsertId();
-	
-	Member getMemberById(@Param("id") int id);
-
 	Member getMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
-
-	void modify(@Param("id") int id, @Param("loginPw") String loginPw, @Param("name") String name,
-			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
 	void addMember(@Param("loginId") String loginId, @Param("loginPw") String loginPw, @Param("name") String name,
 			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
+	int getLastInsertId();
+
+	Member getMemberById(@Param("id") int id);
+
+	void modify(@Param("id") int id, @Param("loginPw") String loginPw, @Param("name") String name,
+			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
 }

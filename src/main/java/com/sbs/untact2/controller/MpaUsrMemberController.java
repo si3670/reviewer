@@ -75,9 +75,6 @@ public class MpaUsrMemberController {
 	@RequestMapping("/mpaUsr/member/getLoginIdDup")
 	@ResponseBody
 	public ResultData getLoginIdDup(HttpServletRequest req, String loginId) {
-		if (loginId.length() <= 4) {
-			return new ResultData("F-2", "아이디는 4자 이상으로 입력해주세요.");
-		}
 		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member != null) {

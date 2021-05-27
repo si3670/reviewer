@@ -22,16 +22,6 @@
 	overflow: hidden;
 }
 
-.item>img {
-	width: 100%;
-	display: block;
-	margin: 0 auto;
-}
-
-.slick-arrow::before {
-	color:black;
-}
-
 </style>
 
 <script>
@@ -61,15 +51,6 @@
 			dots : true,
 		});
 	});
-
-	$(function() {
-		$('#slider-div').slick({
-			lazyLoad : 'ondemand',
-			slidesToShow : 5,
-			slidesToScroll : 1,
-			arrows : true
-		});
-	})
 </script>
 
 
@@ -112,54 +93,6 @@
 		</div>
 	</div>
 </div>
-
-<div class="container mx-auto my-20">
-	<h1 class="content-h1-1">Wine List</h1>
-
-	<div style="padding: 30px;">
-		<div class="slider-div" id="slider-div">
-			<div>
-				<a href="#" class="img-box-content">
-					<img src="http://localhost:8044/resource/imgs/dry1.jpg" alt="">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="img-box-content">
-					<img src="http://localhost:8044/resource/imgs/dry2.jpg" alt="">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="img-box-content">
-					<img src="http://localhost:8044/resource/imgs/white1.jpg" alt="">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="img-box-content">
-					<img src="http://localhost:8044/resource/imgs/white2.jpg" alt="">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="img-box-content">
-					<img src="http://localhost:8044/resource/imgs/sparkling1.jpg"
-						alt="">
-				</a>
-			</div>
-			<div>
-				<a href="#" class="img-box-content">
-					<img src="http://localhost:8044/resource/imgs/sparkling2.jpg"
-						alt="">
-				</a>
-			</div>
-		</div>
-	</div>
-
-
-
-</div>
-
-
-
-
 
 
 </div>

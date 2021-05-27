@@ -33,46 +33,38 @@
 
 		form.loginId.value = form.loginId.value.trim();
 
-		if (form.loginId.value.length == 0) {
-			$('.login-id-input-success-msg').text('');
-			$('.login-id-input-success-msg').hide();
-			$('.login-id-input-error-msg').text('로그인아이디를 입력해주세요.');
-			$('.login-id-input-error-msg').show();
+	    if ( form.loginId.value.length <= 4 ) {
+	        alert('로그인아이디를 5자 이상으로 입력해주세요.');
+	        form.loginId.focus();
 
-			form.loginId.focus();
+	        return;
+	    }
 
-			return;
-		}
+	    if ( MemberJoin__validLoginId != form.loginId.value ) {
+	        alert('해당 로그인아이디를 이용할 수 없습니다. 다른 로그인아이디를 입력해주세요.');
+	        form.loginId.focus();
 
-	
-		if (MemberJoin__validLoginId != form.loginId.value) {
-			$('.login-id-input-success-msg').text('');
-			$('.login-id-input-success-msg').hide();
-			$('.login-id-input-error-msg').text('해당 로그인아이디를 이용할 수 없습니다. 다른 로그인아이디를 입력해주세요.');
-			$('.login-id-input-error-msg').show();
-			
-			form.loginId.focus();
-			return;
-		}
+	        return;
+	    }
 
 		form.loginPwInput.value = form.loginPwInput.value.trim();
 
 		if (form.loginPwInput.value.length == 0) {
-			alert('로그인비번을 입력해주세요.');
+			alert('비밀번호를 입력해주세요.');
 			form.loginPwInput.focus();
 
 			return;
 		}
 
 		if (form.loginPwConfirm.value.length == 0) {
-			alert('로그인비번 확인을 입력해주세요.');
+			alert('비밀번호 확인을 입력해주세요.');
 			form.loginPwConfirm.focus();
 
 			return;
 		}
 
 		if (form.loginPwInput.value != form.loginPwConfirm.value) {
-			alert('로그인비번이 일치하지 않습니다.');
+			alert('비밀번호이 일치하지 않습니다.');
 			form.loginPwConfirm.focus();
 
 			return;
@@ -90,7 +82,7 @@
 		form.nickname.value = form.nickname.value.trim();
 
 		if (form.nickname.value.length == 0) {
-			alert('별명을 입력해주세요.');
+			alert('닉네임을 입력해주세요.');
 			form.nickname.focus();
 
 			return;
@@ -108,7 +100,7 @@
 		form.cellphoneNo.value = form.cellphoneNo.value.trim();
 
 		if (form.cellphoneNo.value.length == 0) {
-			alert('휴대전화번호를 입력해주세요.');
+			alert('연락처를 입력해주세요.');
 			form.cellphoneNo.focus();
 
 			return;

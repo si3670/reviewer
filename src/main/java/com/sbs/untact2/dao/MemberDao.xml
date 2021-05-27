@@ -13,18 +13,6 @@
 		AND M.delStatus = 0
 	</select>
 
-	<select id="getMemberById" resultType="Member">
-		SELECT *
-		FROM `member` AS M
-		WHERE M.id = #{id}
-		AND M.delStatus = 0
-	</select>
-
-	<select id="getLastInsertId" resultType="int">
-		SELECT LAST_INSERT_ID()
-	</select>
-
-
 	<insert id="addMember">
 		INSERT INTO member
 		SET regDate = NOW(),
@@ -46,6 +34,23 @@
 		WHERE name = #{name}
 		AND email = #{email}
 	</select>
+
+
+
+
+	<select id="getMemberById" resultType="Member">
+		SELECT *
+		FROM `member` AS M
+		WHERE M.id = #{id}
+		AND M.delStatus = 0
+	</select>
+
+	<select id="getLastInsertId" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+
+
+
 
 	<update id="modify">
 		UPDATE member

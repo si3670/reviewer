@@ -117,6 +117,28 @@
 		winePrice = #{winePrice}
 	</insert>
 
+	<update id="wineModify">
+		UPDATE article
+		SET regDate = NOW(),
+		updateDate =
+		NOW(),
+		title = #{title},
+		body =
+		#{body},
+		wineKinds = #{wineKinds},
+		wineCountry =
+		#{wineCountry},
+		winePlace = #{winePlace},
+		wineVintage = #{wineVintage},
+		wineVariety =
+		#{wineVariety},
+		wineAlcohol = #{wineAlcohol},
+		wineML =
+		#{wineML},
+		winePrice = #{winePrice}
+		WHERE id = #{id}
+	</update>
+
 
 	<update id="deleteArticleById">
 		UPDATE article

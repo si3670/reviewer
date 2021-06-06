@@ -39,7 +39,13 @@ public interface ArticleDao {
 	void writeWine(@Param("memberId") int memberId, @Param("boardId") int boardId, @Param("title") String title,
 			@Param("body") String body, @Param("wineKinds") String wineKinds, @Param("wineCountry") String wineCountry,
 			@Param("winePlace") String winePlace, @Param("wineVintage") int wineVintage,
-			@Param("wineVariety") String wineVariety, @Param("wineAlcohol") String wineAlcohol, @Param("wineML") String wineML,
-			@Param("winePrice") String winePrice);
+			@Param("wineVariety") String wineVariety, @Param("wineAlcohol") String wineAlcohol,
+			@Param("wineML") String wineML, @Param("winePrice") String winePrice);
+
+	void wineModify(@Param("id") int id, @Param("title") String title, @Param("body") String body,
+			@Param("wineKinds") String wineKinds, @Param("wineCountry") String wineCountry,
+			@Param("winePlace") String winePlace, @Param("wineVintage") int wineVintage,
+			@Param("wineVariety") String wineVariety, @Param("wineAlcohol") String wineAlcohol,
+			@Param("wineML") String wineML, @Param("winePrice") String winePrice);
 
 }

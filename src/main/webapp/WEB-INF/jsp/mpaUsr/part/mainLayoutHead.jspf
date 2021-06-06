@@ -46,19 +46,19 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/winelist?boardId=3"
+								<a href="../article/wineList?boardId=3"
 									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=4"
+								<a href="../article/wineList?boardId=4"
 									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=5"
+								<a href="../article/wineList?boardId=5"
 									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Sparkling</span>
 								</a>

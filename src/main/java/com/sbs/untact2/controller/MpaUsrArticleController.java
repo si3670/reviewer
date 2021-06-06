@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Board;
 import com.sbs.untact2.dto.GenFile;
+import com.sbs.untact2.dto.Member;
 import com.sbs.untact2.dto.Reply;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.dto.Rq;
@@ -91,7 +92,7 @@ public class MpaUsrArticleController {
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getArticleForPrintById(id);
 		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
-		
+
 		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
 
 		Map<String, GenFile> filesMap = new HashMap<>();
@@ -130,26 +131,50 @@ public class MpaUsrArticleController {
 		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
 	}
 
-	@RequestMapping("/mpaUsr/article/doModify")
-	@ResponseBody
-	public ResultData doModify(Integer id, String title, String body) {
-		if (Util.isEmpty(id)) {
-			return new ResultData("F-1", "id을 입력해주세요.");
+	@RequestMapping("/mpaUsr/article/modify")
+	public String showModify(Integer id, HttpServletRequest req) {
+		if (id == null) {
+			return Util.msgAndBack(req, "id를 입력해주세요.");
 		}
-		if (Util.isEmpty(title)) {
-			return new ResultData("F-2", "title을 입력해주세요.");
-		}
-		if (Util.isEmpty(body)) {
-			return new ResultData("F-3", "body을 입력해주세요.");
-		}
-
 		Article article = articleService.getArticleById(id);
-
+		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
+		Map<String, GenFile> filesMap = new HashMap<>();
+		for (GenFile file : files) {
+			filesMap.put(file.getFileNo() + "", file);
+		}
+		article.getExtraNotNull().put("file__common__attachment", filesMap);
+		req.setAttribute("article", article);
 		if (article == null) {
-			return new ResultData("F-4", "존재하지 않는 게시물 번호입니다.");
+			return Util.msgAndBack(req, "존재하지 않는 게시물번호 입니다.");
+		}
+		return "mpaUsr/article/modify";
+	}
+
+	@RequestMapping("/mpaUsr/article/doModify")
+	public String doModify(int id, String title, String body, HttpServletRequest req, MultipartRequest multipartRequest) {
+		Article article = articleService.getArticleById(id);
+		if (article == null) {
+			return Util.msgAndBack(req, "해당 게시물은 존재하지 않습니다.");
 		}
 
-		return articleService.modifyArticle(id, title, body);
+		ResultData articleModifyRd = articleService.modifyArticle(id, title, body);
+		if (articleModifyRd.isFail()) {
+			return Util.msgAndBack(req, articleModifyRd.getMsg());
+		}
+
+		// 파일맵으로 정리
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+		for (String fileInputName : fileMap.keySet()) {
+			MultipartFile multipartFile = fileMap.get(fileInputName);
+
+			// 파일이 비어있지 않을 때 save , multipartFile의 관련된 것은 newArticleId이란 게시글이다
+			if (multipartFile.isEmpty() == false) {
+				genFileService.save(multipartFile, id);
+			}
+		}
+
+		return Util.msgAndReplace(req, articleModifyRd.getMsg(), "../article/detail?id=" + id);
 	}
 
 	@RequestMapping("/mpaUsr/article/list")

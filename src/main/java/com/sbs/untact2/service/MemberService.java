@@ -107,7 +107,7 @@ public class MemberService {
 			attrService.remove("member", id, "extra", "useTempPassword");
 		}
 
-		return new ResultData("P-1", "수정 성공", "id", id);
+		return new ResultData("P-1", "수정이 완료되었습니다.", "id", id);
 	}
 
 	public String getCheckPasswordAuthCode(int actorId) {

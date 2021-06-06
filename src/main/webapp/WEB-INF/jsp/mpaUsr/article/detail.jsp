@@ -34,7 +34,7 @@
 						<div class="text-blue-500 text-sm">
 							<a href="../article/modify?id=${article.id}"
 								class="hover:underline">수정</a>
-							<a href="../article/doWineDelete?id=${article.id}"
+							<a href="../article/doDelete?id=${article.id}"
 								class="hover:underline">삭제</a>
 						</div>
 					</c:if>

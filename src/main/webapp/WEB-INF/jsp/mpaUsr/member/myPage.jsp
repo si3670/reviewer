@@ -18,11 +18,9 @@
 			<div class="px-4 py-8 mt-10">
 				<div
 					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-					<a href="#" class="row-span-3 order-1">
-						<img class="rounded-full"
-							onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
-							src="${rq.loginedMember.profileImgUri}" alt="">
-					</a>
+                    <a href="#" class="row-span-3 order-1">
+                        <img class="w-40 h-40 object-cover rounded-full" onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}" src="${rq.loginedMember.profileImgUri}" alt="">
+                    </a>
 					<a href="#" class="order-8 sm:order-4 md:order-8 hover:underline">
 						<span class="con-bg">닉네임</span>
 						<span class="text-gray-600">${rq.loginedMember.nickname}</span>
@@ -54,20 +52,13 @@
 
 				</div>
 
-				<div class="grid grid-item-float gap-3 mt-4">
+				<div class="grid grid-item-float gap-3 mt-4 ml-10">
 					<a
 						href="../member/checkPassword?afterUri=${Util.getUriEncoded('../member/modify')}"
 						class="text-red-700 hover:underline">
 						<span>
 							<i class="fas fa-edit"></i>
 							<span>수정</span>
-						</span>
-					</a>
-					<a onclick="if ( !confirm('삭제하시겠습니까?') ) return false;" href="#"
-						class="text-red-700 hover:underline">
-						<span>
-							<i class="fas fa-trash"></i>
-							<span>탈퇴</span>
 						</span>
 					</a>
 				</div>

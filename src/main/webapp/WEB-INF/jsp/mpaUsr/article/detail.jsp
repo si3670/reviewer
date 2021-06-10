@@ -282,20 +282,7 @@
 									<spqn>${reply.updateDate}</spqn>
 								</div>
 								<div class="break-all">${reply.bodyForPrint}</div>
-								<div class="mt-1">
-									<span class="text-gray-600 cursor-pointer">
-										<span>
-											<i class="fas fa-thumbs-up"></i>
-										</span>
-										<span>5,600</span>
-									</span>
-									<span class="ml-1 text-gray-600 cursor-pointer">
-										<span>
-											<i class="fas fa-thumbs-down"></i>
-										</span>
-										<span>5,600</span>
-									</span>
-								</div>
+
 							</div>
 
 							<div class="plain-link-wrap gap-3 mt-3 text-sm">

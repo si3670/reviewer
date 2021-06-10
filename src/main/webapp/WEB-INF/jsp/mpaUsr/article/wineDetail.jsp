@@ -269,9 +269,8 @@
 							<input type="hidden" name="redirectUri" value="${rq.currentUri}" />
 							<img
 								class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
-								alt=""
-								onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
-								src="${article.writerProfileImgUri}">
+								onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
+								src="${rq.loginedMember.profileImgUri}" alt="">
 							<span class="absolute inset-y-0 right-0 flex items-center pr-6">
 								<button type="submit"
 									class="p-1 focus:outline-none focus:shadow-none hover:text-blue-500">
@@ -306,8 +305,7 @@
 				<script>
 					function ReplyList__goToReply(id) {
 						setTimeout(function() {
-							const $target = $('.reply-list [data-id="' + id
-									+ '"]');
+							const $target = $('.reply-list [data-id="' + id + '"]');
 							const targetOffset = $target.offset();
 							$(window).scrollTop(targetOffset.top - 50);
 							$target.addClass('focus');
@@ -359,20 +357,7 @@
 									<spqn>${reply.updateDate}</spqn>
 								</div>
 								<div class="break-all">${reply.bodyForPrint}</div>
-								<div class="mt-1">
-									<span class="text-gray-600 cursor-pointer">
-										<span>
-											<i class="fas fa-thumbs-up"></i>
-										</span>
-										<span>5,600</span>
-									</span>
-									<span class="ml-1 text-gray-600 cursor-pointer">
-										<span>
-											<i class="fas fa-thumbs-down"></i>
-										</span>
-										<span>5,600</span>
-									</span>
-								</div>
+
 							</div>
 
 							<div class="plain-link-wrap gap-3 mt-3 text-sm">

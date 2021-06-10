@@ -49,9 +49,6 @@
 		SELECT LAST_INSERT_ID()
 	</select>
 
-
-
-
 	<update id="modify">
 		UPDATE member
 		<set>
@@ -73,6 +70,14 @@
 			</if>
 		</set>
 		WHERE id = #{id}
+	</update>
+
+	<update id="deleteMemberByLoginId">
+		UPDATE member
+		SET delStatus = 1,
+		delDate = NOW()
+		WHERE
+		loginId = #{loginId}
 	</update>
 
 </mapper>  

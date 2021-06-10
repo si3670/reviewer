@@ -73,7 +73,7 @@
 					
 					<div class="mt-2 text-center">
 					<a href="wineDetail?id=${article.id}"
-						class="text-2xl text-gray-700 font-bold hover:underline">${article.title}</a>
+						class="text-lg text-gray-700 font-bold hover:underline">${article.title}</a>
 					</div>
 					
 					<div class="mt-2 flex justify-center">
@@ -94,7 +94,7 @@
 
 		<div class="mt-2 flex mt-6">
 			<div class="flex-grow"></div>
-			<a href="winewrite?boardId=${board.id}" class="btn-border">글쓰기</a>
+			<a href="wineWrite?boardId=${board.id}" class="btn-border">글쓰기</a>
 		</div>
 
 

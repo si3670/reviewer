@@ -184,6 +184,19 @@ public class MpaUsrMemberController {
 	public String showMyPage() {
 		return "mpaUsr/member/myPage";
 	}
+	
+	@RequestMapping("/mpaUsr/member/doDelete")
+	public String doDelete(String loginId, HttpServletRequest req) {
+		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
+	
+		ResultData rd = memberService.deleteMemberByLoginId(loginId);
+
+		if (rd.isFail()) {
+			return Util.msgAndBack(req, rd.getMsg());
+		}
+		String replaceUri = "/";
+		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
+	}
 
 	// checkPasswordAuthCode : 체크비밀번호인증코드
 	@RequestMapping("/mpaUsr/member/modify")
@@ -199,6 +212,7 @@ public class MpaUsrMemberController {
 
 		return "mpaUsr/member/modify";
 	}
+
 
 	@RequestMapping("/mpaUsr/member/doModify")
 	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,

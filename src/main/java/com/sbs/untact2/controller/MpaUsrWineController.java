@@ -85,26 +85,28 @@ public class MpaUsrWineController {
 	// wine 정보 보여주기
 	@RequestMapping("/mpaUsr/article/wineDetail")
 	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
+		//조회수 증가
 		articleService.increaseArticleHit(id);
+		
 		Article article = articleService.getArticleForPrintById(id);
+		
+		//댓글
 		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
-
+		//첨부파일
 		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
 
 		Map<String, GenFile> filesMap = new HashMap<>();
-
 		for (GenFile file : files) {
 			filesMap.put(file.getFileNo() + "", file);
 		}
-
 		article.getExtraNotNull().put("file__common__attachment", filesMap);
-
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");
 		}
 
 		Board board = articleService.getBoardById(article.getBoardId());
-
+		
+		//댓글 수
 		int replyTotalCount = replyService.getReplyTotalCount("article", id);
 
 		req.setAttribute("replyTotalCount", replyTotalCount);

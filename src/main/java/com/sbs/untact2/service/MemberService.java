@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbs.untact2.dao.MemberDao;
+import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Member;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.util.Util;
@@ -145,14 +146,7 @@ public class MemberService {
 		return attrService.getValue("member", actorId, "extra", "useTempPassword").equals("1");
 	}
 	
-	
 
-	
-	
-	
-	
-	
-	
 
 	public static String getAuthLevelName(Member member) {
 		switch (member.getAuthLevel()) {
@@ -181,6 +175,27 @@ public class MemberService {
 			return false;
 		}
 		return actor.getAuthLevel() == 7;
+	}
+
+	public ResultData deleteMemberByLoginId(String loginId) {
+		Member member = getMemberByLoginId(loginId);
+
+		if (isEmpty(member)) {
+			return new ResultData("F-1", "존재하지 않는 회원입니다.", "loginId", loginId);
+		}
+
+		memberDao.deleteMemberByLoginId(loginId);
+		return new ResultData("S-1", "탈퇴되었습니다.", "loginId", loginId);
+	}
+
+	// member이 null, delstatus가 1인 경우 수정,삭제됨
+	private boolean isEmpty(Member member) {
+		if (member == null) {
+			return true;
+		} else if (member.isDelStatus()) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -27,7 +27,7 @@ import com.sbs.untact2.service.ReplyService;
 import com.sbs.untact2.util.Util;
 
 @Controller
-public class MpaUsrWineController {
+public class MpaAdmWineController {
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
@@ -35,7 +35,7 @@ public class MpaUsrWineController {
 	@Autowired
 	private GenFileService genFileService;
 
-	@RequestMapping("/mpaUsr/article/wineWrite")
+	@RequestMapping("/mpaAdm/article/wineWrite")
 	public String showWineWrite(HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
 		Board board = articleService.getBoardById(boardId);
 
@@ -44,10 +44,10 @@ public class MpaUsrWineController {
 		}
 
 		req.setAttribute("board", board);
-		return "mpaUsr/article/wineWrite";
+		return "mpaAdm/article/wineWrite";
 	}
 
-	@RequestMapping("/mpaUsr/article/doWineWrite")
+	@RequestMapping("/mpaAdm/article/doWineWrite")
 	public String doWineWrite(HttpServletRequest req, int boardId, String title, String body, String wineKinds,
 			String wineCountry, String winePlace, int wineVintage, String wineVariety, String wineAlcohol,
 			String wineML, String winePrice, MultipartRequest multipartRequest) {
@@ -83,7 +83,7 @@ public class MpaUsrWineController {
 	}
 
 	// wine 정보 보여주기
-	@RequestMapping("/mpaUsr/article/wineDetail")
+	@RequestMapping("/mpaAdm/article/wineDetail")
 	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId) {
 		//조회수 증가
 		articleService.increaseArticleHit(id);
@@ -115,10 +115,10 @@ public class MpaUsrWineController {
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
 
-		return "mpaUsr/article/wineDetail";
+		return "mpaAdm/article/wineDetail";
 	}
 
-	@RequestMapping("/mpaUsr/article/wineList")
+	@RequestMapping("/mpaAdm/article/wineList")
 	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "3") int boardId,
 			@RequestParam(defaultValue = "1") int page, String searchKeyword,
 			@RequestParam(defaultValue = "titleAndBody") String searchKeywordType) {
@@ -173,10 +173,10 @@ public class MpaUsrWineController {
 
 		req.setAttribute("articles", articles);
 
-		return "mpaUsr/article/wineList";
+		return "mpaAdm/article/wineList";
 	}
 
-	@RequestMapping("/mpaUsr/article/doWineDelete")
+	@RequestMapping("/mpaAdm/article/doWineDelete")
 	public String doDelete(Integer id, HttpServletRequest req) {
 		if (Util.isEmpty(id)) {
 			return Util.msgAndBack(req, "id을 입력해주세요.");
@@ -191,7 +191,7 @@ public class MpaUsrWineController {
 		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
 	}
 
-	@RequestMapping("/mpaUsr/article/wineModify")
+	@RequestMapping("/mpaAdm/article/wineModify")
 	public String showModify(Integer id, HttpServletRequest req) {
 		if (id == null) {
 			return Util.msgAndBack(req, "id를 입력해주세요.");
@@ -207,10 +207,10 @@ public class MpaUsrWineController {
 		if (article == null) {
 			return Util.msgAndBack(req, "존재하지 않는 게시물번호 입니다.");
 		}
-		return "mpaUsr/article/wineModify";
+		return "mpaAdm/article/wineModify";
 	}
 
-	@RequestMapping("/mpaUsr/article/doWineModify")
+	@RequestMapping("/mpaAdm/article/doWineModify")
 	public String doModify(HttpServletRequest req, MultipartRequest multipartRequest, int id, String title, String body,
 			String wineKinds, String wineCountry, String winePlace, int wineVintage, String wineVariety,
 			String wineAlcohol, String wineML, String winePrice) {

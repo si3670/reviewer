@@ -13,6 +13,15 @@
 		AND M.delStatus = 0
 	</select>
 
+	<!-- 아이디 찾기 -->
+	<select id="getMemberByNameAndEmail" resultType="Member">
+		SELECT *
+		FROM
+		`member`
+		WHERE name = #{name}
+		AND email = #{email}
+	</select>
+
 	<insert id="addMember">
 		INSERT INTO member
 		SET regDate = NOW(),
@@ -26,14 +35,7 @@
 		cellphoneNo = #{cellphoneNo}
 	</insert>
 
-	<!-- 아이디 찾기 -->
-	<select id="getMemberByNameAndEmail" resultType="Member">
-		SELECT *
-		FROM
-		`member`
-		WHERE name = #{name}
-		AND email = #{email}
-	</select>
+
 
 
 

@@ -34,6 +34,10 @@ public class MemberService {
 		return memberDao.getMemberByLoginId(loginId);
 	}
 	
+	public Member getMemberByNameAndEmail(String name, String email) {
+		return memberDao.getMemberByNameAndEmail(name, email);
+	}
+	
 	private void sendJoinCompleteMail(String email) {
 		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
 
@@ -44,10 +48,6 @@ public class MemberService {
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
 	
-	public Member getMemberByNameAndEmail(String name, String email) {
-		return memberDao.getMemberByNameAndEmail(name, email);
-	}
-
 	public ResultData addMember(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
 			String email) {
 		memberDao.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
@@ -99,6 +99,16 @@ public class MemberService {
 	}
 	
 
+
+	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
+		if (attrService.getValue("member__" + actorId + "__extra__checkPasswordAuthCode")
+				.equals(checkPasswordAuthCode)) {
+			return new ResultData("S-1", "유효한 키 입니다.");
+		}
+
+		return new ResultData("F-1", "유효하지 않은 키 입니다.");
+	}
+	
 	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {
 		memberDao.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
@@ -111,6 +121,7 @@ public class MemberService {
 		return new ResultData("P-1", "수정이 완료되었습니다.", "id", id);
 	}
 
+
 	public String getCheckPasswordAuthCode(int actorId) {
 		String attrName = "member__" + actorId + "__extra__checkPasswordAuthCode";
 		String authCode = UUID.randomUUID().toString();
@@ -120,16 +131,6 @@ public class MemberService {
 
 		return authCode;
 	}
-
-	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
-		if (attrService.getValue("member__" + actorId + "__extra__checkPasswordAuthCode")
-				.equals(checkPasswordAuthCode)) {
-			return new ResultData("S-1", "유효한 키 입니다.");
-		}
-
-		return new ResultData("F-1", "유효하지 않은 키 입니다.");
-	}
-
 
 
 	// 비번바꿔야하는지 물어보기

@@ -50,13 +50,7 @@ public class MpaUsrArticleController {
 	@RequestMapping("/mpaUsr/article/doWrite")
 	public String doWrite(HttpServletRequest req, int boardId, String title, String body,
 			MultipartRequest multipartRequest) {
-		if (Util.isEmpty(title)) {
-			return Util.msgAndBack(req, "title을 입력해주세요.");
-		}
-		if (Util.isEmpty(body)) {
-			return Util.msgAndBack(req, "body을 입력해주세요.");
-		}
-
+		
 		Rq rq = (Rq) req.getAttribute("rq");
 
 		int memberId = rq.getLoginedMemberId();
@@ -73,7 +67,6 @@ public class MpaUsrArticleController {
 
 		// 파일맵으로 정리
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-
 		for (String fileInputName : fileMap.keySet()) {
 			MultipartFile multipartFile = fileMap.get(fileInputName);
 
@@ -89,26 +82,31 @@ public class MpaUsrArticleController {
 
 	@RequestMapping("/mpaUsr/article/detail")
 	public String showDetail(Integer id, HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId) {
+		//조회 수
 		articleService.increaseArticleHit(id);
 		Article article = articleService.getArticleForPrintById(id);
+		
+		//댓글
 		List<Reply> replies = replyService.getForPrintRepliesByRelTypeCodeAndRelId("article", id);
-
+		//파일
 		List<GenFile> files = genFileService.getGenFiles("article", article.getId(), "common", "attachment");
 
 		Map<String, GenFile> filesMap = new HashMap<>();
-
 		for (GenFile file : files) {
 			filesMap.put(file.getFileNo() + "", file);
 		}
-
 		article.getExtraNotNull().put("file__common__attachment", filesMap);
-
+		
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시글이 존재하지 않습니다.");
 		}
 
 		Board board = articleService.getBoardById(article.getBoardId());
 
+		//댓글 수
+		int replyTotalCount = replyService.getReplyTotalCount("article", id);
+		
+		req.setAttribute("replyTotalCount", replyTotalCount);
 		req.setAttribute("replies", replies);
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
@@ -118,15 +116,17 @@ public class MpaUsrArticleController {
 
 	@RequestMapping("/mpaUsr/article/doDelete")
 	public String doDelete(Integer id, HttpServletRequest req) {
+		
 		if (Util.isEmpty(id)) {
 			return Util.msgAndBack(req, "id을 입력해주세요.");
 		}
-
+		
 		ResultData rd = articleService.deleteArticleById(id);
-
+		
 		if (rd.isFail()) {
 			return Util.msgAndBack(req, rd.getMsg());
 		}
+		
 		String replaceUri = "../article/list?boardId=" + rd.getBody().get("boardId");
 		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
 	}
@@ -143,6 +143,7 @@ public class MpaUsrArticleController {
 			filesMap.put(file.getFileNo() + "", file);
 		}
 		article.getExtraNotNull().put("file__common__attachment", filesMap);
+		
 		req.setAttribute("article", article);
 		if (article == null) {
 			return Util.msgAndBack(req, "존재하지 않는 게시물번호 입니다.");
@@ -151,7 +152,9 @@ public class MpaUsrArticleController {
 	}
 
 	@RequestMapping("/mpaUsr/article/doModify")
-	public String doModify(int id, String title, String body, HttpServletRequest req, MultipartRequest multipartRequest) {
+	public String doModify(int id, String title, String body, HttpServletRequest req,
+			MultipartRequest multipartRequest) {
+		
 		Article article = articleService.getArticleById(id);
 		if (article == null) {
 			return Util.msgAndBack(req, "해당 게시물은 존재하지 않습니다.");
@@ -164,10 +167,8 @@ public class MpaUsrArticleController {
 
 		// 파일맵으로 정리
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-
 		for (String fileInputName : fileMap.keySet()) {
 			MultipartFile multipartFile = fileMap.get(fileInputName);
-
 			// 파일이 비어있지 않을 때 save , multipartFile의 관련된 것은 newArticleId이란 게시글이다
 			if (multipartFile.isEmpty() == false) {
 				genFileService.save(multipartFile, id);
@@ -181,28 +182,24 @@ public class MpaUsrArticleController {
 	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "1") int boardId,
 			@RequestParam(defaultValue = "1") int page, String searchKeyword,
 			@RequestParam(defaultValue = "titleAndBody") String searchKeywordType) {
+
 		Board board = articleService.getBoardById(boardId);
 
 		if (board == null) {
 			return Util.msgAndBack(req, "존재하지않는 게시판 입니다.");
 		}
-
 		if (searchKeywordType != null) {
 			searchKeywordType = searchKeywordType.trim();
 		}
-
 		if (searchKeywordType == null || searchKeywordType.length() == 0) {
 			searchKeywordType = "titleAndBody";
 		}
-
 		if (searchKeyword != null && searchKeyword.length() == 0) {
 			searchKeyword = null;
 		}
-
 		if (searchKeyword != null) {
 			searchKeyword = searchKeyword.trim();
 		}
-
 		if (searchKeyword == null) {
 			searchKeywordType = null;
 		}

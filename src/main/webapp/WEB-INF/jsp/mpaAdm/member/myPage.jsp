@@ -18,11 +18,9 @@
 			<div class="px-4 py-8 mt-10">
 				<div
 					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-					<a href="#" class="row-span-3 order-1">
-						<img class="w-40 h-40 object-cover rounded-full"
-							onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
-							src="${rq.loginedMember.profileImgUri}" alt="">
-					</a>
+                    <a href="#" class="row-span-3 order-1">
+                        <img class="w-40 h-40 object-cover rounded-full" onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}" src="${rq.loginedMember.profileImgUri}" alt="">
+                    </a>
 					<a href="#" class="order-8 sm:order-4 md:order-8 hover:underline">
 						<span class="con-bg">닉네임</span>
 						<span class="text-gray-600">${rq.loginedMember.nickname}</span>
@@ -53,16 +51,6 @@
 					</a>
 
 				</div>
-
-				<c:if test="${rq.admin}">
-					<a href="/mpaAdm" class="ｆｌｅｘ">
-						<span>
-							<i class="fas fa-award"></i>
-						</span>
-						<span class="hidden sm:block">&nbsp;관리자 페이지</span>
-					</a>
-
-				</c:if>
 
 				<div class="grid grid-item-float gap-3 mt-4 ml-10">
 					<a

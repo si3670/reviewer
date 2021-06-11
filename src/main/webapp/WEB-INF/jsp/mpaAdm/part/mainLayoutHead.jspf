@@ -7,8 +7,11 @@
 
 <header class="top-bar top-bar--fly relative">
 	<div class="container mx-auto flex h-full">
-		<a href="/" class="flex items-center img-box w-32 h-14">
+		<a href="/mpaAdm" class="flex items-center img-box w-32 h-14">
 			<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
+		</a>
+		<a href="/mpaAdm" class="h-full flex items-center hover:text-black">
+			<span class="hidden sm:block">&nbsp;관리자</span>
 		</a>
 
 		<div class="flex-grow"></div>
@@ -17,8 +20,7 @@
 			<ul class="flex h-full">
 				<c:if test="${rq.logined && rq.needToChangePassword}">
 					<li class="text-red-500">
-						<a href="../member/checkPassword?afterUri=..%2Fmember%2Fmodify"
-							class="h-full flex items-center px-5 hover:text-black">
+						<a href="/" class="h-full flex items-center px-5 hover:text-black">
 							<span>
 								<i class="fas fa-bullhorn"></i>
 							</span>
@@ -28,12 +30,21 @@
 
 				</c:if>
 
+
+				<li>
+					<a href="/mpaAdm" class="h-full flex items-center px-5 hover:text-black">
+						<span>
+							<i class="fas fa-award"></i>
+						</span>
+						<span class="hidden sm:block">&nbsp;ADMIN HOME</span>
+					</a>
+				</li>
 				<li>
 					<a href="/" class="h-full flex items-center px-5 hover:text-black">
 						<span>
 							<i class="fas fa-home"></i>
 						</span>
-						<span class="hidden sm:block">&nbsp;HOME</span>
+						<span class="hidden sm:block">&nbsp;SITE</span>
 					</a>
 				</li>
 
@@ -47,19 +58,19 @@
 					<div>
 						<ul>
 							<li>
-								<a href="../article/winelist?boardId=3"
+								<a href="../article/wineList?boardId=3"
 									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Dry</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=4"
+								<a href="../article/wineList?boardId=4"
 									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Sweet</span>
 								</a>
 							</li>
 							<li>
-								<a href="../article/winelist?boardId=5"
+								<a href="../article/wineList?boardId=5"
 									class="text-gray-500 hover:text-black">
 									<span>&nbsp;Sparkling</span>
 								</a>
@@ -97,7 +108,9 @@
 					<li>
 						<a href="#" class="h-full flex items-center px-5 hover:text-black">
 							<span>
-								<i class="fas fa-user"></i>
+								<img class="rounded-full w-6 h-6"
+									onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
+									src="${rq.loginedMember.profileImgUri}" alt="">
 							</span>
 							<span class="hidden md:block">&nbsp;${rq.getLoginedMemberNickname()}＇s
 							</span>

@@ -43,6 +43,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/mpaUsr/article/write")
 				.addPathPatterns("/mpaUsr/article/dowrite").addPathPatterns("/mpaUsr/article/doDelete")
 				.addPathPatterns("/mpaUsr/article/modify").addPathPatterns("/mpaUsr/article/doModify")
+				.addPathPatterns("/mpaUsr/article/wineModify").addPathPatterns("/mpaUsr/article/doWineModify")
 				.addPathPatterns("/mpaUsr/article/winewrite").addPathPatterns("/mpaUsr/article/doWineWrite")
 				.addPathPatterns("/mpaUsr/member/doMyPage").addPathPatterns("/mpaUsr/member/myPage")
 				.addPathPatterns("/mpaUsr/member/modify").addPathPatterns("/mpaUsr/member/doModify")

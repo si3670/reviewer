@@ -4,57 +4,125 @@
 <%@ page import="com.sbs.untact2.util.Util"%>
 
 <%@ include file="../part/mainLayoutHead.jspf"%>
+
 <c:set var="fileInputMaxCount" value="1" />
 
 <style>
+.img-size {
+	width: 300px;
+	height: 300px;
+}
 </style>
 
 <div class="section-article-detail">
-	<div class="container mx-auto">
-		<div class="mt-16 px-14 py-8">
-			<div>
-				<div class="title-box">
-					<span>No.${article.id}</span>
-					<div class="text-3xl my-4">${article.title}</div>
+	<div class="container mx-auto  px-40">
+		<div
+			class="mt-20 mb-10 card bordered shadow-lg item-bt-1-not-last-child">
+			<div class="card-title-2">
+				<a href="javascript:history.back();" class="cursor-pointer">
+					<i class="fas fa-chevron-left"></i>
+				</a>
+				<span>와인 정보</span>
+			</div>
 
-					<div class="flex">
-						<span class="text-gray-600 text-sm">${board.name}</span>
-						<span class="text-gray-600 ml-4 text-sm">작성날짜 :
-							${article.regDate}</span>
-						<span class="text-gray-600 ml-4 text-sm">수정날짜 :
-							${article.updateDate}</span>
-						<span class="text-gray-600  ml-4 text-sm">조회수 :
-							${article.hitCount}</span>
+			<div class="mt-14 ml-4 text-sm">
+				<span class="text-gray-600">작성자 : ${article.extra__writer}</span>
+				<div>
+					<span class="text-gray-600">작성날짜 : ${article.regDate}</span>
+
+					<span class="text-gray-600 ml-4">수정날짜 :
+						${article.updateDate}</span>
+
+					<span class="text-gray-600 ml-4">조회수 : ${article.hitCount}</span>
+
+					<span class="text-gray-600 ml-4">카테고리 : ${board.name}</span>
+				</div>
+				<c:if test="${rq.logined}">
+					<div class="text-blue-500">
+						<a href="../article/wineModify?id=${article.id}"
+							class="hover:underline">수정</a>
+						<a href="../article/doWineDelete?id=${article.id}"
+							class="hover:underline">삭제</a>
+					</div>
+				</c:if>
+			</div>
+			<hr class="mt-4" />
+
+
+			<div class="my-10 flex justify-center">
+				<div>
+					<div class="flex justify-center">
+						<div class="mt-3 flex justify-center img-size">
+							<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
+								<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
+								<c:set var="file"
+									value="${article.extra.file__common__attachment[fileNo]}" />
+					${file.mediaHtml}
+				</c:forEach>
+						</div>
 					</div>
 
-					<span class="text-gray-600 text-sm">작성자 :
-						${article.extra__writer}</span>
-					<c:if test="${rq.logined}">
-						<div class="text-blue-500 text-sm">
-							<a href="../article/modify?id=${article.id}"
-								class="hover:underline">수정</a>
-							<a href="../article/doDelete?id=${article.id}"
-								class="hover:underline">삭제</a>
-						</div>
-					</c:if>
+
+					<div class="mt-10 text-center text-3xl">
+						<span>&#10077;</span>
+						${article.title}
+						<span>&#10078;</span>
+					</div>
+					<div class="mt-4 text-center text-gray-600">${article.bodyForPrint}</div>
+				</div>
+			</div>
+
+
+			<hr class="" />
+			<div class="p-6 pb-2">
+				<i class="fas fa-wine-glass-alt text-red-600"></i>
+				<span class="ml-2">기본 정보</span>
+			</div>
+
+			<div class="flex">
+				<div class="px-6">
+					<p class="mr-6 mb-1">종&nbsp;&nbsp;&nbsp;류</p>
+
+					<p class="mr-6 mb-1">생산국</p>
+
+					<p class="mr-6 mb-1">생산지</p>
+
+					<p class="mr-6 mb-1">품&nbsp;&nbsp;&nbsp;종</p>
+
+					<p class="mr-6 mb-1">빈티지</p>
+
+					<p class="mr-6 mb-1">알코올</p>
+
+					<p class="mr-6 mb-1">용&nbsp;&nbsp;&nbsp;량</p>
+
+					<p class="mr-6">권장가</p>
+
 				</div>
 
 
+				<div>
+					<p class="text-gray-600 text-light mb-1">${article.wineKinds}</p>
 
+					<p class="text-gray-600 text-light mb-1">${article.wineCountry}</p>
+
+					<p class="text-gray-600 text-light mb-1">${article.winePlace}</p>
+
+					<p class="text-gray-600 text-light mb-1">${article.wineVariety}</p>
+
+					<p class="text-gray-600 text-light mb-1">${article.wineVintage}</p>
+
+					<p class="text-gray-600 text-light mb-1">${article.wineAlcohol}%</p>
+
+					<p class="text-gray-600 text-light mb-1">${article.wineML}ml</p>
+
+					<p class="text-gray-600 text-light">${article.winePrice}원</p>
+
+				</div>
 			</div>
 
-			<div class="img-size mt-10">
-				<c:forEach begin="1" end="${fileInputMaxCount}" var="inputNo">
-					<c:set var="fileNo" value="${String.valueOf(inputNo)}" />
-					<c:set var="file"
-						value="${article.extra.file__common__attachment[fileNo]}" />
-					${file.mediaHtml}
-				</c:forEach>
-			</div>
+			<hr class="mt-6" />
 
-			<div class="mt-6">
-				<div class="mt-3">${article.bodyForPrint}</div>
-			</div>
+
 
 
 			<!-- 댓글 수정 시작 -->
@@ -147,8 +215,16 @@
 
 
 
-			<div class="mt-20">
-				<div class="flex">
+
+
+
+
+
+
+
+
+			<div class="mt-4">
+				<div class="px-4 flex">
 					<h1 class="title-bar-type-2 mr-4">댓글</h1>
 					<p>${Util.numberFormat(replyTotalCount)}</p>
 				</div>
@@ -162,7 +238,7 @@
 				</c:if>
 
 				<c:if test="${rq.logined}">
-					<div class="py-2">
+					<div class="px-4 py-2">
 						<!-- 댓글 입력 시작 -->
 						<script>
 							let ReplyWrite__submitFormDone = false;
@@ -184,7 +260,8 @@
 								ReplyWrite__submitFormDone = true;
 							}
 						</script>
-						<form method="POST" action="../reply/doWrite"
+						<form method="POST" enctype="multipart/form-data"
+							action="../reply/doWrite"
 							class="relative flex py-4 text-gray-600 focus-within:text-gray-400"
 							onsubmit="ReplyWrite__submitForm(this); return false;">
 							<input type="hidden" name="relTypeCode" value="article" />
@@ -213,6 +290,7 @@
 
 
 				<!-- 댓글 리스트 -->
+				<!-- 댓글 리스트 -->
 				<style>
 .reply-list [data-id] {
 	transition: background-color 1s;
@@ -227,8 +305,7 @@
 				<script>
 					function ReplyList__goToReply(id) {
 						setTimeout(function() {
-							const $target = $('.reply-list [data-id="' + id
-									+ '"]');
+							const $target = $('.reply-list [data-id="' + id + '"]');
 							const targetOffset = $target.offset();
 							$(window).scrollTop(targetOffset.top - 50);
 							$target.addClass('focus');
@@ -260,10 +337,10 @@
 					}
 				</script>
 
-
 				<div class="reply-list">
 					<c:forEach items="${replies}" var="reply">
-						<div data-id="${reply.id}" class="flex py-5">
+						<div data-id="${reply.id}" class="flex py-5 px-4">
+							<script type="text/x-template" class="reply-body hidden">${reply.body}</script>
 							<!-- 아바타 이미지 -->
 							<div class="flex-shrink-0">
 								<img
@@ -291,7 +368,7 @@
 										<span>
 											<i class="fas fa-trash-alt"></i>
 										</span>
-										<span>글 삭제</span>
+										<span>삭제</span>
 									</a>
 								</c:if>
 								<c:if test="${reply.memberId == rq.loginedMemberId}">
@@ -308,8 +385,13 @@
 					</c:forEach>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 </div>
+
+
+
 
 <%@ include file="../part/mainLayoutFoot.jspf"%>

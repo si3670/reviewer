@@ -45,8 +45,7 @@
 	<select id="getForPrintArticles" resultType="Article">
 		SELECT A.*,
 		IFNULL(M.nickname, "탈퇴회원") AS extra__writer,
-		B.name AS
-		extra__boardName
+		B.name AS extra__boardName
 		FROM article AS A
 		LEFT JOIN `member` AS M
 		ON A.memberId

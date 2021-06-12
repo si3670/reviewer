@@ -1,5 +1,6 @@
 package com.sbs.untact2.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
@@ -31,6 +33,43 @@ public class MpaAdmMemberController {
 		return "mpaAdm/member/join";
 	}
 
+	// 회원 리스트
+	@RequestMapping("/mpaAdm/member/list")
+	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "1") int page, String searchKeyword,
+			@RequestParam(defaultValue = "nameAndAuthLevelName") String searchKeywordType) {
+		
+		if (searchKeywordType != null) {
+			searchKeywordType = searchKeywordType.trim();
+		}
+		if (searchKeywordType == null || searchKeywordType.length() == 0) {
+			searchKeywordType = "nameAndAuthLevelName";
+		}
+		if (searchKeyword != null && searchKeyword.length() == 0) {
+			searchKeyword = null;
+		}
+		if (searchKeyword != null) {
+			searchKeyword = searchKeyword.trim();
+		}
+		if (searchKeyword == null) {
+			searchKeywordType = null;
+		}
+		
+		int totalCount = memberService.getMembersTotalCount(searchKeyword, searchKeywordType);
+
+		req.setAttribute("totalCount", totalCount);
+
+		int itemsInAPage = 5;
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+
+		req.setAttribute("page", page);
+		req.setAttribute("totalPage", totalPage);
+
+		List<Member> members = memberService.getForPrintMembers(page, itemsInAPage, searchKeyword,
+				searchKeywordType);
+		req.setAttribute("members", members);
+		return "mpaAdm/member/list";
+	}
+
 	// MultipartRequest multipartRequest = 파일들 압축되어서 들어감
 	@RequestMapping("/mpaAdm/member/doJoin")
 	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
@@ -41,13 +80,14 @@ public class MpaAdmMemberController {
 		if (oldMember != null) {
 			return Util.msgAndBack(req, "이미 사용 중인 아이디입니다.");
 		}
-		
+
 		oldMember = memberService.getMemberByNameAndEmail(name, email);
 
-        if (oldMember != null) {
-            return Util.msgAndBack(req, String.format("%s님은 이미 %s 메일주소로 %s 에 가입하셨습니다.", name, email, oldMember.getRegDate()));
-        }
-		
+		if (oldMember != null) {
+			return Util.msgAndBack(req,
+					String.format("%s님은 이미 %s 메일주소로 %s 에 가입하셨습니다.", name, email, oldMember.getRegDate()));
+		}
+
 		ResultData addMemberRd = memberService.addMember(loginId, loginPw, name, nickname, cellphoneNo, email);
 
 		if (addMemberRd.isFail()) {
@@ -105,11 +145,11 @@ public class MpaAdmMemberController {
 		if (member.getLoginPw().equals(loginPw) == false) {
 			return Util.msgAndBack(req, "loginPw을 확인해주세요.");
 		}
-		
-		if(memberService.isAdmin(member) == false) {
+
+		if (memberService.isAdmin(member) == false) {
 			return Util.msgAndBack(req, "관리자 회원으로 로그인 해주세요.");
 		}
-			
+
 		session.setAttribute("loginedMemberId", member.getId());
 		session.setAttribute("loginedMemberJsonStr", member.toJsonStr());
 
@@ -188,11 +228,11 @@ public class MpaAdmMemberController {
 	public String showMyPage() {
 		return "mpaAdm/member/myPage";
 	}
-	
+
 	@RequestMapping("/mpaAdm/member/doDelete")
 	public String doDelete(String loginId, HttpServletRequest req) {
 		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
-	
+
 		ResultData rd = memberService.deleteMemberByLoginId(loginId);
 
 		if (rd.isFail()) {
@@ -216,7 +256,6 @@ public class MpaAdmMemberController {
 
 		return "mpaAdm/member/modify";
 	}
-
 
 	@RequestMapping("/mpaAdm/member/doModify")
 	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNo,
@@ -254,8 +293,8 @@ public class MpaAdmMemberController {
 				genFileService.save(multipartFile, loginedMember.getId());
 			}
 		}
-		
-		if ( loginPw != null ) {
+
+		if (loginPw != null) {
 			req.getSession().removeAttribute("needToChangePassword");
 		}
 

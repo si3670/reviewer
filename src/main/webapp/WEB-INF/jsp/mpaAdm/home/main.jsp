@@ -21,7 +21,6 @@
 .slick-top {
 	overflow: hidden;
 }
-
 </style>
 
 <script>
@@ -56,6 +55,17 @@
 
 
 <div class="slick-top">
+	<div class="item relative">
+			<img src="http://localhost:8044/resource/imgs/admin_visual.jpg"
+				alt="슬라이드이미지">
+			<div class="text absolute">
+				<h1 class="text-3xl font-light">
+					Cellar
+					<span class="font-semibold">관리자</span>
+					페이지입니다.
+				</h1>
+		</div>
+	</div>
 	<div class="item relative">
 		<img src="http://localhost:8044/resource/imgs/visual2.jpg"
 			alt="슬라이드이미지">

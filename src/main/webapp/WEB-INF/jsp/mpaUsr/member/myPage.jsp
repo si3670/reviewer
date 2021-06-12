@@ -35,8 +35,15 @@
 					<a href="#" class="cursor-pointer order-3 hover:underline">
 						<span class="con-bg">회원타입</span>
 						<span>${rq.loginedMember.authLevelName}</span>
-					</a>
 
+					</a>
+					<c:if test="${rq.admin}">
+						<a href="/mpaAdm" class="cursor-pointer order-3 hover:underline">
+							<span class="con-bg">관리자</span>
+							<span>관리자 페이지로 이동</span>
+
+						</a>
+					</c:if>
 					<a href="#" class="order-4 hover:underline">
 						<span class="con-bg">등록날짜</span>
 						<span class="text-gray-600 text-light">${rq.loginedMember.regDate}</span>
@@ -53,16 +60,6 @@
 					</a>
 
 				</div>
-
-				<c:if test="${rq.admin}">
-					<a href="/mpaAdm" class="ｆｌｅｘ">
-						<span>
-							<i class="fas fa-award"></i>
-						</span>
-						<span class="hidden sm:block">&nbsp;관리자 페이지</span>
-					</a>
-
-				</c:if>
 
 				<div class="grid grid-item-float gap-3 mt-4 ml-10">
 					<a

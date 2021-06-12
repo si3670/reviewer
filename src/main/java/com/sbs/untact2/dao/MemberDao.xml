@@ -13,6 +13,27 @@
 		AND M.delStatus = 0
 	</select>
 
+	<select id="getForPrintMembers" resultType="Member">
+		SELECT *
+		FROM member
+		AS M
+		WHERE 1
+		<if test="searchKeywordType == 'name'">
+			AND M.name LIKE CONCAT('%', #{searchKeyword} ,'%')
+		</if>
+		<if test="searchKeywordType == 'authLevelName'">
+			AND M.authLevelName LIKE CONCAT('%', #{searchKeyword} ,'%')
+		</if>
+		<if test="searchKeywordType == 'nameAndAuthLevelName'">
+			AND (M.name LIKE CONCAT('%', #{searchKeyword} ,'%') OR
+			M.authLevelName LIKE
+			CONCAT('%', #{searchKeyword} ,'%'))
+		</if>
+		AND M.delStatus = 0
+		ORDER BY M.id DESC
+		LIMIT #{limitStart}, #{limitTake}
+	</select>
+
 	<!-- 아이디 찾기 -->
 	<select id="getMemberByNameAndEmail" resultType="Member">
 		SELECT *
@@ -34,11 +55,6 @@
 		email = #{email},
 		cellphoneNo = #{cellphoneNo}
 	</insert>
-
-
-
-
-
 
 	<select id="getMemberById" resultType="Member">
 		SELECT *
@@ -81,5 +97,24 @@
 		WHERE
 		loginId = #{loginId}
 	</update>
+
+	<select id="getMembersTotalCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM member AS M
+		WHERE 1
+		<if test="searchKeywordType == 'name'">
+			AND M.name LIKE CONCAT('%', #{searchKeyword} ,'%')
+		</if>
+		<if test="searchKeywordType == 'authLevelName'">
+			AND M.authLevelName LIKE CONCAT('%', #{searchKeyword} ,'%')
+		</if>
+		<if test="searchKeywordType == 'nameAndAuthLevelName'">
+			AND (M.name LIKE CONCAT('%', #{searchKeyword} ,'%') OR
+			M.authLevelName LIKE
+			CONCAT('%', #{searchKeyword} ,'%'))
+		</if>
+		AND M.delStatus = 0
+	</select>
+
 
 </mapper>  

@@ -1,5 +1,6 @@
 package com.sbs.untact2.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -25,6 +26,13 @@ public interface MemberDao {
 			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
 	void deleteMemberByLoginId(@Param("loginId") String loginId);
+
+	List<Member> getForPrintMembers(@Param("limitStart") int limitStart,
+			@Param("limitTake") int limitTake, @Param("searchKeyword") String searchKeyword,
+			@Param("searchKeywordType") String searchKeywordType);
+
+	int getMembersTotalCount(@Param("searchKeyword") String searchKeyword,
+			@Param("searchKeywordType") String searchKeywordType);
 
 
 }

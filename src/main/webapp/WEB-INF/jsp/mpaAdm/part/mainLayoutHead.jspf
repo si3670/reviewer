@@ -4,18 +4,12 @@
 
 <%@ include file="head.jspf"%>
 
-
 <header class="top-bar top-bar--fly relative">
 	<div class="container mx-auto flex h-full">
 		<a href="/mpaAdm" class="flex items-center img-box w-32 h-14">
 			<img src="http://localhost:8044/resource/imgs/cellar.png" alt="" />
 		</a>
-		<a href="/mpaAdm" class="h-full flex items-center hover:text-black">
-			<span class="hidden sm:block">&nbsp;관리자</span>
-		</a>
-
 		<div class="flex-grow"></div>
-
 		<nav class="menu-box-1">
 			<ul class="flex h-full">
 				<c:if test="${rq.logined && rq.needToChangePassword}">
@@ -27,10 +21,7 @@
 							<span class="hidden sm:block">&nbsp;changePassword</span>
 						</a>
 					</li>
-
 				</c:if>
-
-
 				<li>
 					<a href="/mpaAdm" class="h-full flex items-center px-5 hover:text-black">
 						<span>
@@ -104,6 +95,16 @@
 						</ul>
 					</div>
 				</li>
+				<li>
+					<a href="../member/list" class="h-full flex items-center px-5 hover:text-black">
+						<span>
+							<i class="far fa-address-book"></i>
+						</span>
+						<span class="hidden sm:block">&nbsp;Members</span>
+					</a>
+				</li>
+				
+				
 				<c:if test="${rq.isLogined()}">
 					<li>
 						<a href="#" class="h-full flex items-center px-5 hover:text-black">

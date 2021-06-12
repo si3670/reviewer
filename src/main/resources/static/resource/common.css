@@ -385,7 +385,7 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 
 /* 회원가입 끝 */
 
-/* 리스트 시작 */
+/* article 리스트 시작 */
 .li_board ul li{
     padding-top: 12px;
     padding-bottom: 12px;
@@ -409,7 +409,22 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 	text-align: center;
 }	
 
-/* 리스트 끝 */
+/* article 리스트 끝 */
+
+/* member 리스트 시작 */
+.li_board_member ul li{
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+}
+.li_board_member ul li a{
+	display: inline-block;
+	padding: 8px 0;
+}
+/* member 리스트 시작 */
 
 .title-box{
 	padding-top: 12px;

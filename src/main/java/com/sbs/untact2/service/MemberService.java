@@ -1,5 +1,6 @@
 package com.sbs.untact2.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbs.untact2.dao.MemberDao;
-import com.sbs.untact2.dto.Article;
 import com.sbs.untact2.dto.Member;
 import com.sbs.untact2.dto.ResultData;
 import com.sbs.untact2.util.Util;
@@ -197,6 +197,17 @@ public class MemberService {
 			return true;
 		}
 		return false;
+	}
+
+	public List<Member> getForPrintMembers( int page, int itemsInAPage, String searchKeyword,
+			String searchKeywordType) {
+		int limitStart = (page - 1) * itemsInAPage;
+		int limitTake = itemsInAPage;
+		return memberDao.getForPrintMembers(limitStart, limitTake, searchKeyword, searchKeywordType);
+	}
+
+	public int getMembersTotalCount(String searchKeyword, String searchKeywordType) {
+		return memberDao.getMembersTotalCount(searchKeyword, searchKeywordType);
 	}
 
 }

@@ -10,18 +10,16 @@
 		if (ArticleWrite__submitFormDone) {
 			return;
 		}
-
+		
 		form.title.value = form.title.value.trim();
-
 		if (form.title.value.length == 0) {
 			alert('이름 입력해주세요');
 			form.title.focus();
 
 			return;
 		}
-
+		
 		form.body.value = form.body.value.trim();
-
 		if (form.body.value.length == 0) {
 			alert('내용을 입력해주세요');
 			form.body.focus();
@@ -30,7 +28,6 @@
 		}
 
 		form.wineKinds.value = form.wineKinds.value.trim();
-
 		if (form.wineKinds.value.length == 0) {
 			alert('종류를 입력해주세요');
 			form.wineKinds.focus();
@@ -39,25 +36,22 @@
 		}
 
 		form.wineCountry.value = form.wineCountry.value.trim();
-
 		if (form.wineCountry.value.length == 0) {
 			alert('생산국 입력해주세요');
 			form.wineCountry.focus();
 
 			return;
 		}
-
+		
 		form.winePlace.value = form.winePlace.value.trim();
-
 		if (form.winePlace.value.length == 0) {
 			alert('생산지 입력해주세요');
 			form.winePlace.focus();
 
 			return;
 		}
-
+		
 		form.wineVintage.value = form.wineVintage.value.trim();
-
 		if (form.wineVintage.value.length == 0) {
 			alert('빈티지 입력해주세요');
 			form.wineVintage.focus();
@@ -66,7 +60,6 @@
 		}
 
 		form.wineVariety.value = form.wineVariety.value.trim();
-
 		if (form.wineVariety.value.length == 0) {
 			alert('품종 입력해주세요');
 			form.wineVariety.focus();
@@ -75,15 +68,14 @@
 		}
 
 		form.wineAlcohol.value = form.wineAlcohol.value.trim();
-
 		if (form.wineAlcohol.value.length == 0) {
 			alert('알코올 입력해주세요');
 			form.wineAlcohol.focus();
 
 			return;
 		}
+		
 		form.wineML.value = form.wineML.value.trim();
-
 		if (form.wineML.value.length == 0) {
 			alert('용량 입력해주세요');
 			form.wineML.focus();
@@ -92,7 +84,6 @@
 		}
 
 		form.winePrice.value = form.winePrice.value.trim();
-
 		if (form.winePrice.value.length == 0) {
 			alert('권장가 입력해주세요');
 			form.winePrice.focus();
@@ -137,11 +128,6 @@
 							placeholder="내용을 입력해주세요."></textarea>
 					</div>
 				</div>
-
-
-
-
-
 				<div class="form-row flex flex-col lg:flex-row mt-2">
 					<div class="lg:flex lg:items-center lg:w-28">
 						<span>종류</span>
@@ -222,10 +208,6 @@
 							placeholder="권장가를 입력해주세요. ex) 10,000" />
 					</div>
 				</div>
-
-
-
-
 				<div class="form-row flex justify-end flex-col lg:flex-row mt-6">
 						<div class="btns">
 							<input type="submit"

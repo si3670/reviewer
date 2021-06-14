@@ -28,16 +28,7 @@ public class ArticleService {
 		return articleDao.getArticleById(id);
 	}
 
-	public ResultData deleteArticleById(int id) {
-		Article article = getArticleById(id);
 
-		if (isEmpty(article)) {
-			return new ResultData("F-1", "존재하지 않는 게시물입니다.", "id", id);
-		}
-
-		articleDao.deleteArticleById(id);
-		return new ResultData("S-1", "게시물이 삭제되었습니다.", "id", id, "boardId", article.getBoardId());
-	}
 
 	public ResultData modifyArticle(int id, String title, String body) {
 		Article article = getArticleById(id);
@@ -86,30 +77,38 @@ public class ArticleService {
 		return articleDao.getArticleForPrintById(id);
 	}
 
-	// 와인 게시물 시작
-
+	// 와인 게시물 글 작성
 	public ResultData writeWine(int memberId, int boardId, String title, String body, String wineKinds,
 			String wineCountry, String winePlace, int wineVintage, String wineVariety, String wineAlcohol,
 			String wineML, String winePrice) {
-
+		
 		articleDao.writeWine(memberId, boardId, title, body, wineKinds, wineCountry, winePlace, wineVintage,
 				wineVariety, wineAlcohol, wineML, winePrice);
 		int id = articleDao.getLastInsertId();
 		return new ResultData("S-1", "게시물이 작성되었습니다.", "id", id);
 	}
-
+	// 와인 게시물 글 수정
 	public ResultData wineModify(int id, String title, String body, String wineKinds, String wineCountry,
 			String winePlace, int wineVintage, String wineVariety, String wineAlcohol, String wineML,
 			String winePrice) {
+		Article article = getArticleById(id);
+		
+		if (isEmpty(article)) {
+			return new ResultData("F-1", "존재하지 않는 게시물입니다.", "id", id);
+		}
+		articleDao.wineModify(id, title, body, wineKinds, wineCountry, winePlace, wineVintage, wineVariety,
+				wineAlcohol, wineML, winePrice);
+		return new ResultData("P-1", "게시물을 수정하였습니다.", "article", article);
+	}
+	// 게시물 글 삭제
+	public ResultData deleteArticleById(int id) {
 		Article article = getArticleById(id);
 
 		if (isEmpty(article)) {
 			return new ResultData("F-1", "존재하지 않는 게시물입니다.", "id", id);
 		}
-
-		articleDao.wineModify(id, title, body, wineKinds, wineCountry, winePlace, wineVintage, wineVariety,
-				wineAlcohol, wineML, winePrice);
-		return new ResultData("P-1", "게시물을 수정하였습니다.", "article", article);
+		articleDao.deleteArticleById(id);
+		return new ResultData("S-1", "게시물이 삭제되었습니다.", "id", id, "boardId", article.getBoardId());
 	}
 
 }

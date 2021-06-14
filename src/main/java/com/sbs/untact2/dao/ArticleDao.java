@@ -21,7 +21,6 @@ public interface ArticleDao {
 
 	int getLastInsertId();
 
-	void deleteArticleById(@Param("id") int id);
 
 	Board getBoardById(@Param("id") int id);
 
@@ -47,5 +46,7 @@ public interface ArticleDao {
 			@Param("winePlace") String winePlace, @Param("wineVintage") int wineVintage,
 			@Param("wineVariety") String wineVariety, @Param("wineAlcohol") String wineAlcohol,
 			@Param("wineML") String wineML, @Param("winePrice") String winePrice);
+	
+	void deleteArticleById(@Param("id") int id);
 
 }

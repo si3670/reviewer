@@ -334,12 +334,15 @@ WHERE relTypeCode = "article"
 AND relId = 5
 AND delStatus = 0;
 
-SELECT * FROM `member`;
-
 SELECT SHA2('user2', 256);
 
 SELECT * FROM attr;
 
 UPDATE `insta`.`member` SET `loginPw` = '0a041b9462caa4a31bac3567e0b6e6fd9100787db2ab433d96f6d178cabfce90' WHERE `id` = '1'; 
 
-SELECT * FROM genFile;
+SELECT * FROM `member`;
+
+SELECT * FROM article;
+
+SELECT * FROM `member` AS M 
+WHERE M.authLevelName = '관리자';

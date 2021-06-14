@@ -23,6 +23,15 @@
 		AND A.delStatus = 0
 	</select>
 
+	<!-- Board 시작 -->
+	<select id="getBoardById" resultType="Board">
+		SELECT *
+		FROM board AS B
+		WHERE B.id = #{id}
+		AND B.delStatus = 0
+	</select>
+	<!-- Board 끝 -->
+
 	<select id="getArticlesTotalCount" resultType="int">
 		SELECT COUNT(*) AS cnt
 		FROM article AS A
@@ -41,11 +50,11 @@
 		AND A.delStatus = 0
 	</select>
 
-
 	<select id="getForPrintArticles" resultType="Article">
 		SELECT A.*,
 		IFNULL(M.nickname, "탈퇴회원") AS extra__writer,
-		B.name AS extra__boardName
+		B.name AS
+		extra__boardName
 		FROM article AS A
 		LEFT JOIN `member` AS M
 		ON A.memberId
@@ -138,7 +147,6 @@
 		WHERE id = #{id}
 	</update>
 
-
 	<update id="deleteArticleById">
 		UPDATE article
 		SET delStatus = 1,
@@ -155,15 +163,7 @@
 	</update>
 
 
-	<!-- Board 시작 -->
-	<select id="getBoardById" resultType="Board">
-		SELECT *
-		FROM board AS B
-		WHERE B.id = #{id}
-		AND B.delStatus = 0
-	</select>
 
-	<!-- Board 끝 -->
 
 
 </mapper>  

@@ -28,8 +28,9 @@ wineML CHAR(100) DEFAULT "" NOT NULL COMMENT '와인용량',
 winePrice CHAR(100) DEFAULT "" NOT NULL COMMENT '와인권장가'
 );
 SELECT * FROM article;
+
 #테스트 게시판
-#1번 회원이 1번 게시판에 글 작성
+#1번 회원이 공지사항에 글 작성
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
@@ -46,16 +47,6 @@ memberId = 1,
 title = "셀러 소믈리에 멘토를 만나보세요!",
 `body` = "베테랑 전문가 분들과 와인 리뷰와 전문적인 지식을 여러분과 공유합니다.";
 
-#1번 회원이 2번 게시판에 글 작성
-INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
-boardId = 2,
-memberId = 1,
-title = "와인 추천해주세요!",
-`body` = "모스카토 다스티 종류 와인 추천해주세요 :D";
-
-#2번 회원이 1번 게시판에 글 작성
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
@@ -64,7 +55,17 @@ memberId = 2,
 title = "답변 이벤트 안내 및 활동 주의사항",
 `body` = "좋은 답변을 응원합니다!";
 
+#1번 회원이 자유게시판에 글 작성
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 2,
+memberId = 1,
+title = "와인 추천해주세요!",
+`body` = "모스카토 다스티 종류 와인 추천해주세요 :D";
+
 #wine게시글
+#DryWine
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
@@ -105,6 +106,109 @@ winePrice ="30,000";
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Arzuaga Pago Florentino",
+`body` = "~~",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Carmel Road Monterey Pinot Noir",
+`body` = "~~",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Joseph Phelps Insignia",
+`body` = "~~",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Opus One Opus One",
+`body` = "~~",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "Alta Vista Alto",
+`body` = "~~",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 3,
+memberId = 1,
+title = "The hilt Pinot Noir",
+`body` = "~~",
+wineKinds = "red",
+wineCountry ="Spain",
+winePlace ="La Mancha",
+wineVintage =2018,
+wineVariety ="garnacha 70%,
+Monastrell 30%",
+wineAlcohol = "14%",
+wineML ="750.0ml",
+winePrice ="30,000";
+
+#SweetWine
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
 boardId = 4,
 memberId = 1,
 title = "petrus pomerol",
@@ -118,6 +222,7 @@ wineAlcohol = "13.5%",
 wineML ="750.0ml",
 winePrice = "4,300,000";
 
+#SparklingWine
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
@@ -338,11 +443,14 @@ SELECT SHA2('user2', 256);
 
 SELECT * FROM attr;
 
-UPDATE `insta`.`member` SET `loginPw` = '0a041b9462caa4a31bac3567e0b6e6fd9100787db2ab433d96f6d178cabfce90' WHERE `id` = '1'; 
+INSERT  INTO `genFile`(`id`,`regDate`,`updateDate`,`delDate`,`delStatus`,`relTypeCode`,`relId`,`originFileName`,`fileExt`,`typeCode`,`type2Code`,`fileSize`,`fileExtTypeCode`,`fileExtType2Code`,`fileNo`,`fileDir`) VALUES 
+(8,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',12,'The Hilt Pinot Noir dry8.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(7,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',11,'Alta Vista Alto dry7.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(6,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',10,'Opus One Opus One dry6.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(5,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',9,'Joseph Phelps Insignia dry5.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(4,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',8,'Carmel Road Monterey Pinot Noir dry4.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(3,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',7,'Arzuaga Pago Florentino dry3.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(2,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',6,'Atalaya Laya dry2.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06'),
+(1,'2021-06-22 19:34:29','2021-06-22 19:34:29',NULL,0,'article',5,'Petrus Pomerl dry1.jpg','jpg','common','attachment',33919,'img','jpg',1,'2021_06');
 
-SELECT * FROM `member`;
-
-SELECT * FROM article;
-
-SELECT * FROM `member` AS M 
-WHERE M.authLevelName = '관리자';
+SELECT * FROM `genFile`;

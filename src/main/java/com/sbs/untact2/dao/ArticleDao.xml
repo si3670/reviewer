@@ -12,6 +12,13 @@
 		AND A.delStatus = 0
 	</select>
 
+	<update id="increaseArticleHit">
+		UPDATE article
+		SET hitCount = hitCount + 1
+		WHERE id =
+		#{id}
+	</update>
+	
 	<select id="getArticleForPrintById" resultType="Article">
 		SELECT A.*,
 		IFNULL(M.name, "삭제된_회원") AS extra__writer
@@ -155,12 +162,7 @@
 		id = #{id}
 	</update>
 
-	<update id="increaseArticleHit">
-		UPDATE article
-		SET hitCount = hitCount + 1
-		WHERE id =
-		#{id}
-	</update>
+
 
 
 

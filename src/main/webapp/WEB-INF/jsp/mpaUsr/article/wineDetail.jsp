@@ -14,7 +14,7 @@
 }
 </style>
 
-<div class="section-article-detail">
+<div class="section-wine-detail">
 	<div class="container mx-auto  px-40">
 		<div
 			class="mt-20 mb-10 card bordered shadow-lg item-bt-1-not-last-child">
@@ -347,7 +347,7 @@
 									class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer"
 									alt=""
 									onerror="${article.writerProfileFallbackImgOnErrorHtmlAttr}"
-									src="${article.writerProfileImgUri}">
+									src="${reply.writerProfileImgUri}">
 							</div>
 
 							<div class="flex-grow px-1">

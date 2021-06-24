@@ -131,6 +131,7 @@ public class MpaUsrMemberController {
 	@RequestMapping("/mpaUsr/member/doLogout")
 	public String doLogout(HttpServletRequest req, HttpSession session) {
 		session.removeAttribute("loginedMemberId");
+		session.removeAttribute("loginedMemberJsonStr");
 		session.removeAttribute("needToChangePassword");
 
 		return Util.msgAndReplace(req, "로그아웃 되었습니다.", "/");
@@ -185,18 +186,20 @@ public class MpaUsrMemberController {
 		return "mpaUsr/member/myPage";
 	}
 	
-	@RequestMapping("/mpaUsr/member/doDelete")
-	public String doDelete(String loginId, HttpServletRequest req) {
-		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
 	
-		ResultData rd = memberService.deleteMemberByLoginId(loginId);
+	//회원탈퇴
+	@RequestMapping("/mpaUsr/member/doDelete")
+	public String doDelete(HttpServletRequest req, HttpSession session) {
+		int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
 
-		if (rd.isFail()) {
-			return Util.msgAndBack(req, rd.getMsg());
-		}
-		String replaceUri = "/";
-		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
+		memberService.deleteMember(id);
+		
+		session.removeAttribute("loginedMemberId");
+		
+		return Util.msgAndReplace(req, "탈퇴되었습니다.", "/");
+		
 	}
+	
 
 	// checkPasswordAuthCode : 체크비밀번호인증코드
 	@RequestMapping("/mpaUsr/member/modify")
@@ -230,6 +233,7 @@ public class MpaUsrMemberController {
 			loginPw = null;
 		}
 
+
 		int id = ((Rq) req.getAttribute("rq")).getLoginedMemberId();
 		ResultData modifyrRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
@@ -254,6 +258,7 @@ public class MpaUsrMemberController {
 		if ( loginPw != null ) {
 			req.getSession().removeAttribute("needToChangePassword");
 		}
+
 
 		return Util.msgAndReplace(req, modifyrRd.getMsg(), "/");
 	}

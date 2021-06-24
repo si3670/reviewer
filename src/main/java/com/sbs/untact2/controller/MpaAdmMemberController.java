@@ -66,6 +66,7 @@ public class MpaAdmMemberController {
 
 		List<Member> members = memberService.getForPrintMembers(page, itemsInAPage, searchKeyword,
 				searchKeywordType);
+
 		req.setAttribute("members", members);
 		return "mpaAdm/member/list";
 	}
@@ -229,18 +230,6 @@ public class MpaAdmMemberController {
 		return "mpaAdm/member/myPage";
 	}
 
-	@RequestMapping("/mpaAdm/member/doDelete")
-	public String doDelete(String loginId, HttpServletRequest req) {
-		Member loginedMember = ((Rq) req.getAttribute("rq")).getLoginedMember();
-
-		ResultData rd = memberService.deleteMemberByLoginId(loginId);
-
-		if (rd.isFail()) {
-			return Util.msgAndBack(req, rd.getMsg());
-		}
-		String replaceUri = "/";
-		return Util.msgAndReplace(req, rd.getMsg(), replaceUri);
-	}
 
 	// checkPasswordAuthCode : 체크비밀번호인증코드
 	@RequestMapping("/mpaAdm/member/modify")

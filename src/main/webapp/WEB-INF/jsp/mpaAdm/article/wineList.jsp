@@ -24,7 +24,7 @@
 </style>
 
 
-<div class="section section-article-list">
+<div class="section section-wine-list">
 	<div class="container mx-auto px-20">
 		<div class="mt-20 mb-4">
 			<div class="mx-auto container page-title">${pageTitle}</div>

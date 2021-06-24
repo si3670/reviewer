@@ -32,5 +32,9 @@ public class Reply {
 
 		return bodyForPrint;
 	}
+	
+	public String getWriterProfileImgUri() {
+        return "/common/genFile/file/member/" + memberId + "/extra/profileImg/1";
+    }
 
 }

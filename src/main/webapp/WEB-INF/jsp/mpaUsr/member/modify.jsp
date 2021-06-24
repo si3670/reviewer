@@ -92,13 +92,15 @@
 				<input type="hidden" name="checkPasswordAuthCode"
 					value="${param.checkPasswordAuthCode}">
 				<input type="hidden" name="loginPw">
+
 				<div class="form-control flex items-center my-6">
 					<img class="w-40 h-40 mb-2 object-cover rounded-full"
 						onerror="${rq.loginedMember.removeProfileImgIfNotExistsOnErrorHtmlAttr}"
 						src="${rq.loginedMember.profileImgUri}" alt="">
 					<div class="filebox">
 						<label for="ex_file">프로필사진 선택</label>
-						<input accept="image/gif, image/jpeg, image/png" type="file" id="ex_file" name="file__member__0__extra__profileImg__1" >
+						<input accept="image/gif, image/jpeg, image/png" type="file"
+							id="ex_file" name="file__member__0__extra__profileImg__1">
 					</div>
 					<div>
 						<label class="cursor-pointer label inline-flex">
@@ -157,6 +159,8 @@
 						&nbsp;
 						<span>수정</span>
 					</button>
+
+
 					<a href="../member/myPage"
 						class="btn-sm text-red-600 hover:underline">
 						<span>
@@ -165,6 +169,18 @@
 						&nbsp;
 						<span class="">마이페이지</span>
 					</a>
+
+					<div class="flex-grow"></div>
+
+					<a onclick="if ( confirm('정말 탈퇴하시겠습니까?\n\n절대 되돌릴 수 없습니다.') == false ) return false;" href="../member/doDelete?id=${member.id}"
+						class="bg-red-600 hover:bg-gray-600 text-white btn-sm">
+						<span>
+							<i class="fas fa-user-minus"></i>
+						</span>
+						&nbsp;
+						<span class="">탈퇴</span>
+					</a>
+
 				</div>
 			</form>
 		</div>

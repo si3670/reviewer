@@ -18,17 +18,7 @@
 	background-color: white;
 }
 
-.slick-top {
-	overflow: hidden;
-}
 
-
-
-.item>img {
-	width: 100%;
-	display: block;
-	margin: 0 auto;
-}
 
 
 </style>
@@ -56,7 +46,7 @@
 	$(function() {
 		$('.slick-top').slick({
 			autoplay : true,
-			autoplaySpeed : 6000,
+			autoplaySpeed : 5000,
 			dots : true,
 		});
 	});
@@ -102,12 +92,12 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
 </div>
+
+
+
+<h1>dddd</h1>
+		
+
 
 <%@ include file="../part/mainLayoutFoot.jspf"%>

@@ -109,6 +109,7 @@ public class MemberService {
 		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
 	
+	//회원 수정
 	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {
 		memberDao.modify(id, loginPw, name, nickname, cellphoneNo, email);
 
@@ -178,16 +179,6 @@ public class MemberService {
 		return actor.getAuthLevel() == 7;
 	}
 
-	public ResultData deleteMemberByLoginId(String loginId) {
-		Member member = getMemberByLoginId(loginId);
-
-		if (isEmpty(member)) {
-			return new ResultData("F-1", "존재하지 않는 회원입니다.", "loginId", loginId);
-		}
-
-		memberDao.deleteMemberByLoginId(loginId);
-		return new ResultData("S-1", "탈퇴되었습니다.", "loginId", loginId);
-	}
 
 	// member이 null, delstatus가 1인 경우 수정,삭제됨
 	private boolean isEmpty(Member member) {
@@ -209,5 +200,10 @@ public class MemberService {
 	public int getMembersTotalCount(String searchKeyword, String searchKeywordType) {
 		return memberDao.getMembersTotalCount(searchKeyword, searchKeywordType);
 	}
+
+	public void deleteMember(int id) {
+		memberDao.deleteMember(id);
+	}
+
 
 }

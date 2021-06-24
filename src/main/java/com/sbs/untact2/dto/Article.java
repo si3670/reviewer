@@ -42,10 +42,6 @@ public class Article {
 	private String extra__boardName;
 	private String extra__thumbImg;
 	
-	public String getWriterThumbImgUrl() {
-		return "/common/genFile/file/member/" + memberId + "/common/attachment/1";
-	}
-	
 	public String getBodyForPrint() {
         String bodyForPrint = body.replaceAll("\r\n", "<br>");
         bodyForPrint = bodyForPrint.replaceAll("\r", "<br>");

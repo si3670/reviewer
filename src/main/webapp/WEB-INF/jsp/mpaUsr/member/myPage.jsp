@@ -61,13 +61,13 @@
 
 				</div>
 
-				<div class="grid grid-item-float gap-3 mt-4 ml-10">
+				<div class="grid grid-item-float gap-3 mt-4 ml-4">
 					<a
 						href="../member/checkPassword?afterUri=${Util.getUriEncoded('../member/modify')}"
 						class="text-red-700 hover:underline">
 						<span>
 							<i class="fas fa-edit"></i>
-							<span>수정</span>
+							<span>회원정보 수정</span>
 						</span>
 					</a>
 				</div>

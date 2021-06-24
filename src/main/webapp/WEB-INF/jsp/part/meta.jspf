@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 <title>Cellar</title>
 <!-- 모바일에서 사이트가 PC에서의 픽셀크기 기준으로 작동하게 하기(반응형 하려면 필요) -->
@@ -14,17 +14,14 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
+<!-- swiper 불러오기 -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
 <!-- 제이쿼리 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<!-- slick 불러오기 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 
 <link rel="stylesheet" href="/resource/common.css" />
 <script src="/resource/common.js" defer></script>

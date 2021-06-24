@@ -38,7 +38,7 @@
 
 					</a>
 					<c:if test="${rq.admin}">
-						<a href="/mpaAdm" class="cursor-pointer order-3 hover:underline">
+						<a href="/mpaAdm" class="cursor-pointer text-red-500 order-3 hover:underline">
 							<span class="con-bg">관리자</span>
 							<span>관리자 페이지로 이동</span>
 

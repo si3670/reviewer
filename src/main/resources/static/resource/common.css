@@ -306,54 +306,42 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 /* 탑바 끝 */ 
 
 /* 비주얼 시작 */
-.item>.text {
+.swiper-slide>.text-visual-1 {
+	position:absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	text-align: center;
 }
-.item>.text-visual-2{
+.swiper-slide>.text-visual-2{
+	position:absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	background-color: white;
 	text-align: center;
-	padding: 10px 40px;
+	padding: 30px 60px;
 }
-.item>.text-visual-2>h1{
+.swiper-slide>.text-visual-2>h1{
 		font-size: 40px;
 }
 
-.item>.text>.wine-review {
+.swiper-slide>.text-visual-1>.wine-review {
 	font-family: 'HSBombaram3_Thin';
 	font-size: 47px;
 }
 
-.item>.text-visual-3{
+.swiper-slide>.text-visual-3{
+	position:absolute;
 	top: 50%;
 	right: 7%;
 	transform: translate(-50%,-7%);
 	text-align: right;
 }
-.item>.text-visual-3>h1{
+.swiper-slide>.text-visual-3>h1{
 		font-size: 55px;
 }
-.slick-list{
-	position: relative;
-}
-.slick-dots{
-	position: absolute;
-	bottom: 20px;
-} 
-.slick-dotted.slick-slider
-{
-    margin-bottom: 0px;
-}
-.img-box-content>img {
-	display: block;
-	width: 230px;
-	height: 230px;
-}
+
 .content-h1-1{
 	font-family: 'HSBombaram3_Thin';
 	text-align: center;

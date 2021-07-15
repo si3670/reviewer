@@ -189,17 +189,18 @@ public class MemberService {
 		}
 		return false;
 	}
-
-	public List<Member> getForPrintMembers( int page, int itemsInAPage, String searchKeyword,
-			String searchKeywordType) {
+	
+	public int getMembersTotalCount() {
+		return memberDao.getMembersTotalCount();
+	}
+	
+	public List<Member> getForPrintMembers( int page, int itemsInAPage) {
 		int limitStart = (page - 1) * itemsInAPage;
 		int limitTake = itemsInAPage;
-		return memberDao.getForPrintMembers(limitStart, limitTake, searchKeyword, searchKeywordType);
+		return memberDao.getForPrintMembers(limitStart, limitTake);
 	}
 
-	public int getMembersTotalCount(String searchKeyword, String searchKeywordType) {
-		return memberDao.getMembersTotalCount(searchKeyword, searchKeywordType);
-	}
+
 
 	public void deleteMember(int id) {
 		memberDao.deleteMember(id);

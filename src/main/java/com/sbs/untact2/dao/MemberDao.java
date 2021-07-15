@@ -25,12 +25,10 @@ public interface MemberDao {
 	void modify(@Param("id") int id, @Param("loginPw") String loginPw, @Param("name") String name,
 			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 
+	int getMembersTotalCount();
+	
 	List<Member> getForPrintMembers(@Param("limitStart") int limitStart,
-			@Param("limitTake") int limitTake, @Param("searchKeyword") String searchKeyword,
-			@Param("searchKeywordType") String searchKeywordType);
-
-	int getMembersTotalCount(@Param("searchKeyword") String searchKeyword,
-			@Param("searchKeywordType") String searchKeywordType);
+			@Param("limitTake") int limitTake);
 
 	void deleteMember(@Param("id")int id);
 

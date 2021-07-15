@@ -35,26 +35,8 @@ public class MpaAdmMemberController {
 
 	// 회원 리스트
 	@RequestMapping("/mpaAdm/member/list")
-	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "1") int page, String searchKeyword,
-			@RequestParam(defaultValue = "nameAndAuthLevelName") String searchKeywordType) {
-		
-		if (searchKeywordType != null) {
-			searchKeywordType = searchKeywordType.trim();
-		}
-		if (searchKeywordType == null || searchKeywordType.length() == 0) {
-			searchKeywordType = "nameAndAuthLevelName";
-		}
-		if (searchKeyword != null && searchKeyword.length() == 0) {
-			searchKeyword = null;
-		}
-		if (searchKeyword != null) {
-			searchKeyword = searchKeyword.trim();
-		}
-		if (searchKeyword == null) {
-			searchKeywordType = null;
-		}
-		
-		int totalCount = memberService.getMembersTotalCount(searchKeyword, searchKeywordType);
+	public String showList(HttpServletRequest req, @RequestParam(defaultValue = "1") int page) {
+		int totalCount = memberService.getMembersTotalCount();
 
 		req.setAttribute("totalCount", totalCount);
 
@@ -64,8 +46,7 @@ public class MpaAdmMemberController {
 		req.setAttribute("page", page);
 		req.setAttribute("totalPage", totalPage);
 
-		List<Member> members = memberService.getForPrintMembers(page, itemsInAPage, searchKeyword,
-				searchKeywordType);
+		List<Member> members = memberService.getForPrintMembers(page, itemsInAPage);
 
 		req.setAttribute("members", members);
 		return "mpaAdm/member/list";

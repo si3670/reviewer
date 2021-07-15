@@ -17,27 +17,6 @@
 			</div>
 		</div>
 
-		<form class="flex px-20">
-			<select name="searchKeywordType">
-				<option value="nameAndAuthLevelName">전체</option>
-				<option value="name">이름</option>
-				<option value="authLevelName">회원타입</option>
-			</select>
-			<script>
-				const param__searchKeywordType = '${param.searchKeywordType}';
-				if (param__searchKeywordType.length > 0) {
-					$('.section-1 select[name="searchKeywordType"]').val(
-							param__searchKeywordType);
-				}
-			</script>
-			<input
-				class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
-				name="searchKeyword" type="text" placeholder="검색어를 입력해주세요."
-				value="${param.searchKeyword}" />
-			<input class="ml-3 btn-border" type="submit" value="검색" />
-		</form>
-
-
 		<div class="articles pt-10 pb-4 px-20">
 			<div class="li_board">
 				<ul class="li_header flex">

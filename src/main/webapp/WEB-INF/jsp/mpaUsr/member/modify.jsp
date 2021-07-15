@@ -94,9 +94,9 @@
 				<input type="hidden" name="loginPw">
 
 				<div class="form-control flex items-center my-6">
-					<img class="w-40 h-40 mb-2 object-cover rounded-full"
-						onerror="${rq.loginedMember.removeProfileImgIfNotExistsOnErrorHtmlAttr}"
-						src="${rq.loginedMember.profileImgUri}" alt="">
+						<img class="w-40 h-40 mb-2 object-cover rounded-full"
+							onerror="${rq.loginedMember.profileFallbackImgOnErrorHtmlAttr}"
+							src="${rq.loginedMember.profileImgUri}" alt="">
 					<div class="filebox">
 						<label for="ex_file">프로필사진 선택</label>
 						<input accept="image/gif, image/jpeg, image/png" type="file"
@@ -172,7 +172,7 @@
 
 					<div class="flex-grow"></div>
 
-					<a onclick="if ( confirm('정말 탈퇴하시겠습니까?\n\n절대 되돌릴 수 없습니다.') == false ) return false;" href="../member/doDelete?id=${member.id}"
+					<a onclick="if ( confirm('정말 탈퇴하시겠습니까?\n\n다시 되돌릴 수 없습니다.') == false ) return false;" href="../member/doDelete?id=${member.id}"
 						class="bg-red-600 hover:bg-gray-600 text-white btn-sm">
 						<span>
 							<i class="fas fa-user-minus"></i>

@@ -31,11 +31,11 @@ mybatis:
 custom:
   needToChangePasswordFreeDays: 90
   genFileDirPath: C:/work/insta-file
-  siteName: cellar
+  siteName: winec
   siteMainUri: http://localhost:8044/mpaUsr/home/main
   siteLoginUri: http://localhost:8044/mpaUsr/member/login
   emailFrom: no-reply@localhost
-  emailFromName: cellar
+  emailFromName: winec
   logging:
     dir: log
     level: debug     

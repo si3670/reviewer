@@ -4,9 +4,19 @@
 
 <%@ include file="foot.jspf"%>
 
-<div class="bg-gray-100 w-full h-40">
+<style>
+/* 반응형 시작 */
+@media ( max-width : 375px) {
+	.foot {
+		font-size: 10px;
+	}
+}
 
-	<div class="p-10 text-sm text-gray-600">
+/* 반응형 끝 */
+</style>
+
+<div class="bg-gray-100 w-full h-40">
+	<div class="foot p-10 text-sm text-gray-600">
 		<p class="inline-block">winec</p>
 		<p class="inline-block">이세인</p>
 		<p>si367038@gmail.com</p>

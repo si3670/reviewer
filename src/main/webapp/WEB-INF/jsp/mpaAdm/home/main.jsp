@@ -52,6 +52,45 @@
 	margin-left: 7px;
 }
 /* my-slider-box-1 끝 */
+/* 반응형 시작 */
+@media ( max-width : 600px) {
+	.text-visual-1, .text-visual-2, .text-visual-3 {
+		color: gray;
+	}
+}
+
+@media ( max-width : 375px) {
+	.swiper-slide>.text-visual-1>.wine-review {
+		font-size: 20px;
+	}
+	.swiper-slide>.text-visual-1>p {
+		font-size: 10px;
+	}
+	
+	.swiper-slide>.text-visual-2{
+		padding: 0 0;
+	}
+	.swiper-slide>.text-visual-2>h1, p {
+		font-size: 10px;
+	}
+	
+	
+	.swiper-slide>.text-visual-3>h1 {
+		font-size: 20px;
+	}
+	.swiper-slide>.text-visual-3>p {
+		font-size: 10px;
+	}
+	
+	.swiper-slide>.text-visual-2, .swiper-slide>.text-visual-3 > a{
+		padding:7px 10px;
+		font-size: 10px; 
+	}
+}
+
+/* 반응형 끝 */
+
+
 </style>
 
 <script>
@@ -103,7 +142,7 @@
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
-						<img src="http://localhost:8044/resource/imgs/admin_visual.jpg"
+						<img src="/resource/imgs/admin_visual.jpg"
 							alt="">
 						<div class="text-visual-1 absolute">
 							<h1 class="text-3xl font-light">
@@ -114,7 +153,7 @@
 						</div>
 					</div>
 					<div class="swiper-slide">
-						<img src="http://localhost:8044/resource/imgs/visual2.jpg" alt="">
+						<img src="/resource/imgs/visual2.jpg" alt="">
 						<div class="text-visual-1">
 							<h1 class="wine-review">Wine Review</h1>
 							<p>내가 경험한 와인 리뷰 남기기</p>
@@ -122,7 +161,7 @@
 					</div>
 
 					<div class="swiper-slide">
-						<img src="http://localhost:8044/resource/imgs/visual3.jpg" alt="">
+						<img src="/resource/imgs/visual3.jpg" alt="">
 						<div class="text-visual-2">
 							<h1 class="font-extralight">
 								첫
@@ -138,7 +177,7 @@
 						</div>
 					</div>
 					<div class="swiper-slide">
-						<img src="http://localhost:8044/resource/imgs/visual4.jpg" alt="">
+						<img src="/resource/imgs/visual4.jpg" alt="">
 						<div class="text-visual-3">
 							<h1>와인 추천하기</h1>
 							<p>와인, 어울리는 안주 등 추천하며 자유롭게 소통해요!</p>

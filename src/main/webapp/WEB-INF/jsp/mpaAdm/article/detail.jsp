@@ -7,6 +7,14 @@
 <c:set var="fileInputMaxCount" value="1" />
 
 <style>
+/* 반응형 시작 */
+@media ( max-width : 600px){
+	.title-box>.title-box-1{
+		color:red;
+		font-size: 13px;
+	}
+}
+/* 반응형 끝 */
 </style>
 
 <div class="section-article-detail">

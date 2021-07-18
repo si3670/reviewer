@@ -11,6 +11,16 @@
 	font-family: "LotteMartDream", sans-serif;
 	text-align: center;
 }
+
+/* 반응형 시작 */
+@media ( max-width : 600px){	
+	.li_board ul li{
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+	
+}
+
 </style>
 
 

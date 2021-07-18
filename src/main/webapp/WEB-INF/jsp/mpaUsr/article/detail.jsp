@@ -7,6 +7,16 @@
 <c:set var="fileInputMaxCount" value="1" />
 
 <style>
+/* 반응형 시작 */
+@media ( max-width : 600px){
+	.title-box-1{
+		white-space: nowrap;
+	}
+	.title-box-1>span{
+		width: 100%;
+	}
+}
+/* 반응형 끝 */
 </style>
 
 <div class="section-article-detail">
@@ -17,7 +27,7 @@
 					<span>No.${article.id}</span>
 					<div class="text-3xl my-4">${article.title}</div>
 
-					<div class="flex">
+					<div class="flex title-box-1">
 						<span class="text-gray-600 text-sm">${board.name}</span>
 						<span class="text-gray-600 ml-4 text-sm">작성날짜 :
 							${article.regDate}</span>

@@ -381,6 +381,7 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
     padding-right: 7px;
     border-width: 0 0 1px 0;
     border-style: solid;
+    white-space: nowrap;
 }
 .li_table ul, .li_board ul li, .li_board .board-head{
     border-color:rgba(61,70,75,0.15);

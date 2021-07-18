@@ -42,7 +42,6 @@ custom:
   siteLoginUri: http://localhost:8044/mpaUsr/member/login
   emailFrom: no-reply@localhost
   emailFromName: winec
-  tmpDirPath: "c:/temp"
   logging:
     dir: log
     level: debug     

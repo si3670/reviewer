@@ -52,6 +52,55 @@
 	margin-left: 7px;
 }
 /* my-slider-box-1 끝 */
+/* 반응형 시작 */
+@media ( max-width : 600px) {
+	.swiper-slide>.text-visual-1>.wine-review {
+		font-size: 25px;
+	}
+	.swiper-slide>.text-visual-1>p {
+		font-size: 15px;
+	}
+	.swiper-slide>.text-visual-2 {
+		padding: 5px 10px;
+	}
+	.swiper-slide>.text-visual-2>h1 {
+		font-size: 15px;
+	}
+	.swiper-slide>.text-visual-2>a {
+		padding: 1px 8px;
+		font-size: 10px;
+	}
+	.swiper-slide>.text-visual-3 {
+		top: 30%;
+		right: 0%;
+		transform: translate(-30%, 0%);
+	}
+	.swiper-slide>.text-visual-3>h1 {
+		font-size: 15px;
+	}
+	.swiper-slide>.text-visual-3>p {
+		font-size: 10px;
+	}
+	.swiper-slide>.text-visual-3>a {
+		padding: 4px 8px;
+		font-size: 10px;
+	}
+}
+
+@media ( max-width : 375px) {
+	.swiper-slide>.text-visual-1>.wine-review {
+		font-size: 20px;
+	}
+	.swiper-slide>.text-visual-1>p {
+		font-size: 10px;
+	}
+	.swiper-slide>.text-visual-2>h1{
+		font-size: 10px;
+	}
+	
+}
+
+/* 반응형 끝 */
 </style>
 
 <script>
@@ -119,7 +168,6 @@
 								<br />
 								와인을 드립니다!
 							</h1>
-							<p>추첨을 통해 선착순 50명에게 드립니다</p>
 							<a href="../article/detail?id=1"
 								class="inline-block mt-2 bg-red-600 text-white px-2 py-1 text-sm">자세히
 								보기</a>
@@ -128,7 +176,7 @@
 					<div class="swiper-slide">
 						<img src="/resource/imgs/visual4.jpg" alt="">
 						<div class="text-visual-3">
-							<h1>와인 추천하기!!!</h1>
+							<h1>와인 추천하기</h1>
 							<p>와인, 어울리는 안주 등 추천하며 자유롭게 소통해요!</p>
 							<a href="../article/list?boardId=2"
 								class="inline-block mt-2 bg-red-600 text-white px-2 py-1 text-sm">바로

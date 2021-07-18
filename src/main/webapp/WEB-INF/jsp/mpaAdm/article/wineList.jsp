@@ -21,6 +21,14 @@
 
 }
 
+/* 반응형 시작 */
+@media ( max-width : 600px){
+	.articles>.wine-content{
+		width: 100%;
+	}
+}
+/* 반응형 끝 */
+
 </style>
 
 

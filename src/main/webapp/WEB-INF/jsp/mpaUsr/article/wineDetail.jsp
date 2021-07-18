@@ -12,6 +12,13 @@
 	width: 300px;
 	height: 300px;
 }
+
+/* 반응형 시작 */
+@media ( max-width : 600px){
+	
+}
+/* 반응형 끝 */
+
 </style>
 
 <div class="section-wine-detail">

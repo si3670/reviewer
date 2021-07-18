@@ -1,10 +1,10 @@
-server:
-  port: 8044
 spring:
+  profiles:
+    active: local # 기본적으로 local이 선택된다는 뜻, local모드
   servlet:
     multipart:
       max-file-size: 50MB
-      max-request-size: 50MB
+      max-request-size: 50MB      
   mail:
     host: smtp.gmail.com
     port: 587
@@ -23,11 +23,17 @@ spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3309/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
-    username: sen
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+    username: root
     password: 1234
 mybatis:
   type-aliases-package: com.sbs.untact2.dto
+server:
+  error: # 오류 방지
+    include-exception: true
+    include-stacktrace: always
+    include-message: always
+    include-binding-errors: always  
 custom:
   needToChangePasswordFreeDays: 90
   genFileDirPath: C:/work/insta-file
@@ -36,6 +42,35 @@ custom:
   siteLoginUri: http://localhost:8044/mpaUsr/member/login
   emailFrom: no-reply@localhost
   emailFromName: winec
+  tmpDirPath: "c:/temp"
   logging:
     dir: log
     level: debug     
+    
+    
+---
+# PC용 설정
+spring:
+  profiles: local
+server:
+  port: 8085
+
+---
+
+# 리눅스용 설정
+spring:
+  profiles: production # production 모드, production모드일땐 production, local 모드 실행, 겹치면 우선권
+  servlet:
+    multipart:
+      location: /tmp
+  datasource:
+    username: sbsstLocal
+    password: sbs123414
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+custom:
+  genFileDirPath: /opt/tomcat/latest/cellar-2.winec.kr-file
+  tmpDirPath: "/tmp"
+  logging:
+    dir: /tmp/cellar2-log
+    level: info

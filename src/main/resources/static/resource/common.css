@@ -318,12 +318,13 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	background-color: white;
 	text-align: center;
 	padding: 30px 60px;
 }
 .swiper-slide>.text-visual-2>h1{
 		font-size: 40px;
+		color:white;
+		text-shadow:1px 1px 2px , 0 0 1em gray, 0 0 0.2em gray;
 }
 
 .swiper-slide>.text-visual-1>.wine-review {
@@ -339,7 +340,7 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
 	text-align: right;
 }
 .swiper-slide>.text-visual-3>h1{
-		font-size: 55px;
+	font-size: 55px;
 }
 
 .content-h1-1{
@@ -381,6 +382,8 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
     padding-right: 7px;
     border-width: 0 0 1px 0;
     border-style: solid;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 .li_table ul, .li_board ul li, .li_board .board-head{
@@ -408,10 +411,12 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
     padding-right: 7px;
     border-width: 0 0 1px 0;
     border-style: solid;
+    white-space: nowrap;
 }
 .li_board_member ul li a{
 	display: inline-block;
 	padding: 8px 0;
+	white-space: nowrap;
 }
 /* member 리스트 시작 */
 

@@ -12,10 +12,17 @@
 	width: 300px;
 	height: 300px;
 }
+
+/* 반응형 시작 */
+@media ( max-width : 600px){
+	.container{
+		padding:0 0;
+	}
+}
 </style>
 
 <div class="section-article-detail">
-	<div class="container mx-auto  px-40">
+	<div class="container mx-auto px-40">
 		<div
 			class="mt-20 mb-10 card bordered shadow-lg item-bt-1-not-last-child">
 			<div class="card-title-2">

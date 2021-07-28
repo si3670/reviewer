@@ -6,10 +6,24 @@
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 <style>
-.pageExplain{
+.pageExplain {
 	font-size: 14px;
 	font-family: "LotteMartDream", sans-serif;
 	text-align: center;
+}
+
+/* 반응형 시작 */
+@media ( max-width : 600px) {
+	.container>.articles {
+		padding: 30px 20px 20px 16px;
+	}
+	.li_board ul li {
+		padding: 45px 4px;
+	}
+	.li_board ul li a{
+		color: red;
+		font-size: 13px; 
+	}
 }
 </style>
 
@@ -65,7 +79,8 @@
 						</li>
 
 						<li class="w-full text-center">
-							<a href="detail?id=${article.id}" class="font-light text-gray-600">${article.regDate}</a>
+							<a href="detail?id=${article.id}"
+								class="font-light text-gray-600">${article.regDate}</a>
 						</li>
 						<li class="w-full text-right">
 							<a href="${detailUrl}" class=" font-light text-gray-600">

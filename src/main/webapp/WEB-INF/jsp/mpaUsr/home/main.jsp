@@ -64,39 +64,39 @@
 		padding: 5px 10px;
 	}
 	.swiper-slide>.text-visual-2>h1 {
-		font-size: 15px;
+		font-size: 25px;
 	}
 	.swiper-slide>.text-visual-2>a {
 		padding: 1px 8px;
 		font-size: 10px;
 	}
 	.swiper-slide>.text-visual-3 {
-		top: 30%;
-		right: 0%;
-		transform: translate(-30%, 0%);
+		top: 50%;
+		right: -17%;
+		transform: translate(-50%, -17%);
 	}
 	.swiper-slide>.text-visual-3>h1 {
-		font-size: 15px;
+		font-size: 25px;
 	}
 	.swiper-slide>.text-visual-3>p {
-		font-size: 10px;
+		font-size: 15px;
 	}
 	.swiper-slide>.text-visual-3>a {
 		padding: 4px 8px;
 		font-size: 10px;
 	}
+	
+	
+	.swiper-slide>img{
+		width: 100%;
+        height: 700px;
+        object-fit: cover;
+        -ms-overflow-style: none;
+	}
+	::-webkit-scrollbar {
+        display: none;
+    }
 }
-
-@media ( max-width : 375px) {
-	.swiper-slide>.text-visual-1>.wine-review {
-		font-size: 20px;
-	}
-	.swiper-slide>.text-visual-1>p {
-		font-size: 10px;
-	}
-	.swiper-slide>.text-visual-2>h1{
-		font-size: 10px;
-	}
 	
 }
 

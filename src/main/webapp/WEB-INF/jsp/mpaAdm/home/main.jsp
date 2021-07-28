@@ -54,43 +54,50 @@
 /* my-slider-box-1 끝 */
 /* 반응형 시작 */
 @media ( max-width : 600px) {
-	.text-visual-1, .text-visual-2, .text-visual-3 {
-		color: gray;
+	.swiper-slide>.text-visual-1>.text-visual-1-1 {
+		font-size: 18px;
 	}
-}
-
-@media ( max-width : 375px) {
 	.swiper-slide>.text-visual-1>.wine-review {
-		font-size: 20px;
+		font-size: 25px;
 	}
 	.swiper-slide>.text-visual-1>p {
+		font-size: 15px;
+	}
+	.swiper-slide>.text-visual-2 {
+		padding: 5px 10px;
+	}
+	.swiper-slide>.text-visual-2>h1 {
+		font-size: 25px;
+	}
+	.swiper-slide>.text-visual-2>a {
+		padding: 1px 8px;
 		font-size: 10px;
 	}
-	
-	.swiper-slide>.text-visual-2{
-		padding: 0 0;
+	.swiper-slide>.text-visual-3 {
+		top: 50%;
+		right: -17%;
+		transform: translate(-50%, -17%);
 	}
-	.swiper-slide>.text-visual-2>h1, p {
-		font-size: 10px;
-	}
-	
-	
 	.swiper-slide>.text-visual-3>h1 {
-		font-size: 20px;
+		font-size: 25px;
 	}
 	.swiper-slide>.text-visual-3>p {
+		font-size: 15px;
+	}
+	.swiper-slide>.text-visual-3>a {
+		padding: 4px 8px;
 		font-size: 10px;
 	}
-	
-	.swiper-slide>.text-visual-2, .swiper-slide>.text-visual-3 > a{
-		padding:7px 10px;
-		font-size: 10px; 
+	.swiper-slide>img{
+		width: 100%;
+        height: 700px;
+        object-fit: cover;
+        -ms-overflow-style: none;
 	}
+	::-webkit-scrollbar {
+        display: none;
+    }
 }
-
-/* 반응형 끝 */
-
-
 </style>
 
 <script>
@@ -142,10 +149,9 @@
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
-						<img src="/resource/imgs/admin_visual.jpg"
-							alt="">
+						<img src="/resource/imgs/admin_visual.jpg" alt="">
 						<div class="text-visual-1 absolute">
-							<h1 class="text-3xl font-light">
+							<h1 class="text-visual-1-1 text-3xl font-light">
 								Cellar
 								<span class="font-semibold">관리자</span>
 								페이지입니다.
@@ -170,7 +176,6 @@
 								<br />
 								와인을 드립니다!
 							</h1>
-							<p>추첨을 통해 선착순 50명에게 드립니다</p>
 							<a href="../article/detail?id=1"
 								class="inline-block mt-2 bg-red-600 text-white px-2 py-1 text-sm">자세히
 								보기</a>

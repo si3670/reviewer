@@ -15,14 +15,19 @@
 
 /* 반응형 시작 */
 @media ( max-width : 600px){
-	
+	.container{
+		padding:0 0;
+	}
+	.detail{
+		font-size: 10px;
+	}
 }
 /* 반응형 끝 */
 
 </style>
 
 <div class="section-wine-detail">
-	<div class="container mx-auto  px-40">
+	<div class="container mx-auto px-40">
 		<div
 			class="mt-20 mb-10 card bordered shadow-lg item-bt-1-not-last-child">
 			<div class="card-title-2">
@@ -32,7 +37,7 @@
 				<span>와인 정보</span>
 			</div>
 
-			<div class="mt-14 ml-4 text-sm">
+			<div class="detail mt-14 ml-4 text-sm">
 				<span class="text-gray-600">작성자 : ${article.extra__writer}</span>
 				<div>
 					<span class="text-gray-600">작성날짜 : ${article.regDate}</span>
@@ -42,7 +47,7 @@
 
 					<span class="text-gray-600 ml-4">조회수 : ${article.hitCount}</span>
 
-					<span class="text-gray-600 ml-4">카테고리 : ${board.name}</span>
+					<span class="text-gray-600">카테고리 : ${board.name}</span>
 				</div>
 				<c:if test="${rq.logined}">
 					<div class="text-blue-500">

@@ -6,6 +6,28 @@
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
 
+<style>
+/* 반응형 시작 */
+@media ( max-width : 600px) {
+	.container>.articles {
+		padding: 30px 20px 20px 16px;
+	}
+	.li_board ul li{
+		font-size: 10px;
+	}
+	.li_board_member ul li {
+		padding: 12px 0;
+	}
+	.li_board_member ul li>a{
+		font-size: 10px;
+	}
+	.li_board_member ul li>img{
+		width: 31px;
+		height: 31px;
+	}
+}
+</style>
+
 
 <div class="section section-member-list">
 	<div class="container mx-auto">

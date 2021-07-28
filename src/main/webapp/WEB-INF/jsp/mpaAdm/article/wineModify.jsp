@@ -4,6 +4,16 @@
 
 <%@ include file="../part/mainLayoutHead.jspf"%>
 
+<style>
+/* 반응형 시작 */
+@media ( max-width : 600px) {
+	.container{
+		padding:0 0;
+	}
+}
+/* 반응형 끝 */
+</style>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
@@ -119,9 +129,9 @@
 	}
 </script>
 <div class="section section-article-modify px-2">
-	<div class="container mx-auto">
+	<div class="container mx-auto px-40">
 		<div
-			class="mt-20 mb-10 mx-40 card bordered shadow-lg item-bt-1-not-last-child">
+			class="mt-20 mb-10 card bordered shadow-lg item-bt-1-not-last-child">
 			<div class="card-title-2">
 				<a href="javascript:history.back();" class="cursor-pointer">
 					<i class="fas fa-chevron-left"></i>

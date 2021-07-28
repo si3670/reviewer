@@ -8,9 +8,9 @@
 
 <style>
 /* 반응형 시작 */
-@media ( max-width : 600px){
-	.title-box>.title-box-1{
-		color:red;
+@media ( max-width : 600px) {
+	.title-box>.title-box-1 {
+		color: red;
 		font-size: 13px;
 	}
 }
@@ -31,10 +31,10 @@
 							${article.regDate}</span>
 						<span class="text-gray-600 ml-4 text-sm">수정날짜 :
 							${article.updateDate}</span>
-						<span class="text-gray-600  ml-4 text-sm">조회수 :
-							${article.hitCount}</span>
-					</div>
 
+					</div>
+					<span class="text-gray-600  ml-4 text-sm">조회수 :
+						${article.hitCount}</span>
 					<span class="text-gray-600 text-sm">작성자 :
 						${article.extra__writer}</span>
 					<c:if test="${rq.logined}">

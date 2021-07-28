@@ -61,7 +61,7 @@
 			</c:if>
 			<c:forEach items="${articles}" var="article">
 				<div class="wine-content">
-					<div class="flex justify-center mt-14 text-sm">
+					<div class="flex justify-center mt-14 text-sm wine-content-text whitespace-nowrap">
 						<a href="${detailUrl}" class="font-bold">NO. ${article.id}</a>
 						<a href="${detailUrl}" class="ml-2 font-light text-gray-600">${article.regDate}</a>
 						<a href="${detailUrl}" class="ml-2 font-light text-gray-600">조회
